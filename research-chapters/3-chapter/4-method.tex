@@ -6,7 +6,7 @@
     \label{fig:sure-template}
 \end{figure}
 % \input{tables/prompts-style}
-\section{Unified LLM-powered Generation of Templatic Views}\label{sec:method}
+\section{Unified LLM-powered Generation of Templatic Views}\label{sec:3-chapter-method}
 The most straightforward way to transform documents between templatic views using LLMs, is to simply prompt the system to generate the target view given the input. However, similar to chain of thought prompting~\cite{Wei2022ChainOT}, we hypothesize that first generating a structured, intermediate representation of an input document and then reasoning over that representation will result in better generations than directly prompting the model. Our goal is to evaluate the capabilites of LLMs to generate long, structured documents, and experiment with how structured prompting can improve performance. We experiment with a simple general two-step process: first generate an intermediate representation, then generate the templatic view. These steps are described in greater detail below, and the process is visualized in Figure~\ref{fig:method}.
 
 
