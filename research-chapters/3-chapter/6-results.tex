@@ -18,7 +18,7 @@ We use \texttt{gpt35-16k-0613} in our main set of experiments. We truncate text 
 \input{research-chapters/3-chapter/tables/eval_results}
 \subsection{Results of automatic evaluation}\label{sec:auto-results}
 
-In Table~\ref{tbl:auto-results}, we report the TAE F1 scores as described in \S\ref{sec:eval-metric}, using ROUGE-L~\cite{Lin2004ROUGEAP}, METEOR~\cite{Banerjee2005METEORAA}, BLEU~\cite{Papineni2002BleuAM}, and BERTScore~\cite{Zhang2019BERTScoreET} for the similarity measure. As seen in the results, by most measures, generating a JSON intermediate representation yields the best performance. 
+In Table~\ref{tbl:auto-results}, we report the TAE F1 scores as described in \S\ref{sec:eval-metric}, using ROUGE-L~\cite{Lin2004ROUGEAP}, METEOR~\cite{banerjee-lavie-2005-meteor}, BLEU~\cite{Papineni2002BleuAM}, and BERTScore~\cite{Zhang2019BERTScoreET} for the similarity measure. As seen in the results, by most measures, generating a JSON intermediate representation yields the best performance. 
 
 We see that using the text representation generally degrades the performance over providing the structured JSON representation, indicating that structure is important for downstream performance in addition to abstractive filtering of information. Additionally, the text representation performs better than skipping the intermediate step altogether for both the poster and slide generation task, but not the blog generation task. This is likely because posters and slides have more inherent structure than blog posts, which can be relatively free-form.
 
