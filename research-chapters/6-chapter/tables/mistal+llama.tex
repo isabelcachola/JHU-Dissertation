@@ -1,0 +1,116 @@
+% -----------------------------------------------------------------------
+% TABLE 3 & 4: Mistral and Llama Eval (combined with subtables)
+% -----------------------------------------------------------------------
+\begin{table*}[ht]
+\footnotesize
+\centering
+
+% --- Subtable (a): Mistral ---
+\begin{subtable}{\linewidth}
+\centering
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Reference Type} & \textbf{nrefs}
+  & \textbf{Coherence} & \textbf{Consistency} & \textbf{Fluency} & \textbf{Relevance} \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-based}} \\ \midrule
+\rowcolor{refbased}
+Gold    & 11 & 0.328 & \textbf{0.726} & \textbf{0.652} & 0.489 \\
+\rowcolor{refbased}
+Gold    &  6 & 0.370 & 0.519 & 0.511 & 0.533 \\
+\rowcolor{refbased}
+Gold    &  1 & \textbf{0.394} & 0.637 & 0.616 & \textbf{0.622} \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-adjusted}} \\ \midrule
+\rowcolor{refadj}
+Abstractive & 11 & 0.328 & \textbf{0.726} & \textbf{0.652} & 0.489 \\
+\rowcolor{refadj}
+Abstractive &  6 & 0.370 & 0.519 & 0.496 & 0.533 \\
+\rowcolor{refadj}
+Abstractive &  1 & \textbf{0.394} & 0.637 & 0.616 & \textbf{0.622} \\
+\hdash{1}{6}
+\rowcolor{refadj}
+Extractive  & 11 & 0.328 & \textbf{0.726} & \textbf{0.652} & 0.489 \\
+\rowcolor{refadj}
+Extractive  &  6 & 0.370 & 0.519 & 0.506 & 0.533 \\
+\rowcolor{refadj}
+Extractive  &  1 & \textbf{0.394} & 0.637 & 0.616 & \textbf{0.622} \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-free}} \\ \midrule
+\rowcolor{reffree}
+---         &  0 & \textbf{0.337} & \textbf{0.632} & \textbf{0.498} & \textbf{0.632} \\
+\midrule
+\multicolumn{5}{l}{\textit{Best traditional (per setting)}} \\ \midrule
+\rowcolor{refbased}
+Reference-based & - & 0.550\,(ROUGE-L) & 0.700\,(SummaQA) & 0.711\,(ROUGE-4) & 0.700\,(ROUGE-4) \\
+\rowcolor{refadj}
+Reference-adjusted & - & 0.515\,(ROUGE-L) & 0.691\,(ROUGE-3) & 0.701\,(ROUGE-4) & 0.588\,(ROUGE-4) \\
+\rowcolor{reffree}
+Reference-free & - & 0.200\,(Stats-density) & 0.633\,(Stats-density) & 0.410\,(BLANC) & 0.383\,(BLANC) \\
+\bottomrule
+\end{tabular}
+\caption{%
+  \textbf{Mistral Eval on SummEval} across three evaluation settings.
+}
+\label{tab:mistral}
+\end{subtable}
+
+\vspace{1em}
+
+% --- Subtable (b): Llama ---
+\begin{subtable}{\linewidth}
+\centering
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Reference Type} & \textbf{nrefs}
+  & \textbf{Coherence} & \textbf{Consistency} & \textbf{Fluency} & \textbf{Relevance} \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-based}} \\ \midrule
+\rowcolor{refbased}
+Gold    & 11 & \textbf{0.511} & \textbf{0.370} & 0.599 & 0.628 \\
+\rowcolor{refbased}
+Gold    &  6 & 0.437 & 0.326 & \textbf{0.678} & 0.678 \\
+\rowcolor{refbased}
+Gold    &  1 & \textbf{0.511} & 0.319 & 0.588 & \textbf{0.807} \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-adjusted}} \\ \midrule
+\rowcolor{refadj}
+Abstractive & 11 & 0.382 & 0.060 & \textbf{0.617} & \textbf{0.627} \\
+\rowcolor{refadj}
+Abstractive &  6 & 0.459 & 0.059 & 0.602 & 0.544 \\
+\rowcolor{refadj}
+Abstractive &  1 & \textbf{0.500} & \textbf{0.199} & 0.449 & 0.613 \\
+\hdash{1}{6}
+\rowcolor{refadj}
+Extractive  & 11 & 0.382 & 0.060 & \textbf{0.617} & \textbf{0.627} \\
+\rowcolor{refadj}
+Extractive  &  6 & 0.459 & 0.059 & 0.602 & 0.544 \\
+\rowcolor{refadj}
+Extractive  &  1 & \textbf{0.500} & \textbf{0.199} & 0.449 & 0.613 \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-free}} \\ \midrule
+\rowcolor{reffree}
+---         &  0 & \textbf{0.588} & \textbf{0.084} & \textbf{0.616} & \textbf{0.711} \\
+\midrule
+\multicolumn{5}{l}{\textit{Best traditional (per setting)}} \\ \midrule
+\rowcolor{refbased}
+Reference-based & - & 0.550\,(ROUGE-L) & 0.700\,(SummaQA) & 0.711\,(ROUGE-4) & 0.700\,(ROUGE-4) \\
+\rowcolor{refadj}
+Reference-adjusted & - & 0.515\,(ROUGE-L) & 0.691\,(ROUGE-3) & 0.701\,(ROUGE-4) & 0.588\,(ROUGE-4) \\
+\rowcolor{reffree}
+Reference-free & - & 0.200\,(Stats-density) & 0.633\,(Stats-density) & 0.410\,(BLANC) & 0.383\,(BLANC) \\
+\bottomrule
+\end{tabular}
+\caption{%
+  \textbf{Llama Eval on SummEval} across three evaluation settings.
+}
+\label{tab:llama}
+\end{subtable}
+
+\caption{Evaluation results on SummEval for \textbf{(a) Mistral} and \textbf{(b) Llama} across three evaluation settings.   \colorbox{refbased}{\vphantom{x} Reference-based}: Gold references.
+  \colorbox{refadj}{\vphantom{x} Reference-adjusted}: Abstractive or Extractive references.
+  \colorbox{reffree}{\vphantom{x} Reference-free}: nrefs\,=\,0.
+Best traditional metric per setting, per column, shown for reference.  \textbf{Bold} indicates the best score within each setting per column. Best traditional metrics from~\Cref{tab:traditional_metrics}.
+}
+\label{tab:mistal+llama}
+\end{table*}

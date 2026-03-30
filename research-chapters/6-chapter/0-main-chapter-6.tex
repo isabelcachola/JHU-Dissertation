@@ -1,0 +1,29 @@
+\chapter{Reference-Adjusted Summarization Evaluation} \label{chap:chap-4}
+
+
+
+LLMs have been shown to be effective judges of generations across a range of tasks, from summarization to machine translation. Although they perform well in reference-free settings, evidence suggests that providing a reference for comparison further improves their judgment. However, exact references are rarely available without expensive dataset curation, which requires collecting gold references for each example in the test dataset. In this paper, we propose a new evaluation paradigm to address this gap: reference-adjusted evaluation. This refers to the setting in which a related, but not exact, reference is available. We show that providing related summaries improves LLM judgment by giving them an axis of comparison. This setting enables researchers and developers to improve the evaluations of new test sets without requiring expensive annotations.
+
+
+\input{research-chapters/6-chapter/1-Introduction}
+\input{research-chapters/6-chapter/2-Related-Works}
+\input{research-chapters/6-chapter/3-Method}
+\input{research-chapters/6-chapter/4-Experimental-Setup}
+\input{research-chapters/6-chapter/5-LLM-as-Judge}
+\input{research-chapters/6-chapter/6-Discussion}
+
+
+\section{Limitations}
+Although our results demonstrate that reference-adjusted evaluations consistently outperform reference-free evaluations, several limitations should be considered. First, all experiments are conducted on a single dataset and language. It remains an open question whether our findings generalize to other domains or languages. Second, we experiment with relatively small open-source models, and the behavior of larger or proprietary models may differ. Given that stronger judges tend to perform better overall~\cite{Zheng2023JudgingLLM,Kim2023Prometheus},
+the gains we report on small open-source models may represent a lower bound on what is achievable with larger judges.
+
+\section{Ethical Considerations}
+The primary ethical consideration in this work concerns the use of
+LLMs as automated judges, which carries the risk of encoding and amplifying
+the biases present in the underlying models, including biases related to
+writing style, dialect, topic, or cultural framing. Reference-adjusted
+evaluation inherits this risk and may introduce an additional source of bias
+through the machine-generated references themselves. We mitigate this concern by only including synthetic references from models other than the one being evaluated. Researchers applying reference-adjusted evaluation in practice should carefully consider the provenance and potential biases of the related references they use, and should not treat automated evaluation scores as a substitute for human judgment in high-stakes domains.
+
+
+

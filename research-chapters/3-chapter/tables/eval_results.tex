@@ -1,0 +1,32 @@
+\begin{table}[!t]
+\centering
+\small
+\begin{tabular}{ccc|cccc}
+ &  &  & \multicolumn{4}{c}{Similarity Measure} \\
+ & Rep. & Style & R-L & M & B & BERTS \\ \hline
+\multirow{6}{*}{\rotatebox[origin=c]{90}{Slides}} & None & $\times$ & 5.0 & 6.4 & 0.3 & 31.6 \\
+ & None & $\checkmark$ & 5.1 & 6.0 & 0.4 & 31.7 \\
+ & Own & $\checkmark$ & 6.5 & 7.1 & 1.2 & 36.1 \\
+& Text & $\checkmark$ & 7.3 & 8.0 & 1.4 & 36.4 \\
+ & JSON & $\times$ & 4.2 & 6.0 & 0.3 & 31.4 \\ 
+ & JSON & $\checkmark$ & \textbf{7.4} & \textbf{8.4} & \textbf{1.5} & \textbf{36.9} \\ 
+ \hdashline[0.5pt/3pt]
+ 
+\multirow{6}{*}{\rotatebox[origin=c]{90}{Blogs}} & None & $\times$ & 26.6 & 19.6 & 3.0 & 82.5 \\
+ & None & $\checkmark$ & 25.1 & 17.7 & 2.3 & \textbf{82.8} \\
+ & Own & $\checkmark$ & 23.9 & 19.2 & 2.3 & 82.2 \\
+& Text & $\checkmark$ & 25.4 & 19.3 & 2.5 & 82.5 \\
+ & JSON & $\times$ & \textbf{28.3} & \textbf{25.3} & \textbf{5.0} & 82.3 \\ 
+ & JSON & $\checkmark$ & 25.4 & 19.6 & 2.8 & 82.4 \\ \hdashline[0.5pt/3pt]
+ 
+\multirow{6}{*}{\rotatebox[origin=c]{90}{Posters}} & None & $\times$ & 8.1 & 10.3 & 1.0 & 35.6 \\
+ & None & $\checkmark$ & 10.1 & 11.6 & 1.9 & 39.5 \\
+ & Own & $\checkmark$ & 12.8 & 12.6 & 2.9 & 52.8 \\
+& Text & $\checkmark$ & 11.3 & 11.7 & 2.1 & 45.9 \\
+ & JSON & $\times$ & 14.2 & \textbf{16.8} & 4.0 & 52.8 \\ 
+ & JSON & $\checkmark$ & \textbf{15.5} & 14.5 & \textbf{15.3 }& \textbf{53.3} \\ %\hdashline[0.5pt/3pt]
+\end{tabular}
+
+\caption{Evaluation results using GPT3.5 (\texttt{gpt35-16k}). For each template, we experiment with different representations (Rep) and whether or not we include the style parameters (Style). We report the TAE F1 scores as calculated in \S\ref{sec:eval-metric}, using ROUGE-L (R-L), METEOR (M), BLEU (B), and BERTScore (BERTS) as the similarity metrics.}
+\label{tbl:auto-results}
+\end{table}

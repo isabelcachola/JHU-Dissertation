@@ -1,0 +1,26 @@
+\section{Reference-Adjusted Evaluation}
+
+We introduce the reference-adjusted evaluation paradigm as middle ground to the current reference-based and reference-free paradigms. In the \textit{reference-based} setting, the LLM judge is provided with one or more gold human-written reference summaries alongside the candidate summary to be evaluated. In the \textit{reference-free} setting, no reference is provided and the judge evaluates the candidate summary in isolation. In our proposed paradigm, \textit{reference-adjusted evaluation}, which occupies a middle ground: the judge is provided with one or more references that are related but non-exact. For example, machine-generated summaries or naturally occurring data that differs in style but matches the content.
+
+The motivation for reference-adjusted evaluation stems from two observations. 
+First, LLM judges perform better when provided with a reference, as the 
+reference gives the model an axis along which to compare the candidate 
+summary. Second, gold references are often unavailable or prohibitively 
+expensive to collect, particularly when evaluating on new test domains or 
+datasets. Reference-adjusted evaluation addresses this tension by leveraging 
+cheaply available related summaries as approximate references.
+
+We experiment with content-related references that share the informational content of the ideal summary but may differ in style or wording. In our experiments, we use machine-generated summaries produced by models other than the one being evaluated. Specifically, we experiment with both 
+abstractive and extractive references. The intuition is that what other summarization algorithms choose to include is a useful signal about which content is most salient, even if the precise wording does not match the target style.
+
+To communicate the approximate nature of the reference to the LLM judge, 
+we modify the standard reference-based prompt template. Rather than presenting 
+the reference as a gold standard, we explicitly condition the judge's 
+interpretation with the instruction that the reference matches the content 
+of the ideal response but does not necessarily match its style or wording. 
+This framing is important: it prevents the judge from penalizing a candidate 
+summary for legitimate stylistic differences from the reference, while still 
+allowing the reference to anchor the judge's assessment of content coverage 
+and factual consistency. The full prompt templates for the reference-based, 
+reference-adjusted, and reference-free settings are provided in 
+Appendix~\ref{sec:prompts}.

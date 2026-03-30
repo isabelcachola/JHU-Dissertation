@@ -1,0 +1,38 @@
+\begin{table}[!t]
+\centering
+    \begin{subtable}{.49\textwidth}
+        \centering \small
+       \begin{tabular}{r|lll}
+        Model & Simple & ASCB & Own \\ \hline
+        Mistral 7B & 0.46 & 0.54 & 0.52 \\
+        Mixtral 7B & 0.46 & 0.47 & 0.54 \\
+        Gemma 1.1 7B & 0.55 & 0.33 & 0.54 \\
+        Llama 3.1 8B & 0.54 & 0.56 & 0.45 \\
+        Llama 3.3 70B & 0.59 & 0.58 & 0.56 \\\hdash
+        
+        Mean Corr. & 0.52 & 0.50 & 0.52
+        \end{tabular}
+        \vspace{-1mm}
+        \caption{Pearson Correlation.}
+        \label{subtab:prompt-comparison-pearson}
+        \vspace{2mm}
+    \end{subtable}    
+    \begin{subtable}{.49\textwidth}
+        \centering \small
+           \begin{tabular}{r|lll}
+            Model & Simple & ASCB & Own \\ \hline
+            Mistral 7B & 0.32 & 0.40 & 0.44 \\
+            Mixtral 7B & 0.36 & 0.41 & 0.41 \\
+            Gemma 1.1 7B & 0.42 & 0.24 & 0.43 \\
+            Llama 3.1 8B & 0.38 & 0.35 & 0.34 \\
+            Llama 3.3 70B & 0.36 & 0.38 & 0.35 \\\hdash
+            Mean Corr. & 0.37 & 0.36 & 0.39
+            \end{tabular}
+        \vspace{-1mm}
+        \caption{Kendall-Tau Correlation.}\label{subtab:prompt-comparison-kt}
+    \end{subtable} 
+    \vspace{-6mm}
+    \caption{Pearson and Kendall-Tau Correlation with human judgment for each prompt listed in \Cref{tab:prompts}. \texttt{Own Reasoning} prompt performs the best averaged across all models.}
+    \label{tab:prompt-comparison}
+    \vspace{-6mm}
+\end{table}

@@ -1,0 +1,7 @@
+\section{Limitations}\label{sec:limitations}
+We identify a few key limitations in our work. First, our work does not verify that control vectors are latent representations of readability, rather we focus on the downstream effects of using control vectors. Further research is required to understand what information is encoded in control vectors. Second, our experiments are only tested on English-language data in the science domain. Although our method is not specific to these facts, further analysis is needed to test for generalizability across domains and languages.
+
+
+
+\section{Ethics}\label{sec:ethics}
+Our work focuses on better controlling the outputs of language models. Although the majority of research in this area focuses on general controllability~\cite{Keskar2019CTRLAC,Chen2024BenchmarkingLL,yang-klein-2021-fudge} and AI Safety features~\cite{zou2025representationengineeringtopdownapproach,rimsky-etal-2024-steering}, the same methods could be used for nefarious tasks, such as generating purposely dishonest language~\cite{BARMAN2024100545}. However, we believe that better controllability of language models will ultimately lead to safer models as we can better prevent undesired outputs. Additionally, our work specifically focuses on improving readability controlled summarization of scientific documents, with the goal of improving access to scientific discovery for the general public. Therefore, we believe the benefits of our work outweigh the risk.

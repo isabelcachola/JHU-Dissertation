@@ -1,0 +1,180 @@
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{p{.9\columnwidth}}
+\toprule
+\textbf{Prompt: Reference-Based} \\
+\midrule
+\end{tabular}
+\begin{lstlisting}[style=promptstyle]
+###Task Description:
+An instruction (might include an Input inside it), a response to evaluate, a reference answer that gets a score of 5, and a score rubric representing a evaluation criteria are given.
+1. Write a detailed feedback that assess the quality of the response strictly based on the given score rubric, not evaluating in general.
+2. After writing a feedback, write a score that is an integer between 1 and 5. You should refer to the score rubric.
+3. The output format should look as follows: "(write a feedback for criteria) [RESULT] (an integer number between 1 and 5)"
+4. Please do not generate any other opening, closing, and explanations.
+
+###The instruction to evaluate:
+You are a summarizer. When given a list of DOCUMENTS, you provide a SUMMARY that incorporates all of the documents. Write a summary that incorporates all of the following documents:
+
+###Response to evaluate:
+{response}
+
+###Reference Answer (Score 5):
+{reference_answer}
+
+###Relevant Context:
+{source_document(s)}
+
+###Score Rubrics:
+{rubric}
+
+###Feedback: 
+\end{lstlisting}
+\begin{tabular}{p{\columnwidth}}
+\bottomrule
+\end{tabular}
+\caption{Prompt template used for reference-based evaluation.}
+\label{tab:prompt-reference-based}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{p{.9\columnwidth}}
+\toprule
+\textbf{Prompt: Reference-Adjusted} \\
+\midrule
+\end{tabular}
+\begin{lstlisting}[style=promptstyle]
+###Task Description:
+An instruction (might include an Input inside it), a response to evaluate, a reference answer that gets a score of 5, and a score rubric representing a evaluation criteria are given.
+1. Write a detailed feedback that assess the quality of the response strictly based on the given score rubric, not evaluating in general.
+2. After writing a feedback, write a score that is an integer between 1 and 5. You should refer to the score rubric.
+3. The output format should look as follows: "(write a feedback for criteria) [RESULT] (an integer number between 1 and 5)"
+4. Please do not generate any other opening, closing, and explanations.
+
+###The instruction to evaluate:
+You are a summarizer. When given a list of DOCUMENTS, you provide a SUMMARY that incorporates all of the documents. Write a summary that incorporates all of the following documents:
+
+###Response to evaluate:
+{response}
+
+###Reference Answer - This answer matches the content of the ideal response but does not necessarily match the style or wording of the ideal response:
+{reference_answer}
+
+###Relevant Context:
+{source_document(s)}
+
+###Score Rubrics:
+{rubric}
+
+###Feedback: 
+\end{lstlisting}
+\begin{tabular}{p{\columnwidth}}
+\bottomrule
+\end{tabular}
+\caption{Prompt template used for reference-adjusted evaluation.}
+\label{tab:prompt-reference-adjusted}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{p{.9\columnwidth}}
+\toprule
+\textbf{Prompt: Reference-Free} \\
+\midrule
+\end{tabular}
+\begin{lstlisting}[style=promptstyle]
+###Task Description:
+An instruction (might include an Input inside it), a response to evaluate, and a score rubric representing a evaluation criteria are given.
+1. Write a detailed feedback that assess the quality of the response strictly based on the given score rubric, not evaluating in general.
+2. After writing a feedback, write a score that is an integer between 1 and 5. You should refer to the score rubric.
+3. The output format should look as follows: "(write a feedback for criteria) [RESULT] (an integer number between 1 and 5)"
+4. Please do not generate any other opening, closing, and explanations.
+
+###The instruction to evaluate:
+You are a summarizer. When given a list of DOCUMENTS, you provide a SUMMARY that incorporates all of the documents. Write a summary that incorporates all of the following documents:
+
+###Response to evaluate:
+{response}
+
+###Relevant Context:
+{source_document(s)}
+
+###Score Rubrics:
+{rubric}
+
+###Feedback:
+\end{lstlisting}
+\begin{tabular}{p{\columnwidth}}
+\bottomrule
+\end{tabular}
+\caption{Prompt template used for reference-free evaluation.}
+\label{tab:prompt-reference-free}
+\end{table}
+
+
+
+
+\begin{table*}[h]
+\centering
+\small
+\begin{tabular}{p{\linewidth}}
+\toprule
+\textbf{Rubrics} \\
+\midrule
+\textit{Coherence} \\ \hdashfull
+\end{tabular}
+\begin{lstlisting}[style=promptstyle]
+[Does the summary demonstrate a logical structure and organized flow of information?]
+Score 1: The summary is a collection of unrelated sentences. There is no logical flow or organization, making it nearly impossible to follow.
+Score 2: The summary has major structural flaws; while sentences relate to the same topic, the transitions are jarring and the progression is weak.
+Score 3: The summary is generally organized but has noticeable jumps in logic or awkward sentence ordering that disrupts the narrative flow.
+Score 4: The summary is well-structured and easy to follow. Most sentences lead logically to the next with only minor lapses in organizational smoothness.
+Score 5: The summary is perfectly organized and builds a coherent body of information. The transition from sentence to sentence is seamless and logical.
+\end{lstlisting}
+\begin{tabular}{p{\linewidth}}
+\midrule
+\textit{Consistency} \\ \hdashfull
+\end{tabular}
+\begin{lstlisting}[style=promptstyle]
+[Is the summary factually aligned with the source document without hallucinations?]
+Score 1: The summary contains multiple significant factual errors or hallucinations that contradict the source document entirely.
+Score 2: The summary contains a major factual error or several minor inaccuracies that misrepresent the source's primary meaning.
+Score 3: The summary is mostly accurate but includes minor details or nuances that are not explicitly supported by or are slightly distorted from the source.
+Score 4: The summary is factually consistent with the source, with only very minor ambiguities that do not affect the overall truthfulness.
+Score 5: The summary is perfectly consistent. Every claim is strictly entailed by the source document, with zero hallucinations or misrepresentations.
+\end{lstlisting}
+\begin{tabular}{p{\linewidth}}
+\midrule
+\textit{Fluency} \\ \hdashfull
+\end{tabular}
+\begin{lstlisting}[style=promptstyle]
+[Does the summary exhibit high-quality writing, grammar, and readability?]
+Score 1: The summary is riddled with grammatical errors, fragments, and formatting issues that make it difficult to read or understand.
+Score 2: The summary has frequent errors (e.g., run-on sentences, poor tense usage) that require significant effort from the reader to parse.
+Score 3: The summary is readable but contains several noticeable grammatical or punctuation errors that appear unprofessional.
+Score 4: The summary is fluent and natural-sounding, with only one or two very minor technical or stylistic slips.
+Score 5: The summary is flawlessly written. Sentences are entirely grammatical, correctly punctuated, and follow standard capitalization and formatting.
+\end{lstlisting}
+\begin{tabular}{p{\linewidth}}
+\midrule
+\textit{Relevance} \\ \hdashfull
+\end{tabular}
+\begin{lstlisting}[style=promptstyle]
+[Does the summary include the most important content while excluding redundant information?]
+Score 1: The summary misses all key points of the source or focuses entirely on trivial, peripheral details.
+Score 2: The summary captures some minor points but omits the primary objective or main "news" of the source document.
+Score 3: The summary includes the main idea but is either overly wordy with redundant info or missing one significant supporting detail.
+Score 4: The summary captures all essential information with very little filler, effectively distinguishing between important and secondary content.
+Score 5: The summary is perfectly concise and relevant. It covers every critical aspect of the source while excluding all redundant information.
+\end{lstlisting}
+\begin{tabular}{p{\linewidth}}
+ \bottomrule \\
+\end{tabular}
+\caption{Rubrics used for each evaluation axis.}
+\label{tab:rubrics}
+\end{table*}

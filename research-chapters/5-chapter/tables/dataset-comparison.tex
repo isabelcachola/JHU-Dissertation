@@ -1,0 +1,23 @@
+\begin{table}[t]
+\setlength{\tabcolsep}{3pt}
+\centering \footnotesize
+\begin{tabular}{r|lll l}
+\textbf{Dataset} & \textbf{Audience} & \textbf{Domain} & \textbf{\# Docs} & \textbf{\# Tokens} \\ \hline
+% \multicolumn{4}{r}{\textit{Readability Known Datasets}} \\ \hdashline[0.5pt/3pt]
+arXiv & Experts & CS &6440 & 163 \\
+PubMed & Experts & Medicine &6658 & 205 \\
+SciTLDR & Experts & CS &618 & 19 \\
+SJK & Kids & Varied & 284  & 142 \\ \hdashline[0.5pt/3pt]
+% \multicolumn{4}{r}{\textit{PLS Datasets}} \\ \hdashline[0.5pt/3pt]
+CDSR & General & Healthcare &284 & 221 \\
+PLOS & General & Biomed &1376 & 195 \\
+eLife & General & Biomed &241 & 383 \\
+Eureka & Journalists & Varied &1010 & 662 \\
+CELLS & General & Biomed &6311 & 162 \\
+SciNews & General &  Varied & 4188 & 615 
+\end{tabular}
+\caption{Comparison of the datasets analyzed in this paper. The first 4 are datasets in with a specific target audience. The following 6 datasets are commonly used in PLS literature. We report the number of documents (\# Docs) in the test set as well as the average number of tokens (\# Tokens).
+% \daniel{FYI: change D and T to Docs/Tokens since you haves room.}
+}\label{tab:dataset-comp}
+\vspace{-4mm}
+\end{table}

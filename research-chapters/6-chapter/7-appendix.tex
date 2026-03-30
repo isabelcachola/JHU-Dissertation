@@ -1,0 +1,38 @@
+\clearpage
+\appendix
+
+
+
+\section{SummEval Reproduction Study}\label{sec:summeval-repro}
+
+We begin our reproduction study using the code-base released by the original authors.\footnote{\url{https://github.com/Yale-LILY/SummEval}} The file with the original metric scores used to calculate the system-level correlations reported in the paper is no longer available online. However, we reached out to the NLP community and a fellow researcher shared a copy of the file they had locally. We verified the accuracy of this file by using it to reproduce the scores reported in the original paper. We use the SummEval evaluation package and released script to re-calculate the metric scores and system-level correlations. For each metric, we use the parameter settings released in the SummEval code-base.
+
+We report the system-level Kendall-Tau correlation of the evaluation metrics with the expert annotations, for both the original study and our replication study in~\Cref{tab:comparison}. As we can see from the results, we were not able to perfectly reproduce any of the metrics. While some amount of difference can be expected due to numerical instability, many of the differences in our reproduction study are too large to attribute to simple instability. For example, the original study reports a correlation of $0.074$ for ROUGE-L and Coherence. However, in our study we find a correlation of $0.417$, over a $0.3$ difference in correlation. Similarly, the BLEU-Coherence correlation shows an increase of $0.265$ in our reproduction study. In general, we find that ROUGE, BLEU, and n-gram based measures have the largest differences in our reproduction study. We hypothesize that this is because ROUGE and BLEU rely on strict n-gram matching, which is highly sensitive to changes in tokenization settings. The remaining metrics have much lower differences in our study. We also note that we were unable to reproduce three metrics reported in the original study ($\mathrm{S}^3$, ROUGE-we, and SMS, and MoverScore), due to broken links to files required to run the metrics. We note that all of the metrics we were unable to reproduce are in the Embedding/neural metric category, pointing to a general problem of reproducibility with this style of metric.
+
+
+While the majority of research in automatic evaluation focuses on designing metrics that correlate better with human judgment, it is also important that we design metrics that allow for reproducible evaluation, both in design and practice. Regarding design, we show that evaluation metrics that rely on strict token overlap are difficult to reproduce due to their sensitivity to tokenization settings. Additionally, metrics that rely on pre-trained models or embeddings need to be easily accessible or easily reproducible, otherwise they create a barrier to use. Regarding practice, as a community we have made great strides towards making code release a norm for publication. However, we need additional research studying the instability of evaluation metrics. We release our reproduction code and data to support future research.
+\input{tables/summeval-models}
+
+
+\input{tables/summeval-repro}
+\input{tables/traditional_metrics}
+\input{tables/prompts}
+
+\section{Prompts}\label{sec:prompts}
+We report the prompts used for the reference-based (\Cref{tab:prompt-reference-based}), reference-adjusted (\Cref{tab:prompt-reference-adjusted}), and reference-free (\Cref{tab:prompt-reference-free}) settings. We report the rubrics used in~\Cref{tab:rubrics}. All of the prompts are adapted from~\textcite{Kim2023Prometheus} and~\textcite{fabbri-etal-2021-summeval}.
+
+
+\section{Reference-Adjusted Evaluation on Traditional Metrics}\label{sec:trad-ref-eval}
+We conduct a similar analysis to~\Cref{sec:results} with traditional metrics. We compare the use of traditional metrics in the reference-based, reference-adjusted, and reference-free settings. For the reference-based and reference-adjusted settings, we use traditional metrics that support the use of references. For the reference-free setting, we use traditional metrics that do not require a reference. We conduct the same ablations as described in~\Cref{sec:experimental-setup}. We report the results in~\Cref{tab:traditional_metrics}. Interestingly, traditional metrics follow a similar pattern to LLMs-as-judges metrics. While reference-based evaluation generally performs best, reference-adjusted evaluation only moderately decreases the performance from reference-based, and greatly increases the performance over reference-free. While the comparison is not exactly 1:1 (no traditional metrics support both reference-based and reference-free, as LLM judges do), this result indicates that reference-adjusted evaluation may be a viable option for researchers that prefer traditional metrics due to compute or privacy restrictions.  
+
+
+\section{Additional Model Results}\label{sec:add-models}
+
+We report the Kendall-Tau correlation with human judgement on SummEval, using Mistral 7b and Llama 8b in~\Cref{tab:mistal+llama}.
+We see similar patterns for Mistral and Llama as with Prometheus. In general, we see that while reference-based generally performs the best, reference-adjusted generally outperforms the reference-free setting. For example, the reference-adjusted setting Coherence correlation using Mistral reaches performance parity with the reference-based setting. Using Llama, the Consistency correlation increases from $0.084$ to $0.199$ when going from the reference-free to the reference-adjusted setting. However,  the traditional metrics outperform the Mistral based evaluation. As this is consistent across all the reference settings, this is likely due to the overall performance of Mistral. Prometheus is the best performing model overall and is a finetuned version of Mistral, indicating that evaluation specific finetuning can generally improve weaker models.
+
+\section{Disclosure of AI Usage}
+We used AI writing assistants to support formatting, writing flow, and grammar, and AI coding assistants to aid in the development of experimental code. All outputs were manually reviewed and verified by the authors, who take full responsibility for the content of this work.
+
+
+\input{tables/mistal+llama}

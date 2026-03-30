@@ -1,0 +1,17 @@
+\begin{table*}
+\subfloat[caption]{
+\begin{tabular}{l|l}
+Step & Prompt \\ \hline
+\begin{tabular}[c]{@{}l@{}}\rotatebox[origin=c]{90}{Intermediate Rep}\end{tabular} & \begin{tabular}[c]{@{}l@{}}"Given the input text, extract the \\ document title and authors. For each \\ section in the given input text, extract \\ the most important sentences.Format \\ the output using the  following JSON \\ template:\textbackslash{}n  \textless{}JSON STRUCTURE\textgreater\\ \textbackslash{}n\textbackslash{}nInput: \textless{}INPUT DOC\textgreater\\ \textbackslash{}n\textbackslash{}n Output:"\end{tabular} \\ \hdashline[0.5pt/3pt]
+\rotatebox[origin=c]{90}{LaTeX document} & \begin{tabular}[c]{@{}l@{}}"Summarize the following input in a \\ \textless{}TEMPLATE TYPE\textgreater style. Style \\ parameters: \textless{}STYLE PARAMS\textgreater\\ Format the output document as a \\ latex file: \\ \textbackslash{}n\textbackslash{}nInput: \textless{}INPUT DOC\textgreater\\ \textbackslash{}n\textbackslash{}nOutput:"\end{tabular}
+\end{tabular}}
+\quad
+
+\subfloat[caption]{
+\begin{tabular}{l|l}
+ & Style Params \\ \hline
+\rotatebox[origin=c]{90}{Slides} & \begin{tabular}[c]{@{}l@{}}``Slides should include a title page. \\ Following slides should contain an \\ informative slide title and short, concise \\ bullet points. Longer slides should be \\ broken up into multiple slides.''\end{tabular} \\ \hdashline[0.5pt/3pt]
+\rotatebox[origin=c]{90}{Posters} & \begin{tabular}[c]{@{}l@{}}``Posters should include a title section at \\ the top. Each panel should include a\\ heading and short, concise bullet points \\ of the most important take-aways from \\ that section.''\end{tabular} \\ \hdashline[0.5pt/3pt]
+\rotatebox[origin=c]{90}{Blogs} & \begin{tabular}[c]{@{}l@{}}``Blogs should include paragraphs \\ introducing the topic, a summary of the \\ input document, and important takeaways. \\ The blog should be more readable to a \\ general audience than the input document.''\end{tabular}
+\end{tabular}}
+\end{table*}

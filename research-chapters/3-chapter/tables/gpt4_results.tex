@@ -1,0 +1,19 @@
+\begin{table}[]
+\small
+\centering
+\begin{tabular}{cc|cccc}
+ &  & \multicolumn{4}{c}{Simularity Measure} \\
+Template & Rep & R-L & M & B & BERTS \\ \hline
+\multirow{2}{*}{slides} & $\times$ & 8.3 & \textbf{9.6} & 1.7 & 36.2 \\
+ & $\checkmark$ & \textbf{8.4} & 9.1 & \textbf{2.0} & \textbf{38.1} \\
+ \hdashline[0.5pt/3pt]
+\multirow{2}{*}{blog} & $\times$ & 25.7 & 19.9 & 2.6 & \textbf{82.8} \\
+ & $\checkmark$ & \textbf{25.8} & \textbf{20.2} & \textbf{3.1} & 82.7 \\
+  \hdashline[0.5pt/3pt]
+\multirow{2}{*}{poster} & $\times$ & \textbf{16.4} & \textbf{18.2} & \textbf{4.5} & \textbf{59.8} \\
+ & $\checkmark$ & 14.6 & 15.3 & 3.7 & 57.2
+\end{tabular}
+\caption{\small TAE F1 scores using GPT4 ($\texttt{gpt4-32k}$). We use ROUGE-L (R-L), METEOR (M), BLEU (B) and BERTScore (BERTS) as our similarity measures. For each template, we compare a JSON representation versus skipping the intermediate generation step, maintaining the same style parameters in both settings.
+}
+\label{tbl:gpt4-results}
+\end{table}

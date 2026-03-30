@@ -1,0 +1,56 @@
+% -----------------------------------------------------------------------
+% TABLE 4: Llama Eval
+% -----------------------------------------------------------------------
+\begin{table*}[ht]
+\footnotesize
+\centering
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Reference Type} & \textbf{nrefs}
+  & \textbf{Coherence} & \textbf{Consistency} & \textbf{Fluency} & \textbf{Relevance} \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-based}} \\ \midrule
+\rowcolor{refbased}
+Gold    & 11 & \textbf{0.511} & \textbf{0.370} & 0.599 & 0.628 \\
+\rowcolor{refbased}
+Gold    &  6 & 0.437 & 0.326 & \textbf{0.678} & 0.678 \\
+\rowcolor{refbased}
+Gold    &  1 & \textbf{0.511} & 0.319 & 0.588 & \textbf{0.807} \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-adjusted}} \\ \midrule
+\rowcolor{refadj}
+Abstractive & 11 & 0.382 & 0.060 & \textbf{0.617} & \textbf{0.627} \\
+\rowcolor{refadj}
+Abstractive &  6 & 0.459 & 0.059 & 0.602 & 0.544 \\
+\rowcolor{refadj}
+Abstractive &  1 & \textbf{0.500} & \textbf{0.199} & 0.449 & 0.613 \\
+\hdash{1}{6}
+\rowcolor{refadj}
+Extractive  & 11 & 0.382 & 0.060 & \textbf{0.617} & \textbf{0.627} \\
+\rowcolor{refadj}
+Extractive  &  6 & 0.459 & 0.059 & 0.602 & 0.544 \\
+\rowcolor{refadj}
+Extractive  &  1 & \textbf{0.500} & \textbf{0.199} & 0.449 & 0.613 \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-free}} \\ \midrule
+\rowcolor{reffree}
+---         &  0 & \textbf{0.588} & \textbf{0.084} & \textbf{0.616} & \textbf{0.711} \\
+\midrule
+\multicolumn{5}{l}{\textit{Best traditional (per setting, any nrefs)}} \\ \midrule
+\rowcolor{refbased}
+Reference-based & - & 0.550\,(ROUGE-L) & 0.733\,(ROUGE-3) & 0.711\,(ROUGE-4,) & 0.700\,(ROUGE-4) \\
+\rowcolor{refadj}
+Reference-adjusted & - & 0.515\,(ROUGE-L) & 0.735\,(ROUGE-3) & 0.701\,(ROUGE-4) & 0.588\,(ROUGE-4) \\
+\rowcolor{reffree}
+Reference-free & - & 0.200\,(Stats-density) & 0.633\,(Stats-density) & 0.410\,(BLANC) & 0.383\,(BLANC) \\
+\bottomrule
+\end{tabular}
+\caption{%
+  \textbf{Llama Eval on SummEval} across three evaluation settings.
+  \colorbox{refbased}{\strut Reference-based}: Gold references.
+  \colorbox{refadj}{\strut Reference-adjusted}: Abstractive or Extractive references.
+  \colorbox{reffree}{\strut Reference-free}: nrefs\,=\,0.
+Best traditional metric per setting, per column, shown for reference.  \textbf{Bold} indicates the best score within each setting per column.
+}
+\label{tab:llama}
+\end{table*}

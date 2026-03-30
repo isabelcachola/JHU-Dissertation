@@ -1,0 +1,56 @@
+\begin{table*}[!htb]
+\centering
+    \begin{subtable}{.95\textwidth}
+      \centering 
+        \begin{tabular}{p{\textwidth}}
+            \textexample{Scientists create a device which can detect the onset of acute respiratory distress syndrome (ARDS), a very serious lung disease, by measuring chemicals in patients’ exhaled breath The researchers wanted to test a new method of lung damage diagnosis by analyzing patient breath samples. In particular, the researchers were looking for better ways to detect acute respiratory distress syndrome (ARDS), a form of lung injury that causes inflammation and severe damage. [...]  a much larger group of test subjects is necessary to further validate their method. This new method of breath analysis could be a noninvasive, cost effective way to diagnose and track ARDS, and could potentially be modified to screen for other serious conditions as well.}
+        \end{tabular}
+        \vspace{-4mm}
+        \caption{Excerpt of an example summary. This summary is written by an expert and is labeled as a low complexity summary.}\label{subtab:ex-summ}
+    \end{subtable}%
+    \vspace{1mm}
+    \quad
+    \begin{subtable}[t]{.65\textwidth}
+        \centering \footnotesize
+        \begin{tabular}{r|lll}
+        Metric & Score & S-12 & US Grade Level \\ \hline
+        FKGL $\downarrow$ & 13.9 & 12 & College \\
+        CLI $\downarrow$ & 12.7 & 12 & College \\
+        DCRS $\downarrow$ & 11.3 & 8.9 & College graduate \\
+        GFI $\downarrow$ & 18.6 & 12 & Above college graduate \\
+        ARI $\downarrow$ & 16.7 & 13 & College graduate \\
+        FRE $\uparrow$ & 50.2 & 50 & 12th grade \\
+        Spache $\downarrow$ & 8.7 & 12 & 9th grade \\
+        LW $\uparrow$ & 19.5 & 60 & College graduate \\
+
+        \end{tabular}
+        \vspace{-1mm}
+        \caption{Scores given be each metric for the example summary. $\downarrow$ indicates a lower score is more readable while $\uparrow$ indicates a higher score is more readable. We provide ``S-12'', the score each metric would assign US grade 12, to help contextualize the scores. We additionally translate each score to the US grade level.}
+        \label{subtab:ex-metric-scores}
+    \end{subtable} 
+    \quad
+    \begin{subtable}[t]{.32\textwidth}
+     \centering \footnotesize
+        \begin{tabular}{r|l}
+        \multicolumn{2}{c}{} \\
+        \multicolumn{2}{c}{} \\
+        \multicolumn{2}{c}{} \\
+        Model & Score \\ \hline
+        Mistral 7B & 4 \\
+        Mixtral 7B & 4.5 \\
+        Gemma 7B & 4 \\
+        Llama 3.1 8B & 4 \\
+        Llama 3.3 70B & 4 \\
+        \end{tabular}
+    \vspace{-1mm}
+    \caption{Scores given be each model for the example summary %\daniel{from X dataset}. 
+    The scores are on a scale of 1-5, with 5 being the most readable.}
+    \label{subtab:ex-lm-scores}
+    \end{subtable} 
+    \vspace{-2mm}
+    \caption{ \ref{subtab:ex-metric-scores} contains an example summary from~\textcite{August2024KnowYA}'s dataset. \ref{subtab:ex-metric-scores} contains each metric's score for the example summary. \ref{subtab:ex-lm-scores} contains each model's readability scoring for the example summary. On average, the human annotators rated this summary a 4.05/5, indicating they found the summary fairly readable. All the LM evaluators rate the summary a 4 or 4.5 out of 5, agreeing with the human annotators. In contrast, 6 out of 8 of the traditional metrics rate the summary at a college reading level or higher, which is considered low readability. 
+    % \daniel{Say how this is different from metrics/LLMs judgement?}
+    }
+    \label{tab:example-summ}
+    \vspace{-4mm}
+\end{table*}

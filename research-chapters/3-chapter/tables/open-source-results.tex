@@ -1,0 +1,26 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[]
+\begin{tabular}{ccc|cccc}
+ &  &  & \multicolumn{4}{c}{Simularity Measure} \\
+task & model & Rep & R-L & M & B & BERTS \\ \hline
+\multirow{6}{*}{slides} & \multirow{2}{*}{MS} & times & 0.6 & 0.4 & 0.0 & 28.6 \\
+ &  & checkmark & \textbf{4.4} & \textbf{4.6} & \textbf{0.4} & \textbf{30.5} \\ \cline{2-7} 
+ & \multirow{2}{*}{MX} & times & 4.8 & 7.3 & 0.5 & 31.8 \\
+ &  & checkmark & \textbf{6.7} & \textbf{7.9} & \textbf{1.0} & \textbf{34.0} \\ \cline{2-7} 
+ & \multicolumn{1}{l}{\multirow{2}{*}{GPT4}} & \multicolumn{1}{l|}{times} & \multicolumn{1}{l}{8.3} & \multicolumn{1}{l}{\textbf{9.6}} & \multicolumn{1}{l}{1.7} & \multicolumn{1}{l}{36.2} \\
+ & \multicolumn{1}{l}{} & \multicolumn{1}{l|}{checkmark} & \multicolumn{1}{l}{\textbf{8.4}} & \multicolumn{1}{l}{9.1} & \multicolumn{1}{l}{\textbf{2.0}} & \multicolumn{1}{l}{\textbf{38.1}} \\ \hline
+\multirow{6}{*}{blog} & \multirow{2}{*}{MS} & times & 2.7 & 1.7 & 0.1 & 73.5 \\
+ &  & checkmark & \textbf{21.7} & \textbf{16.2} & \textbf{1.7} & \textbf{81.3} \\ \cline{2-7} 
+ & \multirow{2}{*}{MX} & times & 22.8 & 15.7 & 2.1 & \textbf{82.6} \\
+ &  & checkmark & \textbf{25.6} & \textbf{20.5} & \textbf{3.2} & 82.5 \\ \cline{2-7} 
+ & \multicolumn{1}{l}{\multirow{2}{*}{GPT4}} & \multicolumn{1}{l|}{times} & \multicolumn{1}{l}{25.7} & \multicolumn{1}{l}{19.9} & \multicolumn{1}{l}{2.6} & \multicolumn{1}{l}{\textbf{82.8}} \\
+ & \multicolumn{1}{l}{} & \multicolumn{1}{l|}{checkmark} & \multicolumn{1}{l}{\textbf{25.8}} & \multicolumn{1}{l}{\textbf{20.2}} & \multicolumn{1}{l}{\textbf{3.1}} & \multicolumn{1}{l}{82.7} \\ \hline
+\multirow{6}{*}{poster} & \multirow{2}{*}{MS} & times & 3.2 & 1.8 & 0.2 & 32.2 \\
+ &  & checkmark & \textbf{6.0} & \textbf{6.5} & \textbf{1.2} & \textbf{38.1} \\ \cline{2-7} 
+ & \multirow{2}{*}{MX} & times & \textbf{10.5} & \textbf{11.4} & \textbf{1.7} & 40.9 \\
+ &  & checkmark & 10.4 & 11.0 & 1.5 & \textbf{50.7} \\ \cline{2-7} 
+ & \multicolumn{1}{l}{\multirow{2}{*}{GPT4}} & \multicolumn{1}{l|}{times} & \multicolumn{1}{l}{\textbf{16.4}} & \multicolumn{1}{l}{\textbf{18.2}} & \multicolumn{1}{l}{\textbf{4.5}} & \multicolumn{1}{l}{\textbf{59.8}} \\
+ & \multicolumn{1}{l}{} & \multicolumn{1}{l|}{checkmark} & \multicolumn{1}{l}{14.6} & \multicolumn{1}{l}{15.3} & \multicolumn{1}{l}{3.7} & \multicolumn{1}{l}{57.2}
+\end{tabular}
+\end{table}

@@ -1,0 +1,33 @@
+\chapter{Evaluating the Evaluators:\\Are readability metrics good measures of readability?} \label{chap:chap-5}
+
+
+% epigraph after chapter heading
+\epigraph{Since it is written in \LaTeX, it must be true.}{-- Isaac Newton}
+
+% \begin{abstract}
+
+%     Plain Language Summarization (PLS) aims to distill complex documents into accessible summaries for non-expert audiences. In this paper, we conduct  a thorough survey of PLS literature, and identify that the current standard practice for readability evaluation is to use traditional readability metrics, such as Flesch-Kincaid Grade Level (FKGL). However, despite proven utility in other fields, these metrics have not been compared to human readability judgments in PLS.  We evaluate 8 readability metrics and show that most correlate poorly with human judgments, including the most popular metric, FKGL. We then show that Language Models (LMs) are better judges of readability, with the best-performing model achieving a Pearson correlation of $0.56$ with human judgments. Extending our analysis to PLS datasets, which contain summaries aimed at non-expert audiences, we find that LMs better capture deeper measures of readability, such as required background knowledge, and lead to different conclusions than the traditional metrics. Based on these findings, we offer recommendations for best practices in the evaluation of plain language summaries. We release our analysis code and survey data.  
+%     \bigskip\\
+%     \href{https://github.com/JHU-CLSP/eval-the-eval-readability}{\faGithub\xspace
+%     \texttt{JHU-CLSP/eval-the-eval-readability}}
+
+% \end{abstract}
+
+
+
+\input{research-chapters/5-chapter/1-Introduction}
+\input{research-chapters/5-chapter/2-Related-Works}
+\input{research-chapters/5-chapter/3-Experimental-Setup}
+\input{research-chapters/5-chapter/4-Results}
+\input{research-chapters/5-chapter/5-Discussion}
+
+
+\section*{Limitations}
+The conclusions of this paper are limited to the task of plain language summarization, and are not intended to apply to other applications of readability metrics, such as judging the age-level appropriateness of educational material. Additionally, our human judgments and experiments focused on the summarization of scientific articles, and may not generalize to PLS in other domains, such as law or clinical notes. Finally, our experiments are limited to the English language, and our findings may not apply to other languages. We leave the exploration of readability evaluation in other domains and languages to future work.
+
+\section*{Ethical Considerations}
+This paper involves the use of LMs for generation and evaluation. LMs have been shown to generate factually incorrect information and are subject to bias~\cite{Venkit2024AnAO,Stureborg2024LargeLM}. Additionally, the use of language models contributes to the environmental footprint of our field~\cite{Schwartz2019GreenA}. However, this paper focuses on the evaluation of plain language summarization, which has the potential to make scientific knowledge more accessible to the general population. Therefore, we believe that the benefits of this work outweigh the potential harms.
+
+\section*{Acknowledgments}
+We'd like to thank the authors of \textcite{August2024KnowYA} for sharing their human-annotated dataset with us. We'd additionally like to thank Tal August for his insightful guidance in creating this paper. 
+DK was supported by ONR (N00014-24-1-2089). 

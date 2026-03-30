@@ -1,0 +1,86 @@
+
+\section{Results}
+As mentioned in \S\ref{sec:data}, past work on Doc2PPT and Paper-Posters do not release code, making it difficult to do a direct comparison. They also do not report any baselines to compare against. Meanwhile, Longsumm's blind test does not allow us to compute our custom metric, although we do report the leaderboard results in Appendix~\ref{sec:longsumm-blind}. Notably, with almost no prompt engineering our LLM-based system places second on this leaderboard. We argue that for the investigation in this paper, direct comparison to prior non-LLM baselines is not only unfair to those approaches, but not particularly insightful.
+Therefore, similar to~\textcite{Wei2022ChainOT}, we focus on variants of our LLM-based method and treat them as baselines. Example outputs of each template type can be found in Appendix~\ref{sec:example-outputs}.
+
+
+We conduct experiments with the following settings:
+\begin{enumerate}[label={(\arabic*)}]
+    \item No Representation -- this is the default setting of going directly from the source document to the target document. We skip the intermediate generation step, passing the full paper as input. We experiment both with and without the style parameters. 
+    \item Own Representation -- we do not pass a JSON structure to the intermediate generation step, and allow the model to choose its own structure.
+    \item Text Representation -- we extract the text from the intermediate representation, discarding the JSON structure.
+    \item JSON Representation -- this is the full JSON structure for the intermediate generation step. We experiment both with and without the style parameters.
+\end{enumerate}
+
+ %\isabel{Should we run on the blind set and submit it to their leaderboard? It's only 22 papers.} \sjauhar{Might be worth doing for the ARR submission.}
+% \sjauhar{This feels more appropriate when talking about the experimental results; maybe move?} 
+We use \texttt{gpt35-16k-0613} in our main set of experiments. We truncate text that is too long for the input window and use a temperature of 0.0 as standard.\footnote{A detailed evaluation of the temperature hyper-parameter is included in Appendix \S\ref{sec:temp-exp}}
+\input{research-chapters/3-chapter/tables/eval_results}
+\subsection{Results of automatic evaluation}\label{sec:auto-results}
+
+In Table~\ref{tbl:auto-results}, we report the TAE F1 scores as described in \S\ref{sec:eval-metric}, using ROUGE-L~\cite{Lin2004ROUGEAP}, METEOR~\cite{Banerjee2005METEORAA}, BLEU~\cite{Papineni2002BleuAM}, and BERTScore~\cite{Zhang2019BERTScoreET} for the similarity measure. As seen in the results, by most measures, generating a JSON intermediate representation yields the best performance. 
+
+We see that using the text representation generally degrades the performance over providing the structured JSON representation, indicating that structure is important for downstream performance in addition to abstractive filtering of information. Additionally, the text representation performs better than skipping the intermediate step altogether for both the poster and slide generation task, but not the blog generation task. This is likely because posters and slides have more inherent structure than blog posts, which can be relatively free-form.
+
+Finally, we see that allowing the model to choose its own representation format degrades performance over providing our pre-defined JSON structure. However, we see that in most cases, providing a representation generated without a JSON structure still performs better than skipping the intermediate generation step altogether (while maintaining the same style parameter setting). This indicates that even without a pre-defined structure, the intermediate step is still valuable for performance. 
+
+\input{research-chapters/3-chapter/tables/other-model-results}
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{research-chapters/3-chapter/images/human-annotation.pdf}\vspace*{-3mm}
+    \caption{Reasons annotators preferred each document. While annotators largely preferred documents generated with an intermediate representation, the most common reasons for preference are better formatting and information content. We exclude the ``Other'' count as it was only selected once.}
+    \label{fig:annotation-reasons}\vspace*{-3mm}
+\end{figure*}
+% \subsubsection{Test a higher performing model}
+\paragraph{Experiments with additional models.} We conduct a subset of our experiments on Mistral-7B ($\texttt{7B-instruct-v0.1}$), Mixtral ($\texttt{8x7B-instruct-v0.1
+}$)~\cite{Jiang2023Mistral7,Jiang2024MixtralOE}, and GPT4 ($\texttt{gpt4-32k-0613})$, comparing the JSON representation to skipping the intermediate step.  We maintain the same style parameters in both settings. In Table~\ref{tbl:other-model-results}, we can see that by most measures, the documents generated with the intermediate representation score higher than the documents generated without, particularly for blog posts and slides. The difference in performance is larger for Mistral than Mixtral and GPT4, indicating that our method particularly improves the performance of smaller models. Smaller models are generally cheaper, less resource intensive, and faster, but often operate at the cost of performance. The results indicate that for applications that are sensitive to cost or latency, this trade-off can be mitigated with a structured intermediate representation. The only experiment in which the documents generated with the representation do not strictly score higher on most measures is the posters generated with Mixtral and GPT4. Upon closer inspection, the references in this dataset are very verbose, averaging 391 tokens. Our method produces generally less verbose posters, averaging 265 total tokens compared to 345 tokens produced by the baseline. We hypothesize that by editing the style parameters to include information about verbosity and length, we can improve performance on posters in the future.
+
+
+
+
+\subsection{Human evaluation}
+After showing that LLMs benefit from intermediate structured representations in document transformations, we investigate whether our proposed evaluation framework aligns better with human judgment than previously proposed metrics. We sample 100 documents each from DOC2PPT and LongSumm, and use the entirety of the Paper-Poster dataset in this study. We present annotators with 2 versions of each document, one generated with the intermediate representation and one without. Both versions use $\texttt{gpt4-32k}$, as the best performing model. 
+
+The annotators are provided with the original paper and the intended document type (blog, slide deck, or poster), and are asked the following questions:
+\begin{enumerate}[label={(\arabic*)}]
+    \item Which document do you prefer?
+    %\vspace{-2mm}
+    \item  On a scale of 1-3, to what degree do you prefer your selection?
+    %\vspace{-2mm}
+    \item Why do you prefer your selection? 
+\end{enumerate}
+For question 3, annotators are also provided with a multi-select checklist of reasons for their preference: (1) quality of the content, (2) formatting, (3) document style matching the intended document types, (4) information represented in the document, and (5) other (along with a free text box). The full instructions, including the reasons provided and examples, can be found in Appendix~\S\ref{sec:annotation-instructions}.
+
+If the models do not produce LaTeX and instead produce only text, we wrap the text with $\texttt{\textbackslash begin\{document\}}$ and $\texttt{\textbackslash end\{document\}}$. We force  the compilation of the outputs with the command: $\texttt{pdflatex -{}-interaction=nonstopmode}$ $\texttt{<filename.tex>}$. Occasionally, this forced compilation leads to oddly formatted documents, but we consider this to be a part of the performance of the method and present the documents with no further changes. Each document is annotated by 3 different annotators. We employed 4 annotators from India, sourced via a third-party agency, to carry out the human evaluation of our task based on a guideline document containing task-specific instructions, guidance, and annotated examples. They were compensated at a rate of \$11.98 USD per hour for the total time spent working on the task, including a training round of annotation.
+% \input{tables/other-model-results}
+
+\vspace{-1mm}
+\paragraph{Which method do humans prefer?} The documents generated with an intermediate representation were preferred by 82\%, based on majority vote (71\% unanimously). The annotator agreement score was 0.51 with Krippendorff's alpha, indicating that while this is a subjective and specialized task, even non-expert annotators agree to a moderate degree. 
+A visualization of the reasons the annotators preferred their selection can be found in Figure~\ref{fig:annotation-reasons}. 
+It can be seen that while annotators largely preferred the documents generated with an intermediate representation, the most common reasons for preference are better formatting and better information content. This indicates that the structure provided by the intermediate representation makes it easier for the model to format the final document well. Additionally, the intermediate representation only includes the most salient information from the original text, resulting in higher quality of information content. Finally, we see a fairly even distribution across different templatic views for the reasons of preference, indicating humans prefer the documents generated with the intermediate representation across different document types.
+% \sjauhar{Can you say something about why a structured intermediate representation may lead to these artifacts?}
+
+% \input{tables/human_eval_correlation}
+
+\input{research-chapters/3-chapter/tables/human_eval_correlation}
+
+\paragraph{Which metric correlates better with humans?} We test whether our metric, as described in \S\ref{sec:eval-metric}, correlates better with human preference compared to prior evaluation metrics in the literature.
+%We use the human preference judgements to test if our metric, as described in \S\ref{sec:eval-metric}, correlates more with human preference compared to prior evaluation metrics in the literature. %\sjauhar{This may be a bit misleading, since you're actually comparing correlation \emph{against} other metrics. I think it's important to contextualize this by explaining that what we want to show is that our metric should be preferred to other metrics vs. just being highly correlated with human judgement (which it is not)}. 
+For each annotation, given the degree of the preference $d$ (Appendix~\S\ref{sec:annotation-instructions} Q. 2) we convert value to a score $P(d) \rightarrow [1,2,3]$ if $d$ is slight, moderate, or strong, respectively. 
+% \[
+%     P(d) = 
+% \begin{cases}
+%     3, & d=\textrm{strong} \\
+%     2, & d=\textrm{moderate} \\
+%     1, & d=\textrm{slight}
+% \end{cases}
+% \]
+If the annotator prefers the document generated without an intermediate representation, we take $-P(d)$ instead. This allows us to measure if the metric captures directionality of preference along with degree. In parallel, we compute the automatic score $m$ for each metric, then calculate
+$S =m(\textrm{with rep}) - m(\textrm{skip rep})$
+where $m$ is the metric we are evaluating (e.g ROUGE). If a human annotator prefers a document generated without the intermediate step, we'd expect a good metric to assign a higher score to that document as well, resulting in both $S$ and $P(d)$ being negative (and positive in the opposite case). % Conversely, we'd expect instances where the opposite were true to result in positive scores for both $S$ and $P$.
+Using this intuition we assign an affinity score of a metric with respect to human evaluation as the Pearson correlation~\cite{freedman2007statistics} of $S$ and $P(d)$.
+% \sjauhar{This whole bit about computing the correlation score is pretty confusing (esp. I'd imagine for a first-time reader); consider structuring more clearly and with better notation.} 
+
+Since prior metrics are not designed to account for the structure of documents, we compute them by extracting only the text of both the generated and reference documents. The correlations with human judgement for each metric to its respective TAE variants can be found in Table~\ref{tbl:correlation}. As we can see from the results, evaluations using our template adaptable framework correlate more highly with human judgement, except in the case of BERTScore. In the latter case the results are not statistically significant, and we hypothesize that the open-domain nature of BERT embeddings are poorly suited to represent the semantic similarity of scientific text.
+%However, BERTScore is the only metric in which the correlation is not statistically significant, as it is likely simply a poor metric for this task. We hypothesize that BERTScore does not perform well on scientific data, since it is trained primarily on out of domain text.
+

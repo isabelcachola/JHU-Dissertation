@@ -1,0 +1,193 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \begin{table*}[!h]
+% \centering 
+% \setlength{\extrarowheight}{1pt}
+% \begin{tabular}{l|lll|ll}
+% \textbf{} & \textbf{Method} & \textbf{\begin{tabular}{l}
+% Contrastive\\Combination\end{tabular}} & \textbf{Reduction} & \textbf{Pearson} & \textbf{Kendall-Tau} \\ \hline
+% \multirow{6}{*}{\rotatebox{90}{eLife}} & ICL & - & - & -0.025 & -0.017 \\
+%  % & \hspace{16pt}- prompt 2 & - & - &  &  \\ 
+%  \cdashline{2-6}[1pt/3pt]
+%  & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & \textbf{0.302} & \textbf{0.205} \\
+%  &  & Center & Avg & \textbf{0.302} & \textbf{0.205} \\
+%  &  & Diff & PCA & 0.101 & 0.075 \\
+%  &  & Center & PCA & 0.101 & 0.075 \\ \hline
+%   %---------------------------------------------
+% \multirow{6}{*}{\rotatebox{90}{PLOS}} & ICL & - & - & 2.7e-4 & -0.003 \\
+%  % & \hspace{16pt}- prompt 2 & - & - &  &  \\ 
+% \cdashline{2-6}[1pt/3pt]
+%  & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.416 & 0.286 \\
+%  &  & Center & Avg & \textbf{0.417} &  \textbf{0.287} \\
+%  &  & Diff & PCA & 0.365 & 0.249 \\
+%  &  & Center & PCA & 0.144 & 0.107 \\ \hline
+%   %---------------------------------------------
+% \multirow{6}{*}{\rotatebox{90}{Eureka}} & ICL & - & - & 0.055 & 0.0194 \\
+%  % & \hspace{16pt}- prompt 2 & - & - &  &  \\ 
+% \cdashline{2-6}[1pt/3pt]
+%  & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.407 & 0.298 \\
+%  &  & Center & Avg & \textbf{0.408} & \textbf{0.298} \\
+%  &  & Diff & PCA & 0.062 & 0.043 \\
+%  &  & Center & PCA & 0.168 & 0.1212 \\ \hline
+%  %---------------------------------------------
+% \multirow{6}{*}{\rotatebox{90}{SciNews}} & ICL & - & - &  0.084 & 0.025  \\
+%  % & \hspace{16pt}- prompt 2 & - & - &  &  \\ 
+% \cdashline{2-6}[1pt/3pt]
+%  & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.116 & 0.075 \\
+%  &  & Center & Avg & 0.268 &  0.216\\
+%  &  & Diff & PCA & \textbf{0.395} & \textbf{0.315} \\
+%  &  & Center & PCA & 0.081 & 0.074
+% \end{tabular}
+% \caption{Full set of results for all the Control Vector settings we tested. We report the Pearson and Kendall-Tau correlation of the specified level of readability with the Coleman-Liau readability index. We experiment with In-Context Learning (ICL) as our baseline. For the Control Vectors, we experiment with 2 Contrastive Combination methods (Diff and Center) and 2 Reduction methods (Avg. and PCA).}\label{tab:main-results}
+% \end{table*}
+
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table*}[!ht]
+\centering 
+\setlength{\extrarowheight}{1pt}
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{tabular}{l|lll|lll}
+\textbf{} & \textbf{Method} & \textbf{\begin{tabular}[c]{@{}l@{}}Contrastive\\ Combination\end{tabular}} & \textbf{Reduction} & \textbf{Pearson} & \textbf{Kendall Tau} & \textbf{BertScore F1} \\ \hline
+\multirow{8}{*}{\rotatebox{90}{eLife}} & ICL & - & - & -0.025 & -0.017 & 0.847 \\
+ & DSPy & - & - & 0.000 & 0.000 & 0.000 \\
+ & QLoRa SFT & - & - & -0.115 & -0.164 & 0.847 \\
+ & SFT & - & - & 0.033 & 0.035 & 0.780 \\  \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.302 & 0.205 & 0.837 \\
+ &  & Center & Avg & 0.302 & 0.205 & 0.803 \\
+ &  & Diff & PCA & 0.101 & 0.075 & 0.836 \\
+ &  & Center & PCA & 0.101 & 0.075 & 0.835 \\ \hline
+\multirow{8}{*}{\rotatebox{90}{PLOS}} & ICL & - & - & 0.00024 & -0.003 & 0.848 \\
+ & DSPy & - & - & 0.000 & 0.000 & 0.000 \\
+ & LoRa SFT & - & - & -0.084 & -0.126 & 0.819 \\
+ & SFT & - & - & 0.0074 & 0.004 & 0.719 \\  \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.416 & 0.286 & 0.805 \\
+ &  & Center & Avg & 0.417 & 0.287 & 0.805 \\
+ &  & Diff & PCA & 0.365 & 0.249 & 0.838 \\
+ &  & Center & PCA & 0.144 & 0.107 & 0.837 \\ \hline
+\multirow{8}{*}{\rotatebox{90}{Eureka}} & ICL & - & - & 0.055 & 0.0194 & 0.853 \\
+ & DSPy & - & - & 0.000 & 0.000 & 0.000 \\
+ & LoRa SFT & - & - & -0.034 & -0.036 & 0.846 \\
+ & SFT & - & - & 0.0078 & 0.0095 & 0.764 \\  \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.407 & 0.298 & 0.840 \\
+ &  & Center & Avg & 0.408 & 0.298 & 0.810 \\
+ &  & Diff & PCA & 0.062 & 0.043 & 0.839 \\
+ &  & Center & PCA & 0.168 & 0.1212 & 0.838 \\ \hline
+\multirow{8}{*}{\rotatebox{90}{SciNews}} & ICL & - & - & 0.0302 & -0.004 & 0.840 \\
+ & DSPy & - & - & 0.000 & 0.000 & 0.000 \\
+ & LoRa SFT & - & - & -0.048 & -0.053 & 0.480 \\
+ & SFT & - & - & -0.0062 & -0.0059 & 0.44 \\  \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.075 & 0.000 & 0.827 \\
+ &  & Center & Avg & 0.268 & 0.216 & 0.801 \\
+ &  & Diff & PCA & 0.395 & 0.315 & 0.826 \\
+ &  & Center & PCA & 0.081 & 0.074 & 0.826
+\end{tabular}
+\caption{Full set of results for all the Control Vector settings we tested for \texttt{meta-llama/Llama-3.1-8B-Instruct}. We report the Pearson and Kendall-Tau correlation of the specified level of readability with the Coleman-Liau readability index. We experiment with In-Context Learning (ICL), Supervised Finetuning (SFT), QLoRa/LoRa SFT, and DSPy Prompt Optimization (DSPy) as our baselines. For the Control Vectors, we experiment with 2 Contrastive Combination methods (Diff and Center) and 2 Reduction methods (Avg. and PCA).}
+\label{tab:main-results-llama}
+\end{table*}
+
+
+
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table*}[!ht]
+\centering 
+\setlength{\extrarowheight}{1pt}
+\begin{tabular}{l|lll|lll}
+\textbf{} & \textbf{Method} & \textbf{\begin{tabular}[c]{@{}l@{}}Contrastive\\ Combination\end{tabular}} & \textbf{Reduction} & \textbf{Pearson} & \textbf{Kendall Tau} & \textbf{BertScore F1} \\ \hline
+\multirow{7}{*}{\rotatebox{90}{eLife}} 
+ & DSPy & - & - & \multicolumn{3}{c}{CONTEXT ERROR}  \\
+ & LoRa SFT & - & - & \multicolumn{3}{c}{OOM} \\
+ & SFT & - & - & \multicolumn{3}{c}{OOM} \\ 
+ \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.000 & 0.000 & 0.822 \\
+ &  & Center & Avg & 0.132 & 0.206 & 0.808 \\
+ &  & Diff & PCA & 0.315 & 0.223 & 0.821 \\
+ &  & Center & PCA & 0.280 & 0.207 & 0.823 \\ \hline
+\multirow{7}{*}{\rotatebox{90}{PLOS}} 
+ & DSPy & - & - & \multicolumn{3}{c}{CONTEXT ERROR} \\
+ & LoRa SFT & - & - & 0.000 & 0.000 & 0.000 \\
+ & SFT & - & - & \multicolumn{3}{c}{OOM} \\ 
+ \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.000 & 0.000 & 0.832 \\
+ &  & Center & Avg & 0.085 & 0.112 & 0.815 \\
+ &  & Diff & PCA & 0.213 & 0.189 & 0.830 \\
+ &  & Center & PCA & 0.100 & 0.120 & 0.831 \\ \hline
+\multirow{7}{*}{\rotatebox{90}{Eureka}} 
+ & DSPy & - & - & \multicolumn{3}{c}{CONTEXT ERROR} \\
+ & LoRa SFT & - & - & -0.0017 & 0.0086 & 0.813 \\
+ & SFT & - & - & 0.0031 & -0.011 & 0.798 \\ 
+ \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.000 & 0.000 & 0.906 \\
+ &  & Center & Avg & 0.117 & 0.147 & 0.870 \\
+ &  & Diff & PCA & 0.137 & 0.112 & 0.891 \\
+ &  & Center & PCA & 0.121 & 0.098 & 0.899 \\ \hline
+\multirow{7}{*}{\rotatebox{90}{SciNews}} 
+ & DSPy & - & - & \multicolumn{3}{c}{CONTEXT ERROR} \\
+ & LoRa SFT & - & - & -0.034 & -0.040 & 0.483 \\
+ & SFT & - & - & \multicolumn{3}{c}{OOM} \\ 
+ \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.000 & 0.000 & 0.824 \\
+ &  & Center & Avg & 0.141 & 0.177 & 0.809 \\
+ &  & Diff & PCA & 0.116 & 0.110 & 0.822 \\
+ &  & Center & PCA & 0.120 & 0.114 & 0.824
+\end{tabular}
+\caption{Full set of results for all the Control Vector settings we tested for \texttt{google/gemma-7b-it}. We report the Pearson and Kendall-Tau correlation of the specified level of readability with the Coleman-Liau readability index. We experiment with In-Context Learning (ICL), Supervised Finetuning (SFT), QLoRa/LoRa SFT, and DSPy Prompt Optimization (DSPy) as our baselines. For the Control Vectors, we experiment with 2 Contrastive Combination methods (Diff and Center) and 2 Reduction methods (Avg. and PCA). OOM means the baseline could not be run due to an out of memory error on our setup. UNSUPPORTED means that out of the box the baseline does not support \texttt{google/gemma-7b-it}.}
+\label{tab:main-results-gemma}
+\end{table*}
+
+
+
+\begin{table*}[!ht]
+\centering 
+\setlength{\extrarowheight}{1pt}
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{tabular}{l|lll|lll}
+\textbf{} & \textbf{Method} & \textbf{\begin{tabular}[c]{@{}l@{}}Contrastive\\ Combination\end{tabular}} & \textbf{Reduction} & \textbf{Pearson} & \textbf{Kendall Tau} & \textbf{BertScore F1} \\ \hline
+\multirow{7}{*}{\rotatebox{90}{eLife}} 
+ & DSPy & - & - & \multicolumn{3}{c}{CONTEXT ERROR} \\
+ & LoRa SFT & - & - & 0.0011 & 0.0040 & 0.850 \\
+ & SFT & - & - & 0.0012 & 0.000084 & 0.724 \\ 
+ \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.000 & 0.000 & 0.822 \\
+ &  & Center & Avg & 0.132 & 0.206 & 0.808 \\
+ &  & Diff & PCA & 0.315 & 0.223 & 0.821 \\
+ &  & Center & PCA & 0.280 & 0.207 & 0.823 \\ \hline
+\multirow{7}{*}{\rotatebox{90}{PLOS}} 
+ & DSPy & - & - & \multicolumn{3}{c}{CONTEXT ERROR} \\
+ & LoRa SFT & - & - & -0.00032& 0.0011 & 0.857 \\
+ & SFT & - & - & 0.0027 & 0.0049 & 0.424 \\ 
+ \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.000 & 0.000 & 0.832 \\
+ &  & Center & Avg & 0.085 & 0.112 & 0.815 \\
+ &  & Diff & PCA & 0.213 & 0.189 & 0.830 \\
+ &  & Center & PCA & 0.100 & 0.120 & 0.831 \\ \hline
+\multirow{7}{*}{\rotatebox{90}{Eureka}} 
+ & DSPy & - & - & \multicolumn{3}{c}{CONTEXT ERROR} \\
+ & LoRa SFT & - & - & 0.027 & 0.035 & 0.766 \\
+ & SFT & - & - & 0.000 & 0.000 & 0.696 \\ 
+ \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.000 & 0.000 & 0.906 \\
+ &  & Center & Avg & 0.117 & 0.147 & 0.870 \\
+ &  & Diff & PCA & 0.137 & 0.112 & 0.891 \\
+ &  & Center & PCA & 0.121 & 0.098 & 0.899 \\ \hline
+\multirow{7}{*}{\rotatebox{90}{SciNews}} 
+ & DSPy & - & - & \multicolumn{3}{c}{CONTEXT ERROR} \\
+ & LoRa SFT & - & - & 0.000 & 0.000 & 0.104 \\
+ & SFT & - & - & 0.000 & 0.000 & 0.361 \\ 
+ \cdashline{2-7}[1pt/3pt]
+ & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Control \\ Vectors\end{tabular}} & Diff & Avg & 0.000 & 0.000 & 0.824 \\
+ &  & Center & Avg & 0.141 & 0.177 & 0.809 \\
+ &  & Diff & PCA & 0.116 & 0.110 & 0.822 \\
+ &  & Center & PCA & 0.120 & 0.114 & 0.824
+\end{tabular}
+\caption{Full set of results for all the Control Vector settings we tested for \texttt{mistralai/Mistral-7B-Instruct-v0.3}. We report the Pearson and Kendall-Tau correlation of the specified level of readability with the Coleman-Liau readability index. We experiment with In-Context Learning (ICL), Supervised Finetuning (SFT), QLoRa/LoRa SFT, and DSPy Prompt Optimization (DSPy) as our baselines. For the Control Vectors, we experiment with 2 Contrastive Combination methods (Diff and Center) and 2 Reduction methods (Avg. and PCA). OOM means the baseline could not be run due to an out of memory error on our setup. LENGTH ERROR means the baseline could not be run due to the context window being too short.}
+\label{tab:main-results-mistral}
+\end{table*}
+

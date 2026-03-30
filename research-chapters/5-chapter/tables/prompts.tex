@@ -1,0 +1,30 @@
+\begin{table*}[]
+\centering \small
+\begin{tabular}{l}
+% \hline
+\textbf{Simple Prompt} \\ \hline
+\begin{tabular}[c]{p{.9\textwidth}}
+\vspace{-1mm} 
+On a scale of  1 to 5, what is the reading ease of the following text? 1 indicates the text requires expert background knowledge and 5 indicates the text is readable to the general population. Assume the reader is an adult.\textnewline \textnewline \\ Format the output as follows:\textnewline\\ Score: \textless{}score\textgreater\textnewline\\ Reason: \textless{}reasoning\textgreater \textnewline \\ Text: \{SUMMARY\}
+\vspace{5mm}
+\end{tabular} \\ 
+
+% \hline
+\textbf{ASCB Guidelines Prompt} \\ \hline
+\begin{tabular}[]{p{.9\textwidth}}
+\vspace{-1mm} 
+On a scale of  1 to 5, what is the reading ease of the following text? 1 indicates the text requires expert background knowledge and 5 indicates the text is readable to the general population. Characteristics of a highly readable text include:\textnewline\\ - Know your audience, and focus and organize your information for that particular audience.\textnewline\\ - Focus on the big picture. What larger problem is your work a part of? What major ideas or issues does your work address? How will your work help global understanding of some issue?\textnewline\\ - Avoid jargon. If you must use a technical term, make sure to explain it, but simplify the language.\textnewline\\ - Try to use metaphors or analogies to everyday experiences that people can relate to.\textnewline\\ - Underscore the importance of public support for exploratory research and scientific information, and the role of this information in providing the context for effective policy making.\textnewline\textnewline\\ Assume the reader is an adult. Do not use Flesch-Kincaid or other readability formulas. Use your own judgment to rate the text.\textnewline\textnewline\\ Format the output as follows:\textnewline\\ Score: \textless{}score\textgreater\textnewline\\ Reason: \textless{}reasoning\textgreater\textnewline\textnewline\\ Text: \{SUMMARY\}
+\vspace{5mm}
+\end{tabular} \\
+
+% \hline
+\textbf{Own Reasoning Prompt} \\ \hline
+\begin{tabular}[c]{p{.9\textwidth}}
+\vspace{-1mm}
+On a scale of  1 to 5, what is the reading ease of the following text? 1 indicates the text requires expert background knowledge and 5 indicates the text is readable to the general population. \textnewline\\ Assume the reader is an adult. Do not use Flesch-Kincaid or other readability formulas. Use your own judgment to rate the text.\textnewline\textnewline\\ Format the output as follows:\textnewline\\ Score: \textless{}score\textgreater\textnewline\\ Reason: \textless{}reasoning\textgreater \textnewline\textnewline\\ Text: \{SUMMARY\}
+% \vspace{5mm}
+\end{tabular} \\
+% \hline
+\end{tabular}
+\caption{Prompts we tested. \texttt{Own Reasoning} is the best performing prompt, as reported in~\Cref{tab:prompt-comparison}.}\label{tab:prompts}
+\end{table*}

@@ -1,0 +1,145 @@
+
+
+\section{Template Adaptable Evaluation}\label{sec:eval-metric}
+
+%As past work has treated the generation of different templatic views as separate tasks, the evaluation of these types has also been developed independently.
+%Unfortunately, none of the previously used metrics scale well to other document types or more generally to a unified evaluation of templatic views.
+Prior work on document generation has treated the evaluation of different templatic views as separate tasks.
+% ROUGE~\cite{Lin2004ROUGEAP,chandrasekaran-etal-2020-overview-insights} does not take structure and ordering of information into account; the same is true for other fuzzy text comparison metrics~\cite{Zhang2019BERTScoreET,Zhong2022TowardsAU,Yuan2021BARTScoreEG}. Slide-level ROUGE~\cite{Fu2021DOC2PPTAP} partly solves the problem with a length penalty but does not account for distribution of information, and is not easily extensible to formats other than slides. Finally using a trained regressor~\cite{Qiang2016LearningTG} as a metric is only possible with availability of human-labeled data, which is expensive and time-consuming to curate for new domains and applications.
+% Past work has focused on the tasks of slide, poster, and blog generation \sjauhar{Pop-up a level and talk about templatic view generation being handled piecemeal by prior work; then provide these as examples.} separately, while ours is the first to generalize to multi-template generation \sjauhar{Awkward flow between ``while ours...'' and next sentence; consider moving this fragment later in the para}. This means that past work has developed automatic evaluation methods for each task separately. 
+%In the case of blog generation, \textcite{chandrasekaran-etal-2020-overview-insights} used ROUGE scores for evaluation. However, ROUGE is only designed to compare text to text, not taking into account structure and ordering of information~\cite{Lin2004ROUGEAP}, making it unable to easily adapt to structured documents, such as slides or posters. \textcite{Qiang2016LearningTG} uses a trained regressor to evaluate the panel sizes of posters and human evaluation to evaluate the quality of the generations. While human evaluation is considered the gold standard of evaluation, it is expensive and slow to use for iteration. The trained regressor is not only unable to adapt to new template types, it only measures performance in structure, but not quality or order.  For the task of slide generation, \textcite{Fu2021DOC2PPTAP} introduced slide level ROUGE, as calculated below:
+%\begin{equation}
+%    \mathrm{ROUGE-SL} = \mathrm{ROUGE-L} \times e^{\frac{-| Q - \tilde{Q} |}{Q}}
+%\end{equation}
+%where $Q$ and $\tilde{Q}$ are the number of reference and generated slides, respectively. This is essentially ROUGE-L with a penalty for generating a different number of slides. However, this metric does not account for distribution of information. For example, if the model generates all of the text on a single slide, $\mathrm{ROUGE-SL}$ will give the same score to a set of slides with a more even distribution of text. Additionally, this metric is only designed for the task of slide generation. 
+  Thus, our goal is to develop a framework of automatic evaluation that is \textit{template adaptable}. This not only allows us to compare performance across diverse datasets, it also removes the requirement of designing and maintaining individual metrics for each template. In order to generalize to multiple templates, we introduce the concept of \textit{panels}. A panel is a unit of organization within a document type, for which the placement and ordering of the panel is important to the overall flow of information in the document.  
+% \sjauhar{I am wondering if we should maybe use a different word for this -- say \emph{panels}? Frames have a very definite historical connotation in NLP (frame semantics) and although this shouldn't be confusing because we're dealing with a totally different domain we may want to avoid overloading the term}. \isabel{It's a good point about frames already having another meaning in NLP, but panels feels specific to posters. } \sjauhar{Can you talk about frames more generally in the context of \emph{all} doc types, before focusing on how they would apply to types in this paper?} 
+
+For example, we consider panels to be each slide in a slide deck and each section on a poster. We consider the entirety of a blog post to be a single panel. Although we test our method on the tasks of slide, blog, and poster generation, the concept of panels is not limited to these document types. For example, each post on a social media thread could be considered a panel, or each page on a website.
+
+We aim to unify the evaluation of templatic views by integrating prior metrics into a template adaptable precision-recall framework, which we refer to as Template-Adaptable Evaluation (TAE). TAE is not a new individual metric, but rather an evaluation framework that allows generalization to new templates. For example, TAE can even be used \textit{with} ROUGE to evaluate poster generation. 
+
+% \sjauhar{Are there other aspects of the modularity and extensibility of your eval that are worth mentioning? I think it's important to at least draw attention to the fact that you're defining a \emph{template} for evaluation rather than a single metric. People can instantiate it a variety of different ways, depending on their application (and even train it as a regressor if you add weights) and thus previously used metrics happen to be special cases of your metric template, rather than simply different ones (this makes sense because you're doing something unified vs. disparate)}. 
+
+The general TAE formulation is as follows: 
+\begin{equation}
+    \begin{split}
+    \mathrm{Precision} = Q_P \times O_P \times L \\
+    \mathrm{Recall} = Q_R \times O_R \times L
+    \end{split}
+\end{equation}
+\noindent
+in which $Q_P$ is the precision measure of quality (\S\ref{sec:qual-measure}), $O_P$ is the precision penalty for order (\S\ref{sec:order-penalty}), and $L$ is the non-reflexive penalty for length (\S\ref{sec:length-penalty}). 
+% \sjauhar{In the most general formulation do you want to introduce weights that could place different levels of importance on different terms?}
+% \isabel{i could mention weighting but we don't experiment with it at all}\sjauhar{I think that is worth doing, given that the story for the metric is unification but also flexibility}. 
+Similarly, $Q_R$ is the recall quality measure and $O_R$ is the recall penalty for order. The precision-recall formulation allows evaluators to decide which measure is most important to them, or calculate an overall F-measure score. 
+
+
+
+\subsection{Quality Measure}\label{sec:qual-measure}
+
+For the TAE precision score, we calculate the average similarity between the generated panels and their most similar reference panel as follows:%. More specifically:%, we calculate $Q_P$ as follows:
+
+\begin{equation}
+    Q_P = \frac{1}{|\tilde{S}|} \sum_{\tilde{S}} \mathrm{max}_{\mathrm{sim}}( S, \tilde{S}_i )
+\end{equation}
+\noindent
+in which $S$ is the set of reference panels and $\tilde{S}$ is the set of generated panels. 
+% \sjauhar{Provide a more succinct interpretation first, e.g. ``This is the average similarity between reference frames and their most similar generated frames'' or something like that.} In other words, for each generated frame, we align it to the most similar reference frame, then take the average of the scores. This captures how similar each generated slide is to a reference slide.
+For the similarity metric, the user can choose a metric that best matches their use case, such as ROUGE, BERT-Score, or a custom trained regressor~\cite{Lin2004ROUGEAP,Zhang2019BERTScoreET}. For example, a user might choose ROUGE if they want a similarity metric that focuses on exact word overlap, or BERTScore to measure broader semantic similarity.
+% \sjauhar{Briefly explain when you would use one vs. the other.}. 
+% Additionally, the TAE framework can be used as future work introduces improved similarity metrics.
+
+Similar to precision, the TAE recall score is calculated as the average similarity between the reference panels and their most similar generated panel:
+
+\begin{equation}
+    Q_R = \frac{1}{|S|} \sum_{S} \mathrm{max}_{\mathrm{sim}}( \tilde{S}, S_i )
+\end{equation}
+
+%In other words, we measure how similar each reference panel is to the generated panels. 
+
+By splitting the evaluation of quality into precision and recall, we can evaluate both the content of the slides that were generated as well as the coverage of this content against some reference.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=\columnwidth]{research-chapters/3-chapter/images/Ordering.pdf}
+
+    \caption{Example of the process of obtaining the rankings for the precision ordering penalty. We first use the similarity measure to map each generated panel to its most similar reference document. This mapping is used to calculate the precision quality score $Q_P$. We then use the mappings to create a one-to-one alignment from the generated to the reference panels, which we use to calculate the precision ordering penalty ($O_P$). By creating a one-to-one alignment, we are able to represent inversions in the ordering.
+    This process is reflexive, and panels not accounted for in the precision ordering penalty are accounted for in the recall ordering penalty.
+    } 
+    \label{fig:ordering-penalty}
+\end{figure}
+
+\subsection{Order Penalty}\label{sec:order-penalty}
+
+% \sjauhar{How about wording it as follows:}
+
+% \subsubsection{Alternative Version}
+
+Broadly, the goal of the ordering penalty is to measure the similarity of the \emph{order} of information in reference and generated panels, independent of other factors. Unfortunately, because the cardinality of panels in the two outputs is not necessarily the same, a direct one-to-one mapping to compare ordering is not feasible. Instead, a panel in one set can align to multiple references in the other, or none at all -- as depicted in ~Figure~\ref{fig:ordering-penalty}. Intuitively, our solution is to virtually replicate (resp. drop) panels that have multiple (resp. zero) alignments in the reference set so that a one-to-one mapping of ordering, can in fact be computed.
+% \sjauhar{I am being lazy here and assuming the ordering for precision; you may need to polish this a bit to explain how it will work in reverse for recall}
+
+Formally, assume $S$ and $\tilde{S}$  are sequences of reference and generated panels respectively. We use the maximum similarity scores calculated in \S\ref{sec:qual-measure} to align the panels across sets.
+
+For the precision ordering penalty, we define the following operation $\lambda_P(s)=\sum_{\tilde{s}}\delta_P(s,\tilde{s})$, where
+\[
+    \delta_P(s,\tilde{s})= 
+\begin{cases}
+    1, & \text{iff } s \rightarrow \tilde{s}\\
+    0, & \text{otherwise}
+\end{cases}
+\]
+
+
+\noindent Intuitively, this captures the cardinality of the alignment of a panel in $S$ with panels in $\tilde{S}$. Then, using this operation we can replace every $s \in S$ with $\lambda_P(s)$ copies, leading to an identical cardinality for both $S$ and $\tilde{S}$, and subsequent one-to-one mapping between their corresponding panels.
+
+
+
+%With this one-to-one mapping in place we can then measure the misalignments between the two sets of ordered panels to assign a penalty scores.
+Then, to operationalize a penalty score for the two sets of ordered panels we associate them with ranks in both sets and use a rank correlation metric to compute the degree of agreement. Specifically, rank assignment is done as follows: panels in $\tilde{S}$ are simply assigned ranks in order of appearance 1 through N -- we call this $\tilde{S}_{ranking}^P$; meanwhile panels in $S$ are assigned the identical rank to their one-to-one aligned panel in $\tilde{S}$ and $\tilde{S}_{ranking}^P$ -- we refer to these rankings as $S_{ranking}^P$.  An example of this process can be found in Figure~\ref{fig:ordering-penalty}. The final ordering penalty is computed using Spearman's rank correlation~\cite{5548399}:
+\vspace{-0.5mm}
+\begin{equation}
+    O_P = \frac{\mathrm{Spearman}(S_{ranking}^P, \tilde{S}_{ranking}^P) + 1}{2}
+\end{equation}
+
+\noindent where we perform a linear transformation to map the original range of the correlation coefficient [-1, 1] to the desired range [0, 1].
+
+Similarly, for the recall ordering penalty, we map the reference panels to the generated panels, calculated as $\lambda_R(s)=\sum_{s}\delta_R(\tilde{s}, s)$. $O_R$ is calculated similar to $O_P$, using the recall rankings.%, where
+% \[
+%     \delta_R(\tilde{s}, s)= 
+% \begin{cases}
+%     1, & \text{iff } \tilde{s} \rightarrow s\\
+%     0, & \text{otherwise}
+% \end{cases}
+% \]
+% We calculate the rankings for recall similarly, assigning the panels in $S$ a rank of $S_{ranking}^R=[1,...,N]$ in order of appearance, while panels in $\tilde{S}$ are assigned the identical rank to their one-to-one aligned panel in $S$ and $S_{ranking}^R$. We then take the Spearman's rank correlation as follows:
+
+% \begin{equation}
+%     O_R = \frac{\mathrm{Spearman}(S_{ranking}^R, \tilde{S}_{ranking}^R) + 1}{2}
+% \end{equation}
+
+
+% \subsubsection{Original Version}
+
+% Our goal in calculating the ordering penalty is to get a measure of how similar is the ordering of information in the reference and generated frames. We calculate the precision ordering penalty as follows:
+
+% \begin{equation}
+%     O_P = \frac{\mathrm{Spearman}(S_{ranking}, \tilde{S}_{ranking}) + 1}{2}
+% \end{equation}
+% \isabel{I'm having a difficult time describing this}
+% To calculate the rankings for the ordering penalty for precision, we assume the order of frames from the generated slides. We then use the similarity scores from the quality measure described above to map the ordering of the generated frames to the ordering of the reference frames. If a reference frame has multiple generated frames mapped to it, we duplicate it. If a reference frame has no generated frames mapped to it, we ignore it. This process gives the rankings the same cardinality, allowing us to take the Spearman correlation of the rankings. Figure~\ref{fig:ordering-penalty} visualizes an example of this process. Finally, because the Spearman correlation ranges from $[-1,1]$, we perform a simple linear transformation so that our ordering penalty ranges from $[0, 1]$. In the case of posters, we assume the panels can be ordered from left to right then top to bottom, or vice versa. We assume that transposing this order does not affect the quality of the ordering, and take the maximum of the two. 
+
+% To calculate the ordering penalty for recall, we perform the same process but in reverse, using the similarity recall scores to map the reference slides to the generated slides. This means that any slides that were ignored in the precision ordering rankings, are accounted for in the recall ordering rankings. 
+
+
+
+\subsection{Length Penalty}\label{sec:length-penalty}
+
+Finally, we compute a length penalty for both the recall and precision scores. Similar to \textcite{Fu2021DOC2PPTAP}, this is done as follows:
+\begin{equation}
+    L = e^{\frac{-\mathrm{abs}(|S| - |\tilde{S}|)}{|S|}}
+\end{equation}
+
+\noindent We chose to keep $L$ non-reflexive, because in the reverse case -- as $|\tilde{S}| \rightarrow \infty$, $L \rightarrow 1$ -- the metric could be cheated by over-generating.
+
+%If $L$ were reflexive, the denominator in the reverse case would be $|\tilde{S}|$, meaning that as $|\tilde{S}| \rightarrow \infty$, $L \rightarrow 1$. In other words, the length penalty could be cheated by over-generating. Therefore, unlike the quality measure and ordering penalty, we chose not to make the length penalty reflexive. 

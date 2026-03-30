@@ -1,0 +1,56 @@
+% -----------------------------------------------------------------------
+% TABLE 2: Prometheus Eval
+% -----------------------------------------------------------------------
+\begin{table*}[ht]
+\footnotesize
+\centering
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Reference Type} & \textbf{nrefs}
+  & \textbf{Coherence} & \textbf{Consistency} & \textbf{Fluency} & \textbf{Relevance} \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-based}} \\ \midrule
+\rowcolor{refbased}
+Gold    & 11 & \textbf{0.726} & \textbf{0.721} & 0.444 & 0.775 \\
+\rowcolor{refbased}
+Gold    &  6 & 0.701 & 0.642 & \textbf{0.598} & 0.726 \\
+\rowcolor{refbased}
+Gold    &  1 & 0.548 & 0.682 & 0.296 & \textbf{0.796} \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-adjusted}} \\ \midrule
+\rowcolor{refadj}
+Abstractive & 11 & 0.716 & 0.642 & 0.563 & 0.642 \\
+\rowcolor{refadj}
+Abstractive &  6 & \textbf{0.750} & 0.509 & \textbf{0.593} & 0.607 \\
+\rowcolor{refadj}
+Abstractive &  1 & 0.706 & 0.731 & 0.341 & \textbf{0.785} \\
+\hdash{1}{6}
+\rowcolor{refadj}
+Extractive  &  8 & 0.657 & 0.332 & 0.370 & 0.583 \\
+\rowcolor{refadj}
+Extractive  &  6 & 0.583 & 0.267 & 0.370 & 0.509 \\
+\rowcolor{refadj}
+Extractive  &  1 & 0.445 & \textbf{0.750} & 0.267 & 0.677 \\
+\midrule
+\multicolumn{6}{l}{\textit{Reference-free}} \\ \midrule
+\rowcolor{reffree}
+---         &  0 & \textbf{0.617} & \textbf{0.731} & \textbf{0.444} & \textbf{0.760} \\
+\midrule
+\multicolumn{5}{l}{\textit{Best traditional (per setting)}} \\ \midrule
+\rowcolor{refbased}
+Reference-based & - & 0.550\,(ROUGE-L) & 0.700\,(SummaQA) & 0.711\,(ROUGE-4) & 0.700\,(ROUGE-4) \\
+\rowcolor{refadj}
+Reference-adjusted & - & 0.515\,(ROUGE-L) & 0.691\,(ROUGE-3) & 0.701\,(ROUGE-4) & 0.588\,(ROUGE-4) \\
+\rowcolor{reffree}
+Reference-free & - & 0.200\,(Stats-density) & 0.633\,(Stats-density) & 0.410\,(BLANC) & 0.383\,(BLANC) \\
+\bottomrule
+\end{tabular}
+\caption{%
+  \textbf{Prometheus Eval on SummEval} across three evaluation settings.
+  \colorbox{refbased}{\vphantom{x}Reference-based}: Gold references.
+  \colorbox{refadj}{\vphantom{x}Reference-adjusted}: Abstractive or Extractive references.
+  \colorbox{reffree}{\vphantom{x}Reference-free}: nrefs\,=\,0.
+  \textbf{Bold} indicates the best score within each setting per column. Best traditional metrics from~\Cref{tab:traditional_metrics}.
+}
+\label{tab:prometheus}
+\end{table*}

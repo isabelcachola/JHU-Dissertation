@@ -1,0 +1,34 @@
+\begin{table*}[ht]
+\centering
+\begin{tabular}{ll|llll|llll}
+\multicolumn{2}{c|}{\textbf{Settings}}&
+\multicolumn{4}{c|}{\textbf{Per Sample Latency (ms)}} &
+\multicolumn{4}{c}{\textbf{Per Token Latency (ms)}} \\
+BSZ & Seq Len &
+Std & CV & $\Delta$ & \% OH &
+Std & CV & $\Delta$ & \% OH \\
+\hline
+1  & 512  & 46.123 & 48.434 & 2.311 & 5.01 &
+0.090 & 0.095 & 0.005 & 5.01 \\
+1  & 1024 & 85.334 & 89.729 & 4.395 & 5.15 &
+0.083 & 0.088 & 0.004 & 5.15 \\
+1  & 2048 & 163.423 & 172.033 & 8.610 & 5.27 &
+0.080 & 0.084 & 0.004 & 5.27 \\
+\hline
+4  & 512  & 39.693 & 41.864 & 2.171 & 5.47 &
+0.078 & 0.082 & 0.004 & 5.47 \\
+4  & 1024 & 78.111 & 82.373 & 4.262 & 5.46 &
+0.076 & 0.080 & 0.004 & 5.46 \\
+4  & 2048 & 156.692 & 165.435 & 8.743 & 5.58 &
+0.077 & 0.081 & 0.004 & 5.58 \\
+\hline
+16 & 512  & 38.098 & 40.223 & 2.125 & 5.58 &
+0.074 & 0.079 & 0.004 & 5.58 \\
+16 & 1024 & 75.600 & 79.912 & 4.312 & 5.70 &
+0.074 & 0.078 & 0.004 & 5.70 \\
+16 & 2048 & 155.383 & 163.905 & 8.522 & 5.48 &
+0.076 & 0.080 & 0.004 & 5.48 \\
+\end{tabular}
+\caption{Latency comparison between inference on a Standard (Std) LLM and an LLM with added Control Vectors (CV). We report the per sample and per token latency in milliseconds (ms), the $\Delta$ latency from using control vectors, and the \% overhead (OH).}
+\label{tbl:latency-results}
+\end{table*}

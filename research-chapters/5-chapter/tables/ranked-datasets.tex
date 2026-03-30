@@ -1,0 +1,21 @@
+\begin{table}[t!]
+\vspace{-2mm}
+\centering \small
+\begin{tabular}{r|ll|lll}
+ & \multicolumn{2}{c|}{LM Eval} & \multicolumn{3}{c}{FKGL} \\
+Dataset & S & R & S & R & $\Delta$R \\ \hline
+arXiv & 1.31 & 10 & 11.53 & 2 & $+8$ \\
+PubMed & 1.99 & 8 & 14.14 & 5 & $+3$ \\
+SciTLDR & 1.86 & 9 & 15.66 & 10 & $-1$ \\
+SKJ & 4.40 & 1 & 8.41 & 1 & $0$ \\
+CDSR & 3.49 & 2 & 14.08 & 4 & $-2$ \\
+PLOS & 2.06 & 7 & 15.44 & 9 & $-2$ \\
+eLife & 3.18 & 5 & 11.87 & 3 & $+2$ \\
+Eureka & 3.21 & 4 & 14.87 & 6 & $-2$ \\
+CELLS & 2.23 & 6 & 15.35 & 8 & $-2$ \\
+SciNews & 3.37 & 3 & 14.98 & 7 & $-4$
+\end{tabular}
+\vspace{-2mm}
+\caption{The mean score (S) and rank (R) for each dataset, as judged by an LM evaluator and FKGL. $\Delta$R represents the change in rank from the LM evaluator to the FKGL scores.}\label{tab:ranked-datasets}
+\vspace{-4mm}
+\end{table}

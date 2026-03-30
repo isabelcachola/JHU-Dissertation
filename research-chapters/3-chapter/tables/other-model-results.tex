@@ -1,0 +1,29 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[]
+\centering
+\small
+\begin{tabular}{ccc|cccc}
+ &  &  & \multicolumn{4}{c}{Similarity Measure} \\
+ & Model & Rep. & R-L & M & B & BERTS \\ \hline
+\multirow{6}{*}{\rotatebox[origin=c]{90}{Slides}} & \multirow{2}{*}{MS} & $\times$ & 0.6 & 0.4 & 0.0 & 28.6 \\
+ &  & $\checkmark$ & \textbf{4.4} & \textbf{4.6} & \textbf{0.4} & \textbf{30.5} \\ \cdashline{2-7}[0.5pt/3pt]
+ & \multirow{2}{*}{MX} & $\times$ & 4.8 & 7.3 & 0.5 & 31.8 \\
+ &  & $\checkmark$ & \textbf{6.7} & \textbf{7.9} & \textbf{1.0} & \textbf{34.0} \\ \cdashline{2-7}[0.5pt/3pt]
+ & \multicolumn{1}{c}{\multirow{2}{*}{GPT4}} & \multicolumn{1}{c|}{$\times$} & \multicolumn{1}{c}{8.3} & \multicolumn{1}{c}{\textbf{9.6}} & \multicolumn{1}{c}{1.7} & \multicolumn{1}{c}{36.2} \\
+ & \multicolumn{1}{c}{} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c}{\textbf{8.4}} & \multicolumn{1}{c}{9.1} & \multicolumn{1}{c}{\textbf{2.0}} & \multicolumn{1}{c}{\textbf{38.1}} \\  \hdashline[0.5pt/3pt]
+\multirow{6}{*}{\rotatebox[origin=c]{90}{Blog}} & \multirow{2}{*}{MS} & $\times$ & 2.7 & 1.7 & 0.1 & 73.5 \\
+ &  & $\checkmark$ & \textbf{21.7} & \textbf{16.2} & \textbf{1.7} & \textbf{81.3} \\ \cdashline{2-7}[0.5pt/3pt]
+ & \multirow{2}{*}{MX} & $\times$ & 22.8 & 15.7 & 2.1 & \textbf{82.6} \\
+ &  & $\checkmark$ & \textbf{25.6} & \textbf{20.5} & \textbf{3.2} & 82.5 \\ \cdashline{2-7}[0.5pt/3pt]
+ & \multicolumn{1}{c}{\multirow{2}{*}{GPT4}} & \multicolumn{1}{c|}{$\times$} & \multicolumn{1}{c}{25.7} & \multicolumn{1}{c}{19.9} & \multicolumn{1}{c}{2.6} & \multicolumn{1}{c}{\textbf{82.8}} \\
+ & \multicolumn{1}{c}{} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c}{\textbf{25.8}} & \multicolumn{1}{c}{\textbf{20.2}} & \multicolumn{1}{c}{\textbf{3.1}} & \multicolumn{1}{c}{82.7} \\  \hdashline[0.5pt/3pt]
+\multirow{6}{*}{\rotatebox[origin=c]{90}{Poster}} & \multirow{2}{*}{MS} & $\times$ & 3.2 & 1.8 & 0.2 & 32.2 \\
+ &  & $\checkmark$ & \textbf{6.0} & \textbf{6.5} & \textbf{1.2} & \textbf{38.1} \\ \cdashline{2-7}[0.5pt/3pt]
+ & \multirow{2}{*}{MX} & $\times$ & \textbf{10.5} & \textbf{11.4} & \textbf{1.7} & 40.9 \\
+ &  & $\checkmark$ & 10.4 & 11.0 & 1.5 & \textbf{50.7} \\ \cdashline{2-7}[0.5pt/3pt]
+ & \multicolumn{1}{c}{\multirow{2}{*}{GPT4}} & \multicolumn{1}{c|}{$\times$} & \multicolumn{1}{c}{\textbf{16.4}} & \multicolumn{1}{c}{\textbf{18.2}} & \multicolumn{1}{c}{\textbf{4.5}} & \multicolumn{1}{c}{\textbf{59.8}} \\
+ & \multicolumn{1}{c}{} & \multicolumn{1}{c|}{$\checkmark$} & \multicolumn{1}{c}{14.6} & \multicolumn{1}{c}{15.3} & \multicolumn{1}{c}{3.7} & \multicolumn{1}{c}{57.2}
+\end{tabular}
+\caption{TAE F1 scores using Mistral-7b (MS), Mixtral (MX), and GPT4. We use ROUGE-L (R-L), METEOR (M), BLEU (B) and BERTScore (BERTS) as our similarity measures. For each template, we compare a JSON representation versus skipping the intermediate generation step (Rep), maintaining the same style parameters in both settings.}\label{tbl:other-model-results}
+\end{table}

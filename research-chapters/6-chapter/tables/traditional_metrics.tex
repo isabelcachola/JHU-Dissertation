@@ -1,0 +1,116 @@
+% -----------------------------------------------------------------------
+% TABLE: Traditional Metrics on SummEval (non-LLM), best nrefs per metric
+% -----------------------------------------------------------------------
+\begin{table*}[ht]
+\footnotesize
+\centering
+\begin{tabular}{lllcccc}
+\toprule
+\textbf{Metric} & \textbf{Ref.\ type} & \textbf{nrefs}
+  & \textbf{Coherence} & \textbf{Consistency} & \textbf{Fluency} & \textbf{Relevance} \\
+\midrule
+\multicolumn{7}{l}{\textit{Reference-based}} \\ \midrule
+\rowcolor{refbased}
+ROUGE-1 & Gold & 6 & 0.450 & 0.450 & 0.561 & 0.650 \\
+\rowcolor{refbased}
+ROUGE-2 & Gold & 6 & 0.333 & 0.500 & 0.577 & 0.533 \\
+\rowcolor{refbased}
+ROUGE-3 & Gold & 6 & 0.383 & 0.683 & 0.644 & 0.550 \\
+\rowcolor{refbased}
+ROUGE-4 & Gold & 6 & 0.500 & 0.567 & \textbf{0.711} & \textbf{0.700} \\
+\rowcolor{refbased}
+ROUGE-L & Gold & 6 & \textbf{0.550} & 0.317 & 0.628 & 0.683 \\
+\rowcolor{refbased}
+ROUGE-su* & Gold & 6 & 0.500 & 0.333 & 0.577 & 0.633 \\
+\rowcolor{refbased}
+ROUGE-w & Gold & 6 & 0.417 & 0.617 & 0.561 & 0.617 \\
+\rowcolor{refbased}
+BertScore-p & Gold & 11 & -0.017 & -0.217 & 0.033 & 0.083 \\
+\rowcolor{refbased}
+BertScore-r & Gold & 6 & 0.317 & 0.683 & 0.544 & 0.483 \\
+\rowcolor{refbased}
+BertScore-f & Gold & 11 & 0.133 & 0.033 & 0.283 & 0.400 \\
+\rowcolor{refbased}
+BLEU & Gold & 6 & 0.433 & -0.067 & 0.243 & 0.300 \\
+\rowcolor{refbased}
+CHRF & Gold & 11 & 0.350 & 0.617 & 0.567 & 0.550 \\
+\rowcolor{refbased}
+CIDEr & Gold & 1 & 0.083 & -0.083 & 0.126 & 0.150 \\
+\rowcolor{refbased}
+METEOR & Gold & 6 & 0.300 & 0.667 & 0.628 & 0.533 \\
+\rowcolor{refbased}
+SummaQA & Gold & 1 & 0.233 & \textbf{0.700} & 0.494 & 0.433 \\
+\rowcolor{refbased}
+SuPERT & Gold & 11 & 0.200 & 0.600 & 0.393 & 0.400 \\
+\midrule
+
+\multicolumn{7}{l}{\textit{Reference-adjusted}} \\ \midrule
+\rowcolor{refadj}
+ROUGE-1 & Abstractive & 6 & 0.427 & 0.471 & 0.583 & 0.559 \\
+\rowcolor{refadj}
+ROUGE-2 & Abstractive & 6 & 0.324 & 0.515 & 0.598 & 0.456 \\
+\rowcolor{refadj}
+ROUGE-3 & Extractive & 6 & 0.353 & \textbf{0.691} & 0.647 & 0.456 \\
+\rowcolor{refadj}
+ROUGE-4 & Abstractive & 6 & 0.456 & 0.588 & \textbf{0.701} & \textbf{0.588} \\
+\rowcolor{refadj}
+ROUGE-L & Abstractive & 6 & \textbf{0.515} & 0.353 & 0.613 & \textbf{0.588} \\
+\rowcolor{refadj}
+ROUGE-su* & Abstractive & 6 & 0.456 & 0.353 & 0.554 & 0.529 \\
+\rowcolor{refadj}
+ROUGE-w & Abstractive & 6 & 0.353 & 0.632 & 0.598 & 0.485 \\
+\rowcolor{refadj}
+BertScore-p & Abstractive & 11 & 0.059 & -0.191 & 0.007 & 0.162 \\
+\rowcolor{refadj}
+BertScore-r & Extractive & 6 & 0.309 & 0.677 & 0.574 & 0.412 \\
+\rowcolor{refadj}
+BertScore-f & Abstractive & 11 & 0.206 & 0.044 & 0.244 & 0.427 \\
+\rowcolor{refadj}
+BLEU & Abstractive & 6 & 0.471 & -0.074 & 0.185 & 0.368 \\
+\rowcolor{refadj}
+CHRF & Abstractive & 6 & 0.397 & 0.529 & 0.465 & \textbf{0.588} \\
+\rowcolor{refadj}
+CIDEr & Abstractive & 1 & 0.132 & -0.088 & 0.081 & 0.206 \\
+\rowcolor{refadj}
+METEOR & Extractive & 6 & 0.294 & 0.662 & 0.647 & 0.456 \\
+\rowcolor{refadj}
+SummaQA & Abstractive & 1 & 0.177 & 0.662 & 0.524 & 0.309 \\
+\rowcolor{refadj}
+SuPERT & Extractive & 6 & 0.132 & 0.588 & 0.427 & 0.265 \\
+\midrule
+\multicolumn{7}{l}{\textit{Reference-free}} \\ \midrule
+\rowcolor{reffree}
+BLANC & - & 0 & 0.183 & 0.617 & \textbf{0.410} & \textbf{0.383} \\
+\rowcolor{reffree}
+Length & - & 0 & 0.000 & 0.467 & 0.226 & 0.233 \\
+\rowcolor{reffree}
+Novel unigram & - & 0 & 0.150 & -0.050 & 0.126 & 0.083 \\
+\rowcolor{reffree}
+Novel bi-gram & - & 0 & -0.100 & -0.467 & -0.193 & -0.200 \\
+\rowcolor{reffree}
+Novel tri-gram & - & 0 & -0.100 & -0.533 & -0.259 & -0.267 \\
+\rowcolor{reffree}
+Repeated unigram & - & 0 & -0.333 & 0.067 & -0.142 & -0.300 \\
+\rowcolor{reffree}
+Repeated bi-gram & - & 0 & -0.350 & -0.050 & -0.293 & -0.417 \\
+\rowcolor{reffree}
+Repeated tri-gram & - & 0 & -0.167 & 0.133 & -0.075 & -0.200 \\
+\rowcolor{reffree}
+Stats-coverage & - & 0 & -0.067 & 0.100 & -0.042 & 0.033 \\
+\rowcolor{reffree}
+Stats-compression & - & 0 & 0.067 & -0.433 & -0.193 & -0.133 \\
+\rowcolor{reffree}
+Stats-density & - & 0 & \textbf{0.200} & \textbf{0.633} & 0.360 & 0.367 \\
+\bottomrule
+\end{tabular}
+\caption{%
+  \textbf{Traditional (non-LLM) metrics on SummEval.}
+  Each metric appears once per setting, using the reference type and nrefs that
+  maximise the average Kendall-Tau across the four dimensions.
+  \colorbox{refbased}{\vphantom{x} Reference-based}: Gold (Standard) references.
+  \colorbox{refadj}{\vphantom{x} Reference-adjusted}: Abstractive or Extractive references.
+  \colorbox{reffree}{\vphantom{x} Reference-free}: nrefs\,=\,0.
+  \textbf{Bold} indicates the best score within each section per column.
+} 
+\label{tab:traditional_metrics}
+\end{table*}

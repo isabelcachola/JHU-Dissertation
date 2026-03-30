@@ -1,0 +1,307 @@
+\definecolor{deltapos}{rgb}{0.10, 0.55, 0.45}   % teal  for positive delta
+\definecolor{deltaneg}{rgb}{0.75, 0.15, 0.15}   % red   for negative delta
+\definecolor{deltazero}{rgb}{0.50, 0.50, 0.50}  % grey  for zero
+
+% Signed delta: positive
+\newcommand{\dpos}[1]{\textcolor{deltapos}{$+$#1}}
+% Signed delta: negative
+\newcommand{\dneg}[1]{\textcolor{deltaneg}{$-$#1}}
+% Signed delta: zero
+\newcommand{\dzero}{\textcolor{deltazero}{$\phantom{+}$0.000}}
+% n/a delta (metric not available in one study, or nrefs differ)
+\newcommand{\dna}{\textcolor{deltazero}{---}}
+
+% -----------------------------------------------------------------------
+% Comparison Table: All Metrics on SummEval
+% Each metric appears once at the maximum nrefs available.
+% -----------------------------------------------------------------------
+\begin{table*}[t!]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{l r
+    ccc
+    ccc
+    ccc
+    ccc}
+\toprule
+& & \multicolumn{3}{c}{\textbf{Coherence}}
+& \multicolumn{3}{c}{\textbf{Consistency}}
+& \multicolumn{3}{c}{\textbf{Fluency}}
+& \multicolumn{3}{c}{\textbf{Relevance}} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}\cmidrule(lr){9-11}\cmidrule(lr){12-14}
+\textbf{Metric} & \textbf{$n$}
+  & \textit{Orig.} & \textit{Repl.} & \textit{$\Delta$}
+  & \textit{Orig.} & \textit{Repl.} & \textit{$\Delta$}
+  & \textit{Orig.} & \textit{Repl.} & \textit{$\Delta$}
+  & \textit{Orig.} & \textit{Repl.} & \textit{$\Delta$} \\
+\midrule
+\multicolumn{14}{l}{\textit{String-match / overlap}} \\[2pt] 
+ROUGE-1
+  & 11
+  & 0.250 & 0.367 & \dpos{0.117}
+  & 0.529 & 0.567 & \dpos{0.038}
+  & 0.524 & 0.550 & \dpos{0.026}
+  & 0.412 & 0.600 & \dpos{0.188} \\
+
+ROUGE-2
+  & 11
+  & 0.162 & 0.233 & \dpos{0.071}
+  & 0.588 & 0.600 & \dpos{0.012}
+  & 0.480 & 0.483 & \dpos{0.003}
+  & 0.294 & 0.433 & \dpos{0.139} \\
+
+ROUGE-3
+  & 11
+  & 0.221 & 0.300 & \dpos{0.079}
+  & 0.706 & \textbf{0.733} & \dpos{0.027}
+  & 0.509 & 0.517 & \dpos{0.008}
+  & 0.353 & 0.500 & \dpos{0.147} \\
+
+ROUGE-4
+  & 11
+  & 0.309 & 0.383 & \dpos{0.074}
+  & 0.588 & 0.617 & \dpos{0.029}
+  & 0.553 & 0.533 & \dneg{0.020}
+  & 0.412 & 0.550 & \dpos{0.138} \\
+
+ROUGE-L
+  & 11
+  & 0.073 & 0.417 & \dpos{0.344}
+  & 0.147 & 0.283 & \dpos{0.136}
+  & 0.258 & 0.500 & \dpos{0.242}
+  & 0.235 & 0.550 & \dpos{0.315} \\
+
+ROUGE-su*
+  & 11
+  & 0.191 & 0.300 & \dpos{0.109}
+  & 0.294 & 0.300 & \dpos{0.006}
+  & 0.435 & 0.450 & \dpos{0.015}
+  & 0.324 & 0.500 & \dpos{0.176} \\
+
+ROUGE-w
+  & 11
+  & 0.000 & 0.350 & \dpos{0.350}
+  & 0.397 & 0.683 & \dpos{0.286}
+  & 0.376 & 0.533 & \dpos{0.157}
+  & 0.162 & 0.550 & \dpos{0.388} \\
+
+
+BLEU
+  & 11
+  & 0.118 & 0.383 & \dpos{0.265}
+  & 0.073 & $-$0.050 & \dneg{0.123}
+  & 0.332 & 0.233 & \dneg{0.099}
+  & 0.221 & 0.283 & \dpos{0.062} \\
+
+CHRF
+  & 11
+  & 0.397 & 0.350 & \dneg{0.047}
+  & 0.529 & 0.617 & \dpos{0.088}
+  & 0.465 & 0.567 & \dpos{0.102}
+  & 0.588 & 0.550 & \dneg{0.038} \\
+
+CIDEr
+  & 11
+  & 0.118 & 0.067 & \dneg{0.051}
+  & $-$0.191 & $-$0.167 & \dpos{0.024}
+  & $-$0.022 & 0.050 & \dpos{0.072}
+  & 0.191 & 0.067 & \dneg{0.124} \\
+
+METEOR
+  & 11
+  & 0.235 & 0.283 & \dpos{0.048}
+  & 0.632 & 0.650 & \dpos{0.018}
+  & 0.613 & 0.600 & \dneg{0.013}
+  & 0.426 & 0.550 & \dpos{0.124} \\
+\midrule
+\multicolumn{14}{l}{\textit{Embedding / neural}} \\[2pt]
+
+ROUGE-we-1$^{\dagger}$
+  & 11
+  & 0.265 & --- & \dna
+  & 0.456 & --- & \dna
+  & 0.509 & --- & \dna
+  & 0.426 & --- & \dna \\
+
+ROUGE-we-2$^{\dagger}$
+  & 11
+  & $-$0.015 & --- & \dna
+  & 0.500 & --- & \dna
+  & 0.303 & --- & \dna
+  & 0.118 & --- & \dna \\
+
+ROUGE-we-3$^{\dagger}$
+  & 11
+  & 0.029 & --- & \dna
+  & 0.368 & --- & \dna
+  & 0.303 & --- & \dna
+  & 0.191 & --- & \dna \\
+
+$S^3$-pyr$^{\dagger}$
+  & 11
+  & $-$0.029 & --- & \dna
+  & 0.515 & --- & \dna
+  & 0.317 & --- & \dna
+  & 0.132 & --- & \dna \\
+
+$S^3$-resp$^{\dagger}$
+  & 11
+  & $-$0.015 & --- & \dna
+  & 0.500 & --- & \dna
+  & 0.332 & --- & \dna
+  & 0.147 & --- & \dna \\
+
+
+MoverScore$^{\dagger}$
+  & 11
+  & 0.191 & --- & \dna
+  & $-$0.029 & --- & \dna
+  & 0.258 & --- & \dna
+  & 0.294 & --- & \dna \\
+
+SMS$^{\dagger}$
+  & 11
+  & 0.162 & --- & \dna
+  & 0.559 & --- & \dna
+  & 0.362 & --- & \dna
+  & 0.235 & --- & \dna \\
+
+BERTScore-P
+  & 11
+  & 0.059 & $-$0.017 & \dneg{0.076}
+  & $-$0.191 & $-$0.217 & \dneg{0.026}
+  & 0.007 & 0.033 & \dpos{0.026}
+  & 0.162 & 0.083 & \dneg{0.079} \\
+
+BERTScore-R
+  & 11
+  & 0.147 & 0.200 & \dpos{0.053}
+  & 0.662 & 0.667 & \dpos{0.005}
+  & 0.494 & 0.483 & \dneg{0.011}
+  & 0.309 & 0.433 & \dpos{0.124} \\
+
+BERTScore-F
+  & 11
+  & 0.206 & 0.133 & \dneg{0.073}
+  & 0.044 & 0.033 & \dneg{0.011}
+  & 0.243 & 0.283 & \dpos{0.040}
+  & 0.426 & 0.400 & \dneg{0.026} \\
+
+
+SummaQA
+  & 1
+  & 0.118 & 0.233 & \dpos{0.115}
+  & 0.603 & 0.700 & \dpos{0.097}
+  & 0.406 & 0.494 & \dpos{0.088}
+  & 0.221 & 0.433 & \dpos{0.212} \\
+
+SuPERT
+  & 1
+  & 0.103 & 0.200 & \dpos{0.097}
+  & 0.588 & 0.600 & \dpos{0.012}
+  & 0.421 & 0.383 & \dneg{0.038}
+  & 0.235 & 0.400 & \dpos{0.165} \\
+
+BLANC
+  & 0
+  & 0.073 & 0.183 & \dpos{0.110}
+  & 0.559 & 0.617 & \dpos{0.058}
+  & 0.362 & 0.410 & \dpos{0.048}
+  & 0.265 & 0.383 & \dpos{0.118} \\
+
+
+
+\midrule
+\multicolumn{14}{l}{\textit{Structural statistics}} \\[2pt]
+
+Length
+  & 0
+  & $-$0.029 & 0.000 & \dpos{0.029}
+  & 0.426 & 0.467 & \dpos{0.041}
+  & 0.258 & 0.226 & \dneg{0.032}
+  & 0.162 & 0.233 & \dpos{0.071} \\
+
+Novel unigram
+  & 0
+  & 0.147 & 0.150 & \dpos{0.003}
+  & $-$0.221 & $-$0.050 & \dpos{0.171}
+  & $-$0.140 & 0.126 & \dpos{0.266}
+  & 0.103 & 0.083 & \dneg{0.020} \\
+
+Novel bi-gram
+  & 0
+  & 0.029 & $-$0.100 & \dneg{0.129}
+  & $-$0.544 & $-$0.467 & \dpos{0.077}
+  & $-$0.347 & $-$0.193 & \dpos{0.154}
+  & $-$0.103 & $-$0.200 & \dneg{0.097} \\
+
+Novel tri-gram
+  & 0
+  & 0.029 & $-$0.100 & \dneg{0.129}
+  & $-$0.574 & $-$0.533 & \dpos{0.041}
+  & $-$0.347 & $-$0.259 & \dpos{0.088}
+  & $-$0.132 & $-$0.267 & \dneg{0.135} \\
+
+Repeated unigram
+  & 0
+  & $-$0.382 & $-$0.333 & \dpos{0.049}
+  & 0.103 & 0.067 & \dneg{0.036}
+  & $-$0.066 & $-$0.142 & \dneg{0.076}
+  & $-$0.368 & $-$0.300 & \dpos{0.068} \\
+
+Repeated bi-gram
+  & 0
+  & $-$0.382 & $-$0.350 & \dpos{0.032}
+  & $-$0.015 & $-$0.050 & \dneg{0.035}
+  & $-$0.243 & $-$0.293 & \dneg{0.050}
+  & $-$0.456 & $-$0.417 & \dpos{0.039} \\
+
+Repeated tri-gram
+  & 0
+  & $-$0.221 & $-$0.167 & \dpos{0.054}
+  & 0.147 & 0.133 & \dneg{0.014}
+  & $-$0.022 & $-$0.075 & \dneg{0.053}
+  & $-$0.265 & $-$0.200 & \dpos{0.065} \\
+
+Stats-coverage
+  & 0
+  & $-$0.132 & $-$0.067 & \dpos{0.065}
+  & 0.353 & 0.100 & \dneg{0.253}
+  & 0.155 & $-$0.042 & \dneg{0.197}
+  & $-$0.029 & 0.033 & \dpos{0.062} \\
+
+Stats-compression
+  & 0
+  & 0.118 & 0.067 & \dneg{0.051}
+  & $-$0.426 & $-$0.433 & \dneg{0.007}
+  & $-$0.229 & $-$0.193 & \dpos{0.036}
+  & $-$0.015 & $-$0.133 & \dneg{0.118} \\
+
+Stats-density
+  & 0
+  & 0.162 & 0.200 & \dpos{0.038}
+  & 0.647 & 0.633 & \dneg{0.014}
+  & 0.391 & 0.360 & \dneg{0.031}
+  & 0.294 & 0.367 & \dpos{0.073} \\
+
+\bottomrule
+% \multicolumn{14}{l}{%
+%   \footnotesize
+%   $n$ = number of references used (0 = reference-free). \\
+%   $^{\dagger}$ Not reproduced; original values only. \\
+%   $^{\ddagger}$ Not in original study; replication values only. \\
+%   For SuPERT, original used $n{=}1$ and replication used $n{=}11$ (maximum available per study).
+% } \\
+\end{tabular}
+\caption{%
+  \textbf{All Metrics on SummEval} (Gold references, maximum nrefs available per metric).
+  Comparison between the \emph{original} study and our \emph{replication}.
+  $\Delta$ = Replication $-$ Original;
+  \textcolor{deltapos}{green} $=$ replication higher,
+  \textcolor{deltaneg}{red} $=$ replication lower.
+  $^{\dagger}$ Metric not reproduced; original values only.
+}
+\label{tab:comparison}
+\end{table*}
