@@ -558,8 +558,7 @@
 
 \input{commands}
 
-%%%% TITLE PAGE
-\include{front-matter/01-title}        
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% FRONT MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -573,36 +572,6 @@
 \fancyhead[L]{\nouppercase \leftmark}       % prints header for unnumbered chap
 
 
-%%%% MUST ADD ABSTRACT (includes committee as well)
-\include{front-matter/02-abstract}
-
-
-%%%% OPTIONAL but COMMON: preface chapters
-\include{front-matter/03-dedication}
-\include{front-matter/04-acknowledgement}        
-\include{front-matter/05-epigraph}
-%% you can have other chapters and the order does not matter
-
-
-%%%% LISTINGS
-\TOCTextSpacing                             % single spacing for the table of contents
-\microtypesetup{protrusion=false}           % turn off protrusion from microtype
-\hypersetup{linkcolor=black}                % local black hyperlink for TOC
-%
-\mytableofcontents                          % MUST
-%
-\mylistoftables                             % MUST: if you have tables
-%
-\mylistoffigures                            % MUST: if you have figures
-%
-%% OPTIONAL: you can add more lists here (but you will have to define those)
-%
-\hypersetup{linkcolor=blue}                 % revert it back to blue
-\microtypesetup{protrusion=true}            % turn on protrusion from microtype
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%% END FRONT MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% MAIN MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%% PAGE and TEXT settings 
@@ -610,20 +579,8 @@
 \pagenumbering{arabic}                  % Arabic page numbering
 \fancyhead[L]{\chaptername\ \thechapter. \nouppercase \leftmark}
 
-\include{front-matter/01-introduction}
-\include{front-matter/02-background}
-
-%%%% include all the main text chapters
-\part{Generating Scientific Summaries with User Defined Attributes}\label{part1}
-\include{research-chapters/3-chapter/0-main-chapter-3}
 \include{research-chapters/4-chapter/0-main-chapter-4}
-\part{Evaluating Scientific Summaries with User Parameters}\label{part2}
-\include{research-chapters/5-chapter/0-main-chapter-5}
-\include{research-chapters/6-chapter/0-main-chapter-6}
-\include{research-chapters/7-chapter/0-main-chapter-7}
-%% add more main text technical chapters if you have
 
-\include{back-matter/0-conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% END MAIN MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -645,11 +602,7 @@
 \fancyhead[L]{\appendixname\ \thechapter. \nouppercase \leftmark}
 
 
-\include{back-matter/1-chapter-appendix}
-\include{back-matter/2-chapter-appendix}
-\include{back-matter/3-chapter-appendix}
 \include{back-matter/4-chapter-appendix}
-\include{back-matter/5-chapter-appendix}
 
 %% add more appendix chapters if you have 
 

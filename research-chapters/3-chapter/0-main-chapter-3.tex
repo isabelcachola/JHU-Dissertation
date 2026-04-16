@@ -1,4 +1,4 @@
-\chapter{Knowledge-Centric Templatic Views of Documents} \label{chap:chap-1}
+\chapter{Knowledge-Centric Templatic Views of Documents} \label{chap:chap-3}
 
 % if you want a short header you can use the following command
 % \chapter[short-header-name]{chapter-title} \label{chap:chap-1}
@@ -11,20 +11,7 @@
 % \texttt{\{silviu,allenh,vmijovic,erikov,sjauhar\}@microsoft.com}}
 
 
-% \begin{abstract}
-% Authors seeking to communicate with broader audiences often share their ideas in various document formats, such as slide decks, newsletters, reports, and posters.
-% Prior work on document generation has generally tackled the creation of each separate format to be a different task, leading to fragmented learning processes, redundancy in models and methods, and disjointed evaluation. We consider each of these documents as \textit{templatic views} of the same underlying knowledge/content, and we aim to unify the generation and evaluation of these templatic views. We begin by showing that current LLMs are capable of generating various document formats with little to no supervision. Further, a simple augmentation involving a structured intermediate representation can improve performance, especially for smaller models. We then introduce a novel unified evaluation framework that can be adapted to measuring the quality of document generators for heterogeneous downstream applications. This evaluation is adaptable to a range of user defined criteria and application scenarios, obviating the need for task specific evaluation metrics. Finally, we conduct a human evaluation, which shows that people prefer 82\% of the documents generated with our method, while correlating more highly with our unified evaluation framework than prior metrics in the literature.
 
-% \end{abstract}
-
-% \sjauhar{Minor request: can we have the different sections in different files? Easier to keep track of things and go to relevant parts of the doc.}
-\begin{figure*}[!t]
-    \centering
-    \includegraphics[width=\textwidth]{research-chapters/1-chapter/images/sure_method_horizonal.pdf}
-    \caption{Visualization of our method to unify the generation and evaluation of templatic views of documents. Given an input document, we prompt the LLM to generate an intermediate representation. We can use the representation to prompt the model to generate a templatic view of the input document. We then evaluate the generations using our unified evaluation framework. The LLM represented in the figure is the same model.}
-    \label{fig:method}
-    \vspace{-2mm}
-\end{figure*}
 \input{research-chapters/3-chapter/1-introduction}
 
 \input{research-chapters/3-chapter/2-related_work}
@@ -40,13 +27,7 @@
 
 \input{research-chapters/3-chapter/7-conclusion}
 
-\section{Limitations}
-% The use of templatic views of documents is relevant for many domains (e.g. creating a cover letter and personal website based on a resume). In future work, we plan to tackle other domains and document types, as well as more complex scenarios, such as many-to-many document generation. We see this  work as an important step towards the larger goal of generalized document generation. 
 
-Although our methods are not domain specific, we only evaluated them in the scientific domain, due to the availability of public data. Additionally, our framework is limited to textual content. In future work we plan to explore the application of our unified framework for generation and evaluation on document views in other domains, as well as incorporating multi-modal models and content generation. Finally, it is possible that some of our test data has leaked into the training data of the models with which we experimented. This limitation is not unique to our work and exists for our baselines in addition to our methods. 
-
-\section{Ethics}
-The potential risks of our work are similar to those of other work in downstream applications of LLMs. LLM generated documents can potential generate copy-righted material~\cite{Carlini2020ExtractingTD}, personally-identifiable information~\cite{Lukas2023AnalyzingLO}, or factually incorrect text~\cite{Manakul2023SelfCheckGPTZB}. The use of LLMs to generate documents may violate some academic dishonesty policies~\cite{Zdravkova2023IntegrationOL}. Our system is intended to be used in collaboration with human writers. Users should edit the generations, checking for factual inconsistencies and other potential errors. Our work is intended to save users time that might be spent repeating information across multiple documents, so they can focus on content creation. Therefore, we believe the benefits of our work outweigh the potential risks.
 
 % Additionally, we leave incorporating multi-modal models \sjauhar{This feels like something you could mention in Limitations. Might also be nice to say a few words of the importance of multi-modality in view generation.} into the generation of templatic views for future work.
 % \isabel{Do we want to include a limitations and/or ethics section for the preprint?}

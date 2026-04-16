@@ -1,12 +1,43 @@
+\input{research-chapters/4-chapter/tables/main-results}
 
 \section{Results}\label{sec:4-chapter-results}
-\input{research-chapters/4-chapter/tables/main-results-mini}
-We report best settings per dataset in \Cref{tab:main-results-mini} and full ablations in \S\ref{appendix:full-results}. ICL, SFT, QLoRA/LoRA SFT, and prompt optimization perform poorly, with ICL and prompt optimization aligning with prior work showing they are insufficient for readability control \cite{ribeiro-etal-2023-generating}. Training-based methods also underperform, likely due to dataset differences (scientific texts vs. shorter news and fewer examples). Example outputs appear in Tables \ref{tab:sft-examples}–\ref{tab:dspy-examples}.
+We report the results of all the ablations in Table~\Cref{tab:main-results-llama}, ~\Cref{tab:main-results-gemma} and ~\Cref{tab:main-results-mistral}. Overall, we see that the baselines do not perform as well as the control vectors. We also see that some of the methods are either unsupported or cannot run due to out of memory errors. 
 
-For most settings, using Center for the Contrastive Combination and Avg for the Reduction step performs best. Additionally, although the control vectors use eLife for the extraction dataset, the best control vectors generalize well to the other datasets, achieving similarly high correlations. This suggests that the resulting control vectors are in fact representing readability, rather than dataset specific information. See Appendix \ref{appendix:full-results} for full results, and Appendices \ref{appendix:discussion} and \ref{appendix:latency-testing} for resource usage and latency overhead.
+We see that Avg works the best as a reduction setting for all datasets except SciNews. This holds for both Diff and Center as the Contrastive Combination setting. For eLife, PLOS, and Eureka, Center achieves slightly better performance, although the difference is small. In general, the choice of reduction method makes the largest difference in terms of performance. While the Center-Avg settings perform best for 3 of the 4 datasets, SciNews achieving better performance with Diff-PCA indicates this setting is not universally optimal. Some tuning of the control vector settings may be necessary, although the overhead of this tuning is minimal compared to that of higher compute methods, such as finetuning, prompt optimization, and reinforcement-learning.
 
-\paragraph{Analysis of extraction dataset requirements.}\label{sec:other-datasets-exp}
+The failure of the training methods does not mean they did not learn how to summarize but rather they were unable to learn to control the readability of the summaries.  ICL, SFT, QLoRA/LoRA SFT, and prompt optimization perform poorly, with ICL and prompt optimization aligning with prior work showing they are insufficient for readability control \cite{ribeiro-etal-2023-generating}. Training-based methods also underperform, likely due to dataset differences (scientific texts vs. shorter news and fewer examples). Example outputs appear in Tables \ref{tab:sft-examples}–\ref{tab:dspy-examples}.
+
+
+\input{research-chapters/4-chapter/tables/output-examples}
+For most settings, using Center for the Contrastive Combination and Avg for the Reduction step performs best. Additionally, although the control vectors use eLife for the extraction dataset, the best control vectors generalize well to the other datasets, achieving similarly high correlations. This suggests that the resulting control vectors are in fact representing readability, rather than dataset specific information. 
+
+
+\subsection{Baseline Discussion}\label{appendix:discussion}
+The baselines were less simple to run than the control vectors leading to many four major issues: Resource Usage, Out of Memory Errors, and Lack of Support Out of the Box, Small Training Set. 
+\paragraph{Resource Usage}
+For DSPy, it also used way more resources than control vectors while performing worse. The DSPy method we use uses in context learning which forces the prompt to include extremely long examples. This could lead to some of the sources not being able to be summarized as the total length of the prompt was more than the max context length of the model. This was the main issue with DSPy for these smaller model. 
+
+As for SFT and QLoRa/LoRa-SFT, it requires the more forward passes as finetuning is multiple epochs with the same amount of tokens. In addition, it requires expensive backward passes that require more memory. Even with this more computation, our method performs better while keeping training costs down. 
+\paragraph{Out of Memory Errors}
+Many of the training based methods required hefty amounts of resources and very long source documents led to out of memory errors with even QLoRa. While truncation could have prevented these errors, truncating at an arbitrary length could harm the overall plain language summary as this increases problems with reading comprehension, adds more hallucinations, and more \cite{ding2024fewertruncationsimprovelanguage}. While smarter engineering could have performed with other training optimizations, the amount of work to prevent these errors would have dwarfed the time it takes to set up the control vectors and could have led to even slower training times with the increase in communication time between devices and loading from RAM \cite{rajbhandari2020zeromemoryoptimizationstraining}. In addition, Gemma experienced more out of memory errors with less parameters  due to a different less memory efficient architecture. 
+\paragraph{Lack of Support Out of the Box}
+We could not run DSPy prompt optimization on the Gemma model due to an incompatibility between DSPy and the Gemma system prompt. It would have required modifying DSPy for specific set of models by adding additional adapters not available out of the box. 
+\paragraph{Small Training Set}
+We hypothesize that SFT performed worse in controllability than LoRA due to the number of trainable parameters relative to the size of the training dataset. Our SFT model was trained on only the 128 most readable examples, which likely provided insufficient signal to effectively update the large number of parameters involved in full fine-tuning. In contrast, LoRA introduces far fewer trainable parameters, making it better suited for small-data regimes. This is consistent with finding found in \cite{whitehouse-etal-2024-low} where they find that "in low-data scenarios, LoRA is a better alternative to full fine-tuning."
+
+At first glance, this result may appear to contradict the findings of~\textcite{ribeiro-etal-2023-generating}. However, their experiments were conducted with a substantially larger training dataset. Additionally, their source documents consisted primarily of news articles, which are typically much shorter and less structurally complex than scientific articles, reducing the difficulty of the summarization task.
+
+
+
+\subsection{Analysis of extraction dataset requirements.}\label{sec:other-datasets-exp}
 We conduct experiments using the non-compliant datasets. We extract control vectors using the 128 most readable summaries from each train dataset, similar to the process in~\S\ref{sec:data-selection}. For evaluation, we randomly sample 248 examples from each test set. At inference, we use the control vectors extracted from each datasets' respective extraction set. This is an easier task than that presented above as it does not test generalization to other datasets. We use Center as our Contrastive Combination method and Avg as our reduction method, the best performing setting above. Results are below:
 \input{research-chapters/4-chapter/tables/other-dataset-results}
 
 We find that the non-compliant datasets perform poorly. Eureka results in a moderate negative correlation, likely a result of the extraneous information present in the lay summaries, which can increase the readability scores. SciNews and PLOS have low correlation scores, indicating poor controlability. This contrasted with the high performance presented in~\Cref{tab:main-results-mini} provides evidence for the validity of our requirement framework.
+
+\input{research-chapters/4-chapter/tables/latency-results}
+\subsection{Latency testing}\label{appendix:latency-testing}
+
+We conduct latency tests on the added overhead of using control vectors over standard LM inference. We randomly generate input IDs and measure the latency of the forward pass, as this is the portion of the generation pipeline where control vectors are used and have the potential to add overhead. We experiment with 3 batch sizes (1,4, 16) and 3 sequence lengths (512,1024,2048) for a total of 9 ablations. For each setting, we run 32 warm-up runs then measure the latency for 1024 inference calls. We report the mean latency in milliseconds per sample and per token. We additionally report the $\Delta$ latency and percent overhead. All the latency tests are run using Llama 3.1 8b Instruct (\texttt{meta-llama/Llama-3.1-8B-Instruct}) on a single NVIDIA A100 GPU, using half-precision floating-point. The results are reported in~\Cref{tbl:latency-results}. We find that using control vectors adds approximately a 5\% latency overhead when measured per sample or per token. We believe this difference is negligible when compared to other controllable generation methods, that require expensive training or hyper-parameter searches, or the additional token processing required for In-Context Learning. 
+
+

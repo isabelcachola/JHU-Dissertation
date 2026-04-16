@@ -60,9 +60,9 @@ Similar to precision, the TAE recall score is calculated as the average similari
 
 By splitting the evaluation of quality into precision and recall, we can evaluate both the content of the slides that were generated as well as the coverage of this content against some reference.
 
-\begin{figure}[t!]
+\begin{figure}[h!]
     \centering
-    \includegraphics[width=\columnwidth]{research-chapters/3-chapter/images/Ordering.pdf}
+    \includegraphics[width=.8\columnwidth]{research-chapters/3-chapter/images/Ordering.pdf}
 
     \caption{Example of the process of obtaining the rankings for the precision ordering penalty. We first use the similarity measure to map each generated panel to its most similar reference document. This mapping is used to calculate the precision quality score $Q_P$. We then use the mappings to create a one-to-one alignment from the generated to the reference panels, which we use to calculate the precision ordering penalty ($O_P$). By creating a one-to-one alignment, we are able to represent inversions in the ordering.
     This process is reflexive, and panels not accounted for in the precision ordering penalty are accounted for in the recall ordering penalty.

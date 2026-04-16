@@ -1,10 +1,28 @@
 \chapter{Conclusion} \label{chap:conlcusion}
 
-% if you want a short header you can use the following command
-% \chapter[short-header-name]{chapter-title} \label{chap:chap-1}
+
+\section{Resources Created}
+
+We release our code\footnote{\url{https://github.com/microsoft/knowledge-centric-templatic-views}} to support future research.
+
+\section{Ethics}
+\subsection{CH 3 Ethics}
+The potential risks of our work are similar to those of other work in downstream applications of LLMs. LLM generated documents can potential generate copy-righted material~\cite{Carlini2020ExtractingTD}, personally-identifiable information~\cite{Lukas2023AnalyzingLO}, or factually incorrect text~\cite{Manakul2023SelfCheckGPTZB}. The use of LLMs to generate documents may violate some academic dishonesty policies~\cite{Zdravkova2023IntegrationOL}. Our system is intended to be used in collaboration with human writers. Users should edit the generations, checking for factual inconsistencies and other potential errors. Our work is intended to save users time that might be spent repeating information across multiple documents, so they can focus on content creation. Therefore, we believe the benefits of our work outweigh the potential risks.
 
 
-%% add your chapter text here
-\blindtext \cite{dirac}
 
-\Blindtext[3]
+
+\subsection{CH 4 Ethics}
+Our work focuses on better controlling the outputs of language models. Although the majority of research in this area focuses on general controllability~\cite{Keskar2019CTRLAC,Chen2024BenchmarkingLL,yang-klein-2021-fudge} and AI Safety features~\cite{zou2025representationengineeringtopdownapproach,rimsky-etal-2024-steering}, the same methods could be used for nefarious tasks, such as generating purposely dishonest language~\cite{BARMAN2024100545}. However, we believe that better controllability of language models will ultimately lead to safer models as we can better prevent undesired outputs. Additionally, our work specifically focuses on improving readability controlled summarization of scientific documents, with the goal of improving access to scientific discovery for the general public. Therefore, we believe the benefits of our work outweigh the risk.
+
+
+\section{Limitations}
+
+\subsection{CH 3}
+% The use of templatic views of documents is relevant for many domains (e.g. creating a cover letter and personal website based on a resume). In future work, we plan to tackle other domains and document types, as well as more complex scenarios, such as many-to-many document generation. We see this  work as an important step towards the larger goal of generalized document generation. 
+
+Although our methods are not domain specific, we only evaluated them in the scientific domain, due to the availability of public data. Additionally, our framework is limited to textual content. In future work we plan to explore the application of our unified framework for generation and evaluation on document views in other domains, as well as incorporating multi-modal models and content generation. Finally, it is possible that some of our test data has leaked into the training data of the models with which we experimented. This limitation is not unique to our work and exists for our baselines in addition to our methods. 
+
+
+\subsection{Ch 4 Limitations}
+We identify a few key limitations in our work. First, our work does not verify that control vectors are latent representations of readability, rather we focus on the downstream effects of using control vectors. Further research is required to understand what information is encoded in control vectors. Second, our experiments are only tested on English-language data in the science domain. Although our method is not specific to these facts, further analysis is needed to test for generalizability across domains and languages.

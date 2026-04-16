@@ -1,10 +1,37 @@
 \chapter{Introduction} \label{chap:introduction}
 
-% if you want a short header you can use the following command
-% \chapter[short-header-name]{chapter-title} \label{chap:chap-1}
+\section{Overview}
 
+Imagine you are a nurse, trying to find the latest scientific understanding of the influenza virus, and the best course of treatment. Or perhaps you are a university student, selecting a major and you want to understand the most important issues facing your field. Or maybe you are simply a concerned citizen, watching the news about the new coronavirus, and you want to know what it means for you and your family. The public has a vested interest in scientific discovery. We rely on science to inform decisions that affect our health, careers, or even simply our interests. Additionally, much of scientific research is publicly funded. As a tax payer, you are paying for science; 40\% of basic research in the United States is government funded~\cite{Pece_Anderson_2024}. 
+To promote equitable access to publicly funded research, the U.S. National Institutes of Health now requires all NIH-funded papers to be open access.\footnote{\url{https://grants.nih.gov/policy-and-compliance/policy-topics/public-access/nih-public-access-policy-overview}} However, I argue that open access is not equivalent to accessible. The nurse, the college student, and the concerned citizen all have different informational needs. Furthermore, without the required educational background, reading a highly technical paper can feel as accessible as the paper being behind a paywall in the first place. In this thesis, I aim to develop methods that summarize scientific information with the goal of making science accessible and useful for a diverse audience, by focusing on the informational and stylistic needs of the end user. Current methods often make assumptions about the intent and desires of the end user in order to constrain the requirements for building the system. However, these assumptions also constrain the potential utility the system poses to the user. With the advent of Large Language Models (LLMs) showing great promise in reasoning capabilities, we can leverage these models for a more personalized experience in automatic summarization. This personalization allows for summaries that both summarize and explain scientific information, improving the accessibility of scientific discovery.
 
-%% add your chapter text here
-\blindtext \cite{dirac}
+\Cref{part1} hypothesizes that generating summaries in which the goals and interests of the end user are explicitly modeled will produce better summaries. In~\Cref{chap:chap-3}, we consider methods to generate summaries that allow the user to define the structure of the summary. We additionally develop an evaluation framework that adapts to the user-defined structure. In~\Cref{chap:chap-4}, we consider methods for fine-grained controllable generation, allowing the user to specify the attributes they desire along a spectrum. 
 
-\Blindtext[3]
+\Cref{part2} hypothesizes that we can better evaluate generated summaries when accounting for the goals of the user. In~\Cref{chap:chap-5}, we show that traditional readability metrics are poor measures of readability, and show that LLMs capture deeper attributes of an accessible summary. In~\Cref{chap:chap-6}, we leverage naturally occurring data to show better levarge LLMs as judges. Finally, in~\Cref{chap:chap-7}, we leverage persona data to measure whether a summary meets a user's informational needs.
+
+\section{Publications}
+
+Much of the work in this thesis is either published or under-review for publication. Below is a list of the publications completed during my graduate program, and a brief summary of each.~\footnote{The irony of writing general summaries in a thesis about personalized summaries is not lost on me.}
+
+\subsection{Summarization Research}
+\begin{itemize}
+    \item We improve generation of structured summaries by building an intermediate knowledge representation and introduce a evaluation framework that accounts for the intended structure of the summary~\cite[][\Cref{chap:chap-3}]{cachola-etal-2024-knowledge}.
+    \item We use citation networks to generate explanations on the relationships between scientific publications~\cite{luu-etal-2021-explaining}.
+    \item We leverage the latest research in AI and HCI to build an interactive reading interface for scholarly works~\cite{semantic-reader-project}.
+    \item We show that the most popular metrics used to evaluate readability are poorly correlated with human judgments and we show that LLMs measure deeper attributes of readability, such as explanations of technical concepts~\cite[][\Cref{chap:chap-5}]{Cachola2025EvaluatingTE}. 
+    \item  We propose a light weight control vector method for fine-grained readability control in scientific summarization along with a requirements-based framework for data selection~[\todocite,\Cref{chap:chap-4}].
+    \item We show that LLMs can be better judges of summaries by leveraging related but non-exact references~[\todocite,\Cref{chap:chap-6}].
+
+\end{itemize}
+\subsection{Additional Contributions}
+In addition to my core work on summarization research, listed above, I have had the privilege to contribute to work in a variety of domains during my graduate career. These contributions are listed and briefly summarized below.
+\begin{itemize}
+    \item We build a platform that converts PDFs to HTML, with the focus on making science more accessible to blind or low-vision readers~\cite{wang-cachola-scially}. {\small \badge[blue]{Best Artifact Award}}
+    \item We conduct an analysis of the effects of shot selection for in-context learning on the fairness of LLMs, and show that overall performance is not indicative of their performance~\cite{aguirre-etal-2024-selecting}.
+    \item We use knowledge distillation to generate faithful and plausible explanations of medical code predictions~\cite{wood-doughty-etal-2022-model}.
+    \item We introduce the task of novel dog-whistle discovery and present a strong baseline system that leverages the strengths of vector databases and Large Language Models~\cite{sasse-etal-2025-making}.
+\end{itemize}
+
+\section{Non-technical abstracts}
+
+I am a teacher at heart. While a PhD dissertation is often (necessarily) technical in nature, my hope is that anyone who reads this thesis, regardless of background, can walk away with having learned something new. It would feel disingenuous to write a body of work about designing systems with the goal of making science accessible, and that work be inaccessible. To this end, I will include a Non-technical abstract at the beginning of each chapter. This abstract will summarize the main motivations, contributions, and findings of that chapter.

@@ -13,14 +13,7 @@ Effective scientific summarization must consider multiple factors, including bot
 Past work has found that users with higher, but non-expert, familiarity with a topic prefer more technical summaries and found lower complexity summaries less useful~\cite{August2024KnowYA}. However, most prior work in PLS has treated readability as a binary (plain versus technical), aiming for maximum readability, as measured by readability metrics such as Dale-Chall and Flesch-Kincaid Grade Level~\cite{Guo2020AutomatedLL,Goldsack2022MakingSS, dale1948formula, tanprasert-kauchak-2021-flesch}. To address this gap, we explore fine-grained controls of readability for scientific document summarization using control vectors~\cite{zou2025representationengineeringtopdownapproach, rimsky-etal-2024-steering}, a lightweight controllability method by modifying the model's hidden states. Control vectors are derived from paired examples along a spectrum, capturing the difference in hidden states between the paired examples. During inference, they steer the model towards either end of the spectrum by applying a specified weight. 
 
  % \todoit{move this sentence up:} 
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{research-chapters/4-chapter/figures/Fig1-horz.pdf}
-    \vspace{-2mm}
-    \caption{Visual Representation of our task.}
-    \label{fig:steer-clear-main-fig}
-    \vspace{-6mm}
-\end{figure}
+
 
 Control vectors can effectively steer complex attributes like honesty, making them well suited for readability control~\cite{zou2025representationengineeringtopdownapproach, rimsky-etal-2024-steering} and are less compute and data intensive than past work in readability controlled summarization~\cite{ribeiro-etal-2023-generating}. %\todoit{despite the attractiveness, we need to deal iwth previous} 
 However, despite their appeal, prior work has noted challenges in reliability of these vectors ~\parencite{vonrütte2024languagemodelsguidelatent, stickland2024steeringeffectsimprovingpostdeployment, 10.5555/3737916.3742333, braun2025understandingunreliabilitysteeringvectors}. In this paper, we propose a requirements based system for data selection that improves on these failure points.
@@ -36,4 +29,4 @@ Under these simple requirements, control vectors extracted from compliant data c
 We conduct an analysis of PLS datasets, and find that many popular datasets do not satisfy our proposed requirements. While we show that non-compliant data yields poor control vectors, such issues likely affect other summarization methods as well. Because, control vectors is a low data method, applying our approach to a new tasks require collecting a small curated dataset.
 
 %\toditit{be careful here - say something like the advantages of our methods} 
-Our work clarifies the data requirements for control vectors, increasing the chance of future success for new tasks. We release our inference code and dataset splits to support future work.\footnote{\texttt{[LINK SUPPRESSED FOR REVIEW]}} 
+Our work clarifies the data requirements for control vectors, increasing the chance of future success for new tasks. We release our inference code and dataset splits to support future work.\footnote{\url{https://github.com/JHU-CLSP/control-summ}}
