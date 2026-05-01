@@ -1,0 +1,19 @@
+ 
+\begin{table}[htbp]
+\centering
+\label{tab:expected_directions}
+\small
+\setlength{\tabcolsep}{6pt}
+
+\begin{tabular}{@{}l p{.2\columnwidth} p{.2\columnwidth} p{.2\columnwidth}@{}}
+\diagbox[width=2.2cm,height=2.2\line]{\textbf{Stat.}}{\textbf{Dir.}} & \textbf{Decrease} & \textbf{Increase} & \textbf{Stable} \\ \hline
+$\rho$ & $\approx -1$ & $\approx +1$ & $\approx 0$ \\
+ & (strong negative) & (strong positive) &  \\ \hdashline
+% \multirow{2}{*}{$d$} & large negative & large positive & small magnitude \\
+%  & ($d \leq -0.5$) & ($d \geq +0.5$) & ($|d| < 0.2$) \\ \hdashline
+\multirow{2}{*}{M} & $\approx 1.0$ & $\approx 1.0$ & $\approx 1.0$ \\
+ & (every step lowers the score) & (every step raises the score) & (every step stays within $\pm 5\%$ of baseline)
+\end{tabular}
+\caption{We report the expected statistic values (Stat.) by the direction of change (Dir.) for Spearman rank correlation ($\rho$) and Monotonicity (M).}
+\end{table}
+ 

@@ -1,65 +1,66 @@
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-% \begin{table}[!h]
-% \centering \small
-% \setlength{\extrarowheight}{1pt}
-% \setlength{\tabcolsep}{4pt}
-% \vspace{-5mm}
-% \begin{tabular}{l|lll|ll}
-% \textbf{Dataset} & \textbf{Method} & \textbf{CC} & \textbf{Red.} & \textbf{Pearson} & \textbf{KT} \\ \hline
-% eLife & ICL & - & - & -0.025 & -0.017 \\
-%  & CV & Center & Avg & \textbf{0.302} & \textbf{0.205} \\ \hdashline[0.5pt/2pt]
-% PLOS & ICL & - & - &  2.7e-4 & -0.003 \\
-%  & CV & Center & Avg & \textbf{0.417} & \textbf{0.287} \\ \hdashline[0.5pt/2pt]
-% Eureka & ICL & - & - & 0.055 & 0.0194 \\
-%  & CV & Center & Avg & \textbf{0.408} & \textbf{0.298} \\ \hdashline[0.5pt/2pt]
-% SciNews & ICL & - & - & 0.084 & 0.025 \\
-%  & CV & Diff & PCA & \textbf{0.395} & \textbf{0.315}
-% \end{tabular}
-% \vspace{-2mm}
-% \caption{Pearson and Kendall-Tau (KT) correlation of the specified level of readability with the Coleman-Liau readability index. In-Context Learning (ICL) as a baseline. For the Control Vectors (CV), we report the best performing setting for Contrastive Combination (CC) and Reduction (Red.)}\label{tab:main-results-mini}
-% \vspace{-3mm}
-% \end{table}
-
-
-
-\begin{table}[!ht]
+% Requires: \usepackage{multirow, subcaption, arydshln}
+\begin{table}[h!]
 \centering \scriptsize
 \setlength{\extrarowheight}{0.5pt}
 \setlength{\tabcolsep}{3pt}
-\vspace{-5mm}
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-\begin{tabular}{ll|lll|lll}
-\textbf{Dataset} & \textbf{Model} & \textbf{Method} & \textbf{CC} & \textbf{Red.} & \textbf{PC} & \textbf{KT} & \textbf{BertS} \\ \hline
-\multirow{6}{*}{eLife} & \multirow{2}{*}{LLaMa} & BL &  &  & 0.015 & 0.017 & 0.840 \\ 
- &  & CV & Center & Avg & 0.730 & 0.563 & 0.803 \\ \cdashline{2-8}[1pt/3pt]
- & \multirow{2}{*}{Gemma} & BL &  &  & 0.000 & -0.001 & 0.820 \\
- &  & CV & Center & PCA & 0.063 & 0.023 & 0.813 \\ \cdashline{2-8}[1pt/3pt]
- & \multirow{2}{*}{Mistral} & BL &  &  & -0.00018 & 0.00005 & 0.820 \\
- &  & CV & Diff & PCA & 0.315 & 0.223 & 0.821 \\ \hline
-\multirow{6}{*}{PLOS} & \multirow{2}{*}{LLaMa} & BL &  &  & 0.055 & 0.0194 & 0.831 \\
- &  & CV & Center & Avg & 0.725 & 0.553 & 0.805 \\ \cdashline{2-8}[1pt/3pt]
- & \multirow{2}{*}{Gemma} & BL &  &  & -0.0017 & -0.0025 & 0.833 \\
- &  & CV & Center & PCA & 0.106 & 0.065 & 0.821 \\ \cdashline{2-8}[1pt/3pt]
- & \multirow{2}{*}{Mistral} & BL &  &  & -0.0001 & -0.0001 & 0.833 \\
- &  & CV & Diff & PCA & 0.213 & 0.189 & 0.830 \\ \hline
-\multirow{6}{*}{Eureka} & \multirow{2}{*}{LLaMa} & BL &  &  & 0.0003 & -0.003 & 0.848 \\
- &  & CV & Center & Avg & 0.770 & 0.607 & 0.810 \\ \cdashline{2-8}[1pt/3pt]
- & \multirow{2}{*}{Gemma} & BL &  &  & 0.00036 & 0.00043 & 0.874 \\
- &  & CV & Center & PCA & 0.075 & 0.042 & 0.895 \\ \cdashline{2-8}[1pt/3pt]
- & \multirow{2}{*}{Mistral} & BL &  &  & 0.00036 & 0.00043 & 0.874 \\
- &  & CV & Center & PCA & 0.121 & 0.098 & 0.899 \\ \hline
-\multirow{6}{*}{Scinews} & \multirow{2}{*}{LLaMa} & BL &  &  & 0.030 & -0.004 & 0.840 \\
- &  & CV & Center & Avg & 0.674 & 0.573 & 0.801 \\ \cdashline{2-8}[1pt/3pt]
- & \multirow{2}{*}{Gemma} & BL &  &  & 0.0015 & 0.0011 & 0.820 \\
- &  & CV & Center & Avg & 0.129 & 0.110 & 0.821 \\ \cdashline{2-8}[1pt/3pt]
- & \multirow{2}{*}{Mistral} & BL &  &  & 0.0015 & 0.0011 & 0.820 \\
- &  & CV & Center & Avg & 0.141 & 0.177 & 0.809
+
+\begin{subtable}{0.49\linewidth}
+\centering
+\begin{tabular}{l|lll|lll}
+\textbf{Model} & \textbf{Method} & \textbf{CC} & \textbf{Red.} & \textbf{PC} & \textbf{KT} & \textbf{BertS} \\ \hline
+\multirow{2}{*}{LLaMa} & BL &  &  & 0.015 & 0.017 & 0.840 \\
+ & CV & Center & Avg & 0.730 & 0.563 & 0.803 \\ \cdashline{1-7}[1pt/3pt]
+\multirow{2}{*}{Gemma} & BL &  &  & 0.000 & 0.000 & 0.820 \\
+ & CV & Center & PCA & 0.063 & 0.023 & 0.813 \\ \cdashline{1-7}[1pt/3pt]
+\multirow{2}{*}{Mistral} & BL &  &  & 0.000 & 0.000 & 0.820 \\
+ & CV & Diff & PCA & 0.315 & 0.223 & 0.821 \\
 \end{tabular}
+\caption{eLife}\label{tab:main-results-elife}
+\end{subtable}
+\hfill
+\begin{subtable}{0.49\linewidth}
+\centering
+\begin{tabular}{l|lll|lll}
+\textbf{Model} & \textbf{Method} & \textbf{CC} & \textbf{Red.} & \textbf{PC} & \textbf{KT} & \textbf{BertS} \\ \hline
+\multirow{2}{*}{LLaMa} & BL &  &  & 0.055 & 0.019 & 0.831 \\
+ & CV & Center & Avg & 0.725 & 0.553 & 0.805 \\ \cdashline{1-7}[1pt/3pt]
+\multirow{2}{*}{Gemma} & BL &  &  & -0.002 & -0.003 & 0.833 \\
+ & CV & Center & PCA & 0.106 & 0.065 & 0.821 \\ \cdashline{1-7}[1pt/3pt]
+\multirow{2}{*}{Mistral} & BL &  &  & 0.000 & 0.000 & 0.833 \\
+ & CV & Diff & PCA & 0.213 & 0.189 & 0.830 \\
+\end{tabular}
+\caption{PLOS}\label{tab:main-results-plos}
+\end{subtable}
 
+\vspace{2mm}
 
-\vspace{-2mm}
-\caption{Pearson Correlation (PC) and Kendall-Tau (KT) correlation of the specified level of readability with the Coleman-Liau readability index, and BertScore F1 (BertS). Reported is the best baseline (BL). We report the best performing CV setting for Contrastive Combination (CC) and Reduction (Red.)}\label{tab:main-results-mini}
-\vspace{-3mm}
+\begin{subtable}{0.49\linewidth}
+\centering
+\begin{tabular}{l|lll|lll}
+\textbf{Model} & \textbf{Method} & \textbf{CC} & \textbf{Red.} & \textbf{PC} & \textbf{KT} & \textbf{BertS} \\ \hline
+\multirow{2}{*}{LLaMa} & BL &  &  & 0.000 & -0.003 & 0.848 \\
+ & CV & Center & Avg & 0.770 & 0.607 & 0.810 \\ \cdashline{1-7}[1pt/3pt]
+\multirow{2}{*}{Gemma} & BL &  &  & 0.000 & 0.000 & 0.874 \\
+ & CV & Center & PCA & 0.075 & 0.042 & 0.895 \\ \cdashline{1-7}[1pt/3pt]
+\multirow{2}{*}{Mistral} & BL &  &  & 0.000 & 0.000 & 0.874 \\
+ & CV & Center & PCA & 0.121 & 0.098 & 0.899 \\
+\end{tabular}
+\caption{Eureka}\label{tab:main-results-eureka}
+\end{subtable}
+\hfill
+\begin{subtable}{0.49\linewidth}
+\centering
+\begin{tabular}{l|lll|lll}
+\textbf{Model} & \textbf{Method} & \textbf{CC} & \textbf{Red.} & \textbf{PC} & \textbf{KT} & \textbf{BertS} \\ \hline
+\multirow{2}{*}{LLaMa} & BL &  &  & 0.030 & -0.004 & 0.840 \\
+ & CV & Center & Avg & 0.674 & 0.573 & 0.801 \\ \cdashline{1-7}[1pt/3pt]
+\multirow{2}{*}{Gemma} & BL &  &  & 0.002 & 0.001 & 0.820 \\
+ & CV & Center & Avg & 0.129 & 0.110 & 0.821 \\ \cdashline{1-7}[1pt/3pt]
+\multirow{2}{*}{Mistral} & BL &  &  & 0.002 & 0.001 & 0.820 \\
+ & CV & Center & Avg & 0.141 & 0.177 & 0.809 \\
+\end{tabular}
+\caption{SciNews}\label{tab:main-results-scinews}
+\end{subtable}
+
+\caption{Pearson Correlation (PC) and Kendall-Tau (KT) correlation of the specified level of readability with the Coleman-Liau readability index, and BertScore F1 (BertS). Reported is the best baseline (BL). We report the best performing CV setting for Contrastive Combination (CC) and Reduction (Red.)}\label{tab:ch-4-main-results-mini}
 \end{table}

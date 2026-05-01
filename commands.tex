@@ -40,7 +40,7 @@
 \newcommand{\rqfour}{\small \badge[blue]{RQ4}\xspace}
 
 \newcommand{\hdash}[2]{\cdashline{#1-#2}[0.5pt/3pt]}
-\newcommand{\hdashfull}[2]{\hdashline[0.5pt/3pt]}
+\newcommand{\hdashfull}{\hdashline[0.5pt/3pt]}
 \newcommand{\textnewline}{\xspace\textbackslash n}
 
 
@@ -61,7 +61,7 @@
 
 \lstdefinestyle{promptstyle}{
     backgroundcolor=\color{promptbg},
-    basicstyle=\small\ttfamily,
+    basicstyle=\scriptsize\ttfamily,
     breaklines=true,
     breakatwhitespace=false,
     frame=none,
@@ -71,4 +71,27 @@
     xrightmargin=6pt,
     keepspaces=true,
     columns=flexible,
+    basicstyle=\ttfamily\scriptsize,
+    lineskip=-1pt
 }
+
+\newcommand{\repo}[2]{\href{#1}{\texttt{#2}}}
+
+\definecolor{matchTrue}{RGB}{217,237,217}    % soft green
+\definecolor{matchFalse}{RGB}{248,215,218}   % soft red
+
+\newcommand{\chsevenrqone}{\small \badge[blue]{RQ1}\xspace}
+\newcommand{\chsevenrqtwo}{\small \badge[orange]{RQ2}\xspace}
+
+\definecolor{deltapos}{rgb}{0.10, 0.55, 0.45}   % teal  for positive delta
+\definecolor{deltaneg}{rgb}{0.75, 0.15, 0.15}   % red   for negative delta
+\definecolor{deltazero}{rgb}{0.50, 0.50, 0.50}  % grey  for zero
+
+% Signed delta: positive
+\newcommand{\dpos}[1]{\textcolor{deltapos}{$+$#1}}
+% Signed delta: negative
+\newcommand{\dneg}[1]{\textcolor{deltaneg}{$-$#1}}
+% Signed delta: zero
+\newcommand{\dzero}{\textcolor{deltazero}{$\phantom{+}$0.000}}
+% n/a delta (metric not available in one study, or nrefs differ)
+\newcommand{\dna}{\textcolor{deltazero}{---}}

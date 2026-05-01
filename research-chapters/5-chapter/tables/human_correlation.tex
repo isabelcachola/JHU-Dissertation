@@ -1,7 +1,7 @@
 \begin{table}[!t]
 \centering
-    \begin{subtable}{.49\textwidth}
-        \centering \small
+    \begin{subtable}{.4\textwidth}
+        \centering \footnotesize
         \begin{tabular}{l|ll}
             \textbf{Metric} & \textbf{Pearson} & \textbf{Kendall Tau} \\ \hline
              FKGL &  0.16 & 0.08 \\
@@ -13,14 +13,12 @@
             Spache & 0.13 & 0.04 \\
             LW & -0.06 & -0.03 \\
         \end{tabular}
-        \vspace{-1mm}
         \caption{Traditional metric scores correlation with human judgment.}
         \label{subtab:trad-corr-results}
-        \vspace{2mm}
     \end{subtable}    
-    % \hspace{1mm}
-    \begin{subtable}{.49\textwidth}
-        \centering \small
+    \hspace{4mm}
+    \begin{subtable}{.4\textwidth}
+        \centering \footnotesize
             \begin{tabular}{l|ll}
             \textbf{Model} & \textbf{Pearson} & \textbf{Kendall Tau} \\ \hline
             % OLMo 2 7B & 0.15 & 0.10 \\
@@ -29,17 +27,15 @@
             Gemma 7B & 0.54 & 0.43 \\
             Llama 3.1 8B & 0.45 & 0.34 \\
             \textbf{Llama 3.3 70B} & \textbf{0.56} & \textbf{0.35} \\
-            % \textbf{OLMo 2 13B} & \textbf{0.57} & \textbf{0.47} \\
+            \multicolumn{3}{l}{} \\
+            \multicolumn{3}{l}{} \\
+            \multicolumn{3}{l}{} \\
         \end{tabular}
-        % \vspace{2.3mm}
-        \vspace{-1mm}
         \caption{LM scores correlation with human judgment.}\label{subtab:lm-corr-results}
     \end{subtable} 
     % \vspace{-7mm}
-    \vspace{-6mm}
     \caption{We report the Pearson and Kendall-Tau correlation of each metric with human judgment. Tab.\ref{subtab:trad-corr-results} contains the correlation of traditional readability metrics with human judgment. DCRS and CLI have the highest correlation with human judgment. Notably, the most popular metric, FKGL, as shown in \S\ref{subsec:results-rqone}, has low correlation with human judgment. Tab.\ref{subtab:lm-corr-results} contains the correlation of LM models as evaluators with human judgment. All 5 models achieve higher correlation than all of the traditional metrics.
     }
-    % \vspace{-4mm}
     \label{tab:corr-results}
 
 \end{table}

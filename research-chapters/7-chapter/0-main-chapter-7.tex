@@ -1,26 +1,16 @@
-\chapter{Chapter title goes here} \label{chap:chap-7}
+\chapter{Information-satisfaction evaluation of query-based summarization systems} \label{chap:chap-7}
 
 
-%% remove the following and add your chapter text here
-\section{Introduction}
-\blindtext \parencite{knuth-fa}
+\section*{Non-technical Abstract}
+The majority of work on summarization evaluation focuses on evaluating general summary quality (e.g. ROUGE, BERTScore) or specific desired properties (e.g. readability, factuality). However, these metrics fail to measure the utility of a summary to an individual user. For example, a biomedical researcher learning about the latest vaccine research will have different informational needs than a family doctor. In this chapter, we test how sensitive popular summarization metrics are to informational differences and find that many popular metrics, including strong LLM-as-judge metrics, fail to basic perturbation tests of informational content. We additionally conduct an expert human evaluation, in which we specifically measure summary preferences based on informational satisfaction in relation to a specific person's background and use-case. We find that both traditional and LLM-based metrics are insufficient measures of informational satisfaction and correlate poorly with human judgment.
 
-%% this is an example table
-\begin{table}[h!]
-\centering
-\begin{tabular}{c c c c} 
-\toprule \toprule
-Col1 & Col2 & Col2 & Col3 \\ 
-\toprule \toprule
-1 & 6 & 87837 & 787 \\ 
-2 & 7 & 78 & 5415 \\
-3 & 545 & 778 & 7507 \\
-4 & 545 & 18744 & 7560 \\
-5 & 88 & 788 & 6344 \\ 
-\bottomrule
-\end{tabular}
-\caption{Table to test captions and labels taken from Overleaf.}
-\label{table:1}
-\end{table}
 
-\Blindtext[2]
+
+
+\input{research-chapters/7-chapter/1-Introduction}
+\input{research-chapters/7-chapter/2-Related-Works}
+\input{research-chapters/7-chapter/3-Experimental-Setup}
+\input{research-chapters/7-chapter/4-Human-Evaluation-Setup}
+\input{research-chapters/7-chapter/5-Robustness-Testing-Results}
+\input{research-chapters/7-chapter/6-Human-Evaluation-Results}
+\input{research-chapters/7-chapter/7-Conclusion}

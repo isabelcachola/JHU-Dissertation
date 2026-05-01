@@ -1,0 +1,407 @@
+% LaTeX tables generated from test results (merged: lexical + LLM + non-lexical)
+% Required packages:
+%   \usepackage{booktabs}
+%   \usepackage[table]{xcolor}    % required for \rowcolor
+%   \usepackage{subcaption}       % required for \subtable / \begin{subtable}
+% Define light shades once in your preamble (or here):
+%   \definecolor{matchTrue}{RGB}{217,237,217}   % soft green
+%   \definecolor{matchFalse}{RGB}{248,215,218}  % soft red
+% Rows are colored by the (now-removed) Match column: green = True, red = False.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{lrr}
+ & & \\
+\toprule
+Metric & $\rho\downarrow$ & M$\uparrow$ \\
+\midrule
+\multicolumn{3}{l}{\textit{Lexical}} \\
+\midrule
+\rowcolor{matchTrue} ROUGE-1 (F1)                          &  $-0.40$ &  0.67 \\
+\rowcolor{matchTrue} ROUGE-2 (F1)                          &  $-0.40$ &  0.67 \\
+\rowcolor{matchFalse} ROUGE-L (F1)                          &   $0.20$ &  0.67 \\
+\rowcolor{matchFalse} BLEU                                  &  $-0.20$ &  0.33 \\
+\rowcolor{matchTrue} chrF                                  &  $-0.40$ &  0.67 \\
+\rowcolor{matchTrue} Extractive Coverage                   &  $-0.40$ &  0.67 \\
+\rowcolor{matchTrue} Extractive Density                    &  $-0.40$ &  0.67 \\
+\rowcolor{matchTrue} Compression Ratio                     &  $-0.40$ &  0.67 \\
+\rowcolor{matchFalse} Novel 1-grams (\%)                    &   $0.40$ &  0.33 \\
+\rowcolor{matchFalse} Novel 2-grams (\%)                    &   $0.40$ &  0.33 \\
+\rowcolor{matchFalse} Novel 3-grams (\%)                    &   $0.40$ &  0.33 \\
+\rowcolor{matchFalse} Summary Length                        &   $0.20$ &  0.67 \\
+\rowcolor{matchTrue} METEOR                                &  $-0.40$ &  0.67 \\
+\rowcolor{matchFalse} Syntactic Complexity (Words)          &   $0.20$ &  0.67 \\
+\rowcolor{matchFalse} Syntactic Complexity (Sentences)      &   $0.20$ &  0.67 \\
+\midrule
+\multicolumn{3}{l}{\textit{Non-lexical}} \\
+\midrule
+\rowcolor{matchTrue} BERTScore (F1)                        &  $-0.40$ &  0.67 \\
+\rowcolor{matchFalse} BLANC                                 &   $0.80$ &  0.33 \\
+\rowcolor{matchFalse} SummaQA (Avg F1)                      &      --- &  0.00 \\
+\rowcolor{matchFalse} SUPERT                                &   $0.50$ &  0.50 \\
+\bottomrule
+\end{tabular}
+\caption{Non-LLM metrics}
+\end{subtable}
+\hfill
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{lrr}
+\toprule
+Metric & $\rho\downarrow$ & M$\uparrow$ \\
+\midrule
+\multicolumn{3}{l}{\textit{LLM-based (Llama-70B judge)}} \\
+\midrule
+\rowcolor{matchFalse} FActScore                             &   $0.40$ &  0.33 \\
+\rowcolor{matchFalse} LLM Judge: Relevance                  &      --- &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Coherence                  &   $0.77$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Consistency                &      --- &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Fluency                    &   $0.77$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Informativeness            &   $0.32$ &  0.33 \\
+\rowcolor{matchFalse} LLM Judge: Overall                    &   $0.32$ &  0.33 \\
+\rowcolor{matchTrue} LLM Judge: Annotator        &  $-0.77$ &  0.33 \\
+\rowcolor{matchFalse} Persona Precision                     &      --- &  0.00 \\
+\rowcolor{matchFalse} Persona Recall                        &   $0.80$ &  0.33 \\
+\midrule
+\multicolumn{3}{l}{\textit{LLM-based (Prometheus-7B judge)}} \\
+\midrule
+\rowcolor{matchFalse} FActScore                             &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Relevance                  &  $-0.21$ &  0.67 \\
+\rowcolor{matchFalse} LLM Judge: Coherence                  &   $0.40$ &  0.33 \\
+\rowcolor{matchTrue} LLM Judge: Consistency                &  $-0.40$ &  0.67 \\
+\rowcolor{matchFalse} LLM Judge: Fluency                    &   $0.80$ &  0.33 \\
+\rowcolor{matchFalse} LLM Judge: Informativeness            &   $0.80$ &  0.33 \\
+\rowcolor{matchFalse} LLM Judge: Overall                    &   $0.80$ &  0.33 \\
+\rowcolor{matchFalse} LLM Judge: Annotator        &   $0.40$ &  0.33 \\
+\rowcolor{matchFalse} Persona Precision                     &   $0.00$ &  0.67 \\
+\rowcolor{matchTrue} Persona Recall                        &  $-0.60$ &  0.33 \\
+\bottomrule
+\end{tabular}
+\caption{LLM metrics}
+\end{subtable}
+\caption{Test: \texttt{different\_audience} (expected: decrease). Rows are colored green if $\rho\leq-0.4$ and red otherwise.}
+\label{tab:different_audience}
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{lrr}
+ & & \\
+\toprule
+Metric & $\rho\downarrow$ & M$\uparrow$ \\
+\midrule
+\multicolumn{3}{l}{\textit{Lexical}} \\
+\midrule
+\rowcolor{matchTrue} ROUGE-1 (F1)                          &  $-1.00$ &  1.00 \\
+\rowcolor{matchTrue} ROUGE-2 (F1)                          &  $-0.66$ &  0.80 \\
+\rowcolor{matchTrue} ROUGE-L (F1)                          &  $-1.00$ &  1.00 \\
+\rowcolor{matchTrue} BLEU                                  &  $-1.00$ &  1.00 \\
+\rowcolor{matchTrue} chrF                                  &  $-1.00$ &  1.00 \\
+\rowcolor{matchTrue} Extractive Coverage                   &  $-0.54$ &  0.80 \\
+\rowcolor{matchTrue} Extractive Density                    &  $-0.54$ &  0.80 \\
+\rowcolor{matchTrue} Compression Ratio                     &  $-1.00$ &  1.00 \\
+\rowcolor{matchFalse} Novel 1-grams (\%)                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Novel 2-grams (\%)                    &   $0.83$ &  0.20 \\
+\rowcolor{matchFalse} Novel 3-grams (\%)                    &   $0.54$ &  0.20 \\
+\rowcolor{matchFalse} Summary Length                        &   $1.00$ &  0.00 \\
+\rowcolor{matchTrue} METEOR                                &  $-1.00$ &  1.00 \\
+\rowcolor{matchFalse} Syntactic Complexity (Words)          &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Syntactic Complexity (Sentences)      &   $1.00$ &  0.00 \\
+\midrule
+\multicolumn{3}{l}{\textit{Non-lexical}} \\
+\midrule
+\rowcolor{matchFalse} BERTScore (F1)                        &      --- &  1.00 \\
+\rowcolor{matchFalse} BLANC                                 &      --- &  0.00 \\
+\rowcolor{matchFalse} SummaQA (Avg F1)                      &      --- &  0.00 \\
+\bottomrule
+\end{tabular}
+\caption{Non-LLM metrics}
+\end{subtable}
+\hfill
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{lrr}
+\toprule
+Metric & $\rho\downarrow$ & M$\uparrow$ \\
+\midrule
+\multicolumn{3}{l}{\textit{LLM-based (Llama-70B judge)}} \\
+\midrule
+\rowcolor{matchTrue} FActScore                             &  $-0.60$ &  0.60 \\
+\rowcolor{matchFalse} LLM Judge: Relevance                  &  $-0.10$ &  0.40 \\
+\rowcolor{matchTrue} LLM Judge: Coherence                  &  $-0.58$ &  0.40 \\
+\rowcolor{matchFalse} LLM Judge: Consistency                &  $-0.13$ &  0.20 \\
+\rowcolor{matchFalse} LLM Judge: Fluency                    &   $0.65$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Informativeness            &   $0.85$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Overall                    &  $-0.14$ &  0.80 \\
+\rowcolor{matchFalse} LLM Judge: Annotator        &      --- &  0.00 \\
+\rowcolor{matchFalse} Persona Precision                     &      --- &  0.00 \\
+\rowcolor{matchFalse} Persona Recall                        &   $0.20$ &  0.60 \\
+\midrule
+\multicolumn{3}{l}{\textit{LLM-based (Prometheus-7B judge)}} \\
+\midrule
+\rowcolor{matchTrue} FActScore                             &  $-0.40$ &  0.75 \\
+\rowcolor{matchTrue} LLM Judge: Relevance                  &  $-0.56$ &  0.40 \\
+\rowcolor{matchFalse} LLM Judge: Coherence                  &  $-0.12$ &  0.40 \\
+\rowcolor{matchFalse} LLM Judge: Consistency                &  $-0.32$ &  0.40 \\
+\rowcolor{matchTrue} LLM Judge: Fluency                    &  $-0.72$ &  0.60 \\
+\rowcolor{matchFalse} LLM Judge: Informativeness            &   $0.75$ &  0.20 \\
+\rowcolor{matchFalse} LLM Judge: Overall                    &  $-0.37$ &  0.60 \\
+\rowcolor{matchTrue} LLM Judge: Annotator        &  $-0.65$ &  0.20 \\
+\rowcolor{matchFalse} Persona Precision                     &   $0.03$ &  0.80 \\
+\rowcolor{matchTrue} Persona Recall                        &  $-0.60$ &  0.60 \\
+\bottomrule
+\end{tabular}
+\caption{LLM metrics}
+\end{subtable}
+\caption{Test: \texttt{distractor\_sentences} (expected: decrease). Rows are colored green if $\rho\leq-0.4$. and red otherwise.}
+\label{tab:distractor_sentences}
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{lrr}
+ & & \\
+\toprule
+Metric & $\rho\uparrow$ & M$\uparrow$ \\
+\midrule
+\multicolumn{3}{l}{\textit{Lexical}} \\
+\midrule
+\rowcolor{matchFalse} ROUGE-1 (F1)                          &  $-0.63$ &  0.27 \\
+\rowcolor{matchFalse} ROUGE-2 (F1)                          &  $-0.63$ &  0.20 \\
+\rowcolor{matchFalse} ROUGE-L (F1)                          &  $-0.63$ &  0.20 \\
+\rowcolor{matchFalse} BLEU                                  &  $-0.64$ &  0.13 \\
+\rowcolor{matchFalse} chrF                                  &  $-0.60$ &  0.20 \\
+\rowcolor{matchFalse} Extractive Coverage                   &   $0.02$ &  0.53 \\
+\rowcolor{matchTrue} Extractive Density                    &   $0.54$ &  0.53 \\
+\rowcolor{matchFalse} Compression Ratio                     &  $-0.65$ &  0.07 \\
+\rowcolor{matchTrue} Novel 1-grams (\%)                    &   $0.84$ &  0.71 \\
+\rowcolor{matchFalse} Novel 2-grams (\%)                    &  $-0.09$ &  0.57 \\
+\rowcolor{matchFalse} Novel 3-grams (\%)                    &  $-0.40$ &  0.57 \\
+\rowcolor{matchTrue} Summary Length                        &   $1.00$ &  1.00 \\
+\rowcolor{matchFalse} METEOR                                &  $-0.56$ &  0.27 \\
+\rowcolor{matchTrue} Syntactic Complexity (Words)          &   $1.00$ &  1.00 \\
+\rowcolor{matchTrue} Syntactic Complexity (Sentences)      &   $1.00$ &  1.00 \\
+\midrule
+\multicolumn{3}{l}{\textit{Non-lexical}} \\
+\midrule
+\rowcolor{matchFalse} BERTScore (F1)                        &      --- &  0.00 \\
+\rowcolor{matchFalse} BLANC                                 &  $-0.31$ &  0.07 \\
+\rowcolor{matchFalse} SummaQA (Avg F1)                      &      --- &  0.00 \\
+\bottomrule
+\end{tabular}
+\caption{Non-LLM metrics}
+\end{subtable}
+\hfill
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{lrr}
+\toprule
+Metric & $\rho\uparrow$ & M$\uparrow$ \\
+\midrule
+\multicolumn{3}{l}{\textit{LLM-based (Llama-70B judge)}} \\
+\midrule
+\rowcolor{matchFalse} FActScore                             &   $0.38$ &  0.47 \\
+\rowcolor{matchTrue} LLM Judge: Relevance                  &   $0.42$ &  0.07 \\
+\rowcolor{matchTrue} LLM Judge: Coherence                  &   $0.58$ &  0.13 \\
+\rowcolor{matchTrue} LLM Judge: Consistency                &   $0.42$ &  0.07 \\
+\rowcolor{matchTrue} LLM Judge: Fluency                    &   $0.58$ &  0.13 \\
+\rowcolor{matchTrue} LLM Judge: Informativeness            &   $0.42$ &  0.07 \\
+\rowcolor{matchTrue} LLM Judge: Overall                    &   $0.58$ &  0.13 \\
+\rowcolor{matchFalse} LLM Judge: Annotator        &      --- &  --- \\
+\rowcolor{matchFalse} Persona Precision                     &      --- &  0.00 \\
+\rowcolor{matchTrue} Persona Recall                        &   $0.45$ &  0.60 \\
+\midrule
+\multicolumn{3}{l}{\textit{LLM-based (Prometheus-7B judge)}} \\
+\midrule
+\rowcolor{matchFalse} FActScore                             &  $-0.36$ &  0.38 \\
+\rowcolor{matchFalse} LLM Judge: Relevance                  &  $-0.20$ &  0.27 \\
+\rowcolor{matchFalse} LLM Judge: Coherence                  &  $-0.01$ &  0.53 \\
+\rowcolor{matchFalse} LLM Judge: Consistency                &  $-0.17$ &  0.27 \\
+\rowcolor{matchFalse} LLM Judge: Fluency                    &   $0.20$ &  0.47 \\
+\rowcolor{matchFalse} LLM Judge: Informativeness            &  $-0.11$ &  0.40 \\
+\rowcolor{matchFalse} LLM Judge: Overall                    &  $-0.04$ &  0.47 \\
+\rowcolor{matchFalse} LLM Judge: Annotator        &  $-0.00$ &  0.27 \\
+\rowcolor{matchFalse} Persona Precision                     &  $-0.01$ &  0.43 \\
+\rowcolor{matchFalse} Persona Recall                        &   $0.09$ &  0.31 \\
+\bottomrule
+\end{tabular}
+\caption{LLM metrics}
+\end{subtable}
+\caption{Test: \texttt{incremental\_addition} (expected: increase). Rows are colored green if $\rho\geq0.4$. and red otherwise.}
+\label{tab:incremental_addition}
+\end{table}
+
+
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{lrr}
+ & & \\
+\toprule
+Metric & $\rho\approx0$ & M$\uparrow$\\
+\midrule
+\multicolumn{3}{l}{\textit{Lexical}} \\
+\midrule
+\rowcolor{matchFalse} ROUGE-1 (F1)                          &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} ROUGE-2 (F1)                          &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} ROUGE-L (F1)                          &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} BLEU                                  &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} chrF                                  &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} Extractive Coverage                   &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} Extractive Density                    &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} Compression Ratio                     &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} Novel 1-grams (\%)                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Novel 2-grams (\%)                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Novel 3-grams (\%)                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Summary Length                        &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} METEOR                                &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} Syntactic Complexity (Words)          &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Syntactic Complexity (Sentences)      &   $1.00$ &  0.00 \\
+\midrule
+\multicolumn{3}{l}{\textit{Non-lexical}} \\
+\midrule
+\rowcolor{matchFalse} BERTScore (F1)                        &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} BLANC                                 &   $1.00$ &  1.00 \\
+\rowcolor{matchTrue} SummaQA (Avg F1)                      &   $0.00$ &  1.00 \\
+\rowcolor{matchTrue} SUPERT                                &      --- &  1.00 \\
+\bottomrule
+\end{tabular}
+\caption{Non-LLM metrics}
+\end{subtable}
+\hfill
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{lrr}
+\toprule
+Metric & $\rho\approx0$ & M$\uparrow$\\
+\midrule
+\multicolumn{3}{l}{\textit{LLM-based (Llama-70B judge)}} \\
+\midrule
+\rowcolor{matchFalse} FActScore                             &  $-1.00$ &  0.00 \\
+\rowcolor{matchTrue} LLM Judge: Relevance                  &   $0.00$ &  1.00 \\
+\rowcolor{matchFalse} LLM Judge: Coherence                  &   $1.00$ &  0.00 \\
+\rowcolor{matchTrue} LLM Judge: Consistency                &   $0.00$ &  1.00 \\
+\rowcolor{matchFalse} LLM Judge: Fluency                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Informativeness            &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Overall                    &   $1.00$ &  0.00 \\
+\rowcolor{matchTrue} LLM Judge: Annotator        &      --- &  1.00 \\
+\rowcolor{matchTrue} Persona Precision                     &   $0.00$ &  1.00 \\
+\rowcolor{matchFalse} Persona Recall                        &  $-1.00$ &  0.00 \\
+\midrule
+\multicolumn{3}{l}{\textit{LLM-based (Prometheus-7B judge)}} \\
+\midrule
+\rowcolor{matchFalse} FActScore                             &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Relevance                  &  $-1.00$ &  1.00 \\
+\rowcolor{matchFalse} LLM Judge: Coherence                  &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Consistency                &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Fluency                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Informativeness            &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Overall                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Annotator        &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Persona Precision                     &  $-1.00$ &  1.00 \\
+\rowcolor{matchFalse} Persona Recall                        &   $1.00$ &  0.00 \\
+\bottomrule
+\end{tabular}
+\caption{LLM metrics}
+\end{subtable}
+\caption{Test: \texttt{lengthen\_prose} (expected: stable) Rows are colored green if $\rho\approx0$. and red otherwise.}
+\label{tab:lengthen_prose}
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{lrr}
+& & \\
+\toprule
+Metric & $\rho\approx0$ & M$\uparrow$ \\
+\midrule
+\multicolumn{3}{l}{\textit{Lexical}} \\
+\midrule
+\rowcolor{matchFalse} ROUGE-1 (F1)                          &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} ROUGE-2 (F1)                          &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} ROUGE-L (F1)                          &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} BLEU                                  &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} chrF                                  &  $-1.00$ &  1.00 \\
+\rowcolor{matchFalse} Extractive Coverage                   &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} Extractive Density                    &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} Compression Ratio                     &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Novel 1-grams (\%)                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Novel 2-grams (\%)                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Novel 3-grams (\%)                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Summary Length                        &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} METEOR                                &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} Syntactic Complexity (Words)          &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} Syntactic Complexity (Sentences)      &  $-1.00$ &  0.00 \\
+\midrule
+\multicolumn{3}{l}{\textit{Non-lexical}} \\
+\midrule
+\rowcolor{matchFalse} BERTScore (F1)                        &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} BLANC                                 &   $1.00$ &  1.00 \\
+\rowcolor{matchTrue} SummaQA (Avg F1)                      &   $0.00$ &  1.00 \\
+\rowcolor{matchTrue} SUPERT                                &      --- &  1.00 \\
+\bottomrule
+\end{tabular}
+\caption{Non-LLM metrics}
+\end{subtable}
+\hfill
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{lrr}
+\toprule
+Metric & $\rho\approx0$ & M$\uparrow$ \\
+\midrule
+\multicolumn{3}{l}{\textit{LLM-based (Llama-70B judge)}} \\
+\midrule
+\rowcolor{matchFalse} FActScore                             &  $-1.00$ &  0.00 \\
+\rowcolor{matchTrue} LLM Judge: Relevance                  &   $0.00$ &  1.00 \\
+\rowcolor{matchFalse} LLM Judge: Coherence                  &   $1.00$ &  1.00 \\
+\rowcolor{matchTrue} LLM Judge: Consistency                &   $0.00$ &  1.00 \\
+\rowcolor{matchFalse} LLM Judge: Fluency                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Informativeness            &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Overall                    &   $1.00$ &  1.00 \\
+\rowcolor{matchFalse} LLM Judge: Annotator        &  $-1.00$ &  0.00 \\
+\rowcolor{matchTrue} Persona Precision                     &   $0.00$ &  1.00 \\
+\rowcolor{matchFalse} Persona Recall                        &  $-1.00$ &  0.00 \\
+\midrule
+\multicolumn{3}{l}{\textit{LLM-based (Prometheus-7B judge)}} \\
+\midrule
+\rowcolor{matchFalse} FActScore                             &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Relevance                  &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Coherence                  &   $1.00$ &  0.00 \\
+\rowcolor{matchTrue} LLM Judge: Consistency                &   $0.00$ &  1.00 \\
+\rowcolor{matchFalse} LLM Judge: Fluency                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Informativeness            &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Overall                    &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} LLM Judge: Annotator        &   $1.00$ &  0.00 \\
+\rowcolor{matchFalse} Persona Precision                     &  $-1.00$ &  0.00 \\
+\rowcolor{matchFalse} Persona Recall                        &  $-1.00$ &  0.00 \\
+\bottomrule
+\end{tabular}
+\caption{LLM metrics}
+\end{subtable}
+\caption{Test: \texttt{shorten\_prose} (expected: stable). Rows are colored green if $\rho\approx0$. and red otherwise}
+\label{tab:shorten_prose}
+\end{table}

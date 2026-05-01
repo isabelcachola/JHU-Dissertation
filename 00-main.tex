@@ -204,7 +204,8 @@
 \usepackage{geometry}                       % to manage margins and page format
 \usepackage{glossaries}                     % to add glossaries
 \usepackage{fancyhdr}                       % for header/ footer settings
-\usepackage[dvipsnames]{xcolor}             % color-related package
+% \usepackage[dvipsnames]{xcolor}             % color-related package
+\usepackage[dvipsnames, table]{xcolor}             % color-related package
 \usepackage[a-1b]{pdfx}                     % to generate PDF/A file (add before hyperref)
 \usepackage[pdfa]{hyperref}                 % for hyperlink management 
 \usepackage[all]{hypcap}                    % for captions on the side of figures
@@ -225,6 +226,7 @@
 \usepackage{subcaption}                     % individual panel and caption
 
 %% add more packages and/or change options of the packages as needed
+
 
 
 \input{custom-imports}
@@ -578,8 +580,8 @@
 
 
 %%%% OPTIONAL but COMMON: preface chapters
-\include{front-matter/03-dedication}
-\include{front-matter/04-acknowledgement}        
+% \include{front-matter/03-dedication}
+% \include{front-matter/04-acknowledgement}        
 \include{front-matter/05-epigraph}
 %% you can have other chapters and the order does not matter
 
@@ -650,6 +652,8 @@
 \include{back-matter/3-chapter-appendix}
 \include{back-matter/4-chapter-appendix}
 \include{back-matter/5-chapter-appendix}
+\include{back-matter/6-chapter-appendix}
+\include{back-matter/7-chapter-appendix}
 
 %% add more appendix chapters if you have 
 

@@ -1,0 +1,395 @@
+\begin{table}[h]
+\centering
+\footnotesize
+\begin{tabular}{p{.9\columnwidth}}
+\toprule
+\textbf{Prompt: LLM Judge} \\
+\midrule
+\end{tabular}
+\begin{lstlisting}[style=promptstyle]
+###Task Description:
+An instruction (might include an Input inside it), a response to evaluate, and a score rubric representing an evaluation criteria are given.
+1. Write a detailed feedback that assesses the quality of the response strictly based on the given score rubric, not evaluating in general.
+2. After writing a feedback, write a score that is an integer between 1 and 5. You should refer to the score rubric.
+3. The output format should look as follows: "Feedback: (write a feedback for criteria) [RESULT] (an integer number between 1 and 5)"
+4. Please do not generate any other opening, closing, or explanations.
+
+###Instruction:
+You are evaluating a summary from the perspective of a specific person. Consider their background and information needs when assessing quality.
+
+Annotator profile:
+- Role: {role}
+- Domain: {domain}
+- Information needs: {info_needs}
+- Query: {query}
+
+Evaluate the quality of the following summary on the dimension of {dimension}, from this person's perspective.
+
+Summary:
+{summary}
+
+###Response to evaluate:
+{summary}
+
+###Score Rubric:
+{rubric}
+\end{lstlisting}
+\begin{tabular}{p{\textwidth}}
+\bottomrule
+\end{tabular}
+\caption{Prompt template for LLM Judges. Score rubrics in~\Cref{tab:ch-7-llm-judge-rubrics}. Source is also provided in prompt for consistency and relevance.}\label{tab:ch-7-prompt-llm-judge}
+\end{table}
+
+% ====================================================================
+\begin{table*}[h]
+\centering
+\footnotesize
+\begin{tabular}{p{.95\textwidth}}
+\toprule
+\textbf{Score Rubrics} \\
+\midrule
+\end{tabular}
+
+    \begin{tabular}{p{.9\textwidth}}
+        \texttt{Coherence} \\ \hdashfull 
+    \end{tabular}
+    \begin{lstlisting}[style=promptstyle]
+Is the summary well-organized and easy to read?
+[1] The summary is incoherent and very difficult to follow.
+[2] The summary has poor organization with frequent disjointed transitions.
+[3] The summary is somewhat organized but has noticeable structural issues.
+[4] The summary is well-organized with only minor flow issues.
+[5] The summary is excellently structured and flows naturally throughout.
+    \end{lstlisting}
+
+    \begin{tabular}{p{.9\textwidth}}
+        \texttt{Consistency} \\ \hdashfull 
+    \end{tabular}
+    \begin{lstlisting}[style=promptstyle]
+Is the summary factually consistent with the source document?
+[1] The summary contains major factual errors or hallucinations not found in the source.
+[2] The summary contains several factual inconsistencies with the source.
+[3] The summary is mostly consistent but contains a few minor factual errors.
+[4] The summary is largely consistent with only negligible inaccuracies.
+[5] All information in the summary is fully consistent with the source document.
+    \end{lstlisting}
+
+    \begin{tabular}{p{.9\textwidth}}
+        \texttt{Fluency} \\ \hdashfull 
+    \end{tabular}
+    \begin{lstlisting}[style=promptstyle]
+Is the summary grammatically correct and well-written?
+[1] The summary has many grammatical errors and is poorly written.
+[2] The summary has frequent grammatical issues that hinder readability.
+[3] The summary has occasional grammatical errors but is generally readable.
+[4] The summary is well-written with only minor grammatical issues.
+[5] The summary has flawless grammar and excellent writing quality.
+    \end{lstlisting}
+
+    \begin{tabular}{p{.9\textwidth}}
+        \texttt{Relevance} \\ \hdashfull 
+    \end{tabular}
+    \begin{lstlisting}[style=promptstyle]
+Does the summary capture the key information from the source?
+[1] The summary is completely irrelevant and fails to capture any key information from the source document.
+[2] The summary captures very little key information and misses most important points.
+[3] The summary captures some key information but misses several important points.
+[4] The summary captures most key information with only minor omissions.
+[5] The summary captures all key points and essential information from the source.
+    \end{lstlisting}
+
+    \begin{tabular}{p{.9\textwidth}}
+        \texttt{Informativeness} \\ \hdashfull 
+    \end{tabular}
+    \begin{lstlisting}[style=promptstyle]
+How useful and informative is the summary to this specific person, given their background and information needs?
+    
+[1] The summary provides no useful information for this person's specific needs and background. It fails to address their domain or information requirements.
+[2] The summary provides very little information relevant to this person's needs. It largely misses content that would be useful given their role and domain expertise.
+[3] The summary provides some information relevant to this person's needs but lacks important domain-specific details or fails to address their stated information requirements.
+[4] The summary is informative for this person's needs, covering most relevant details for their role and domain, with only minor gaps in addressing their information requirements.
+[5] The summary is highly informative for this person's specific needs, thoroughly addressing their domain expertise and information requirements with relevant detail and appropriate context. 
+    \end{lstlisting}
+    
+\begin{tabular}{p{\textwidth}}
+\bottomrule
+\end{tabular}
+\caption{Score rubrics for prompt in~\Cref{tab:ch-7-prompt-llm-judge}.}\label{tab:ch-7-llm-judge-rubrics}
+\end{table*}
+
+% ====================================================================
+
+\begin{table}[h]
+\centering
+\footnotesize
+\begin{tabular}{p{.9\columnwidth}}
+\toprule
+\textbf{Prompt: LLM Judge Annotator} \\
+\midrule
+\end{tabular}
+\begin{lstlisting}[style=promptstyle]
+###Task Description:
+You are evaluating a summary from the perspective of a specific annotator. Consider their background and information needs when assessing quality.
+1. Write a detailed feedback that assesses strictly whether the summary best addresses the annotator's query, not the fidelity or the style.
+2. After writing a feedback, write a score that is an integer between 1 and 5. You should refer to the score rubric.
+3. The output format should look as follows: "Feedback: (write a feedback for criteria) [RESULT] (an integer number between 1 and 5)"
+4. Please do not generate any other opening, closing, or explanations.
+
+###Introduction
+Automatic summarization tools condense large amounts of text into shorter versions, highlighting the most important points.
+But "important" is subjective - what matters to one reader might not matter to another.
+This study explores what individual readers actually want from summaries of scientific papers, and how we can measure whether a summary was useful to them.
+**We're focused on whether the summary answers your query, not the style or fidelity of the summary.**
+
+###Annotator profile:
+- Role: {role}
+- Domain: {domain}
+- Information needs: {info_needs}
+
+###Query:
+{query}
+
+###Response to evaluate:
+{summary}
+
+###Score Rubric:
+How well does the summary address the annotator's specific query, given their background and information needs?
+        
+[1] The summary does not address the annotator's query at all. It provides no information that would help answer what they asked about.
+[2] The summary barely addresses the query, touching on it only tangentially or providing very little of the requested information.
+[3] The summary partially addresses the query, providing some relevant information but missing important aspects of what was asked.
+[4] The summary addresses the query well, covering most of what was asked with only minor gaps.
+[5] The summary fully and directly addresses the annotator's query, providing the requested information clearly and completely.
+\end{lstlisting}
+\begin{tabular}{p{\textwidth}}
+\bottomrule
+\end{tabular}
+\caption{Prompt template for LLM Judge Annotator, in which the prompt reflects the instructions given to the human annotators.}\label{tab:ch-7-prompt-llm-judge-annotator}
+\end{table}
+
+% ====================================================================
+
+\begin{table}[h]
+\centering
+\footnotesize
+\begin{tabular}{p{.95\columnwidth}}
+\toprule
+\textbf{Prompt: Persona Precision} \\
+\midrule
+\end{tabular}
+
+    \begin{tabular}{p{.9\columnwidth}}
+        \texttt{Step: Extract} \\ \hdashfull 
+    \end{tabular}
+    \begin{lstlisting}[style=promptstyle]
+Break down the following summary into a list of independent informational nuggets. Each nugget should be a single, self-contained piece of information -- a minimal, atomic statement that conveys one fact or claim.
+
+## Summary
+{summary}
+
+## Instructions
+List each informational nugget on its own line, prefixed with "- ". Output ONLY the list of nuggets, nothing else.
+
+Example format:
+- The study used a randomized controlled trial design.
+- The sample included 500 participants from three hospitals.
+- Treatment group showed 23% improvement over control.
+    \end{lstlisting}
+
+    \begin{tabular}{p{.9\columnwidth}}
+    \texttt{Step: Relevance} \\ \hdashfull 
+    \end{tabular}
+    \begin{lstlisting}[style=promptstyle]
+Determine whether the following informational nugget from a summary is relevant to the given persona and their query.
+
+A nugget is "relevant" if it addresses the persona's information needs, relates to their domain of expertise, or helps answer their query. A nugget is "not relevant" if it is unrelated to what this persona would care about.
+
+## Persona
+- Role: {role}
+- Domain: {domain}
+- Information needs: {info_needs}
+
+## Query
+{query}
+
+## Nugget
+{nugget}
+
+## Instructions
+Is this nugget relevant to the persona's needs and query? Respond with ONLY "relevant" or "not relevant".
+    \end{lstlisting}
+
+
+\begin{tabular}{p{\columnwidth}}
+\bottomrule
+\end{tabular}
+\caption{Prompts for Persona Precision metric.}\label{tab:ch-7-llm-judge-persona-precision}
+\end{table}
+
+% ====================================================================
+\begin{table}[h]
+\centering
+\scriptsize
+\setlength{\abovecaptionskip}{4pt}
+\vspace{-4pt}
+\begin{tabular}{p{.95\columnwidth}}
+\toprule
+\textbf{Prompt: Persona Recall} \\
+\midrule
+\end{tabular}
+
+\noindent\texttt{Step: Extract}\dotfill\par
+\vspace{-2pt}
+\begin{lstlisting}[style=promptstyle,aboveskip=2pt,belowskip=2pt]
+Break down the following summary into a list of independent informational nuggets. Each nugget should be a single, self-contained piece of information -- a minimal, atomic statement that conveys one fact or claim.
+
+## Summary
+{summary}
+
+## Instructions
+List each informational nugget on its own line, prefixed with "- ". Output ONLY the list of nuggets, nothing else.
+
+Example format:
+- The study used a randomized controlled trial design.
+- The sample included 500 participants from three hospitals.
+- Treatment group showed 23% improvement over control.
+\end{lstlisting}
+\vspace{-2pt}
+
+\noindent\texttt{Step: Requirements}\dotfill\par
+\vspace{-2pt}
+\begin{lstlisting}[style=promptstyle,aboveskip=2pt,belowskip=2pt]
+You are given a persona description and their query about a source document. Generate a list of informational nugget requirements -- specific pieces of information that a good summary SHOULD contain to serve this persona's needs.
+
+Each requirement should be an atomic, specific piece of information that this persona would expect or need from a summary of the source document.
+
+## Persona
+- Role: {role}
+- Domain: {domain}
+- Information needs: {info_needs}
+
+## Query
+{query}
+
+## Source Document
+{source}
+
+## Instructions
+Based on the persona's background, information needs, and query, list the key informational nuggets that a good summary should include. Each nugget should be a single, specific piece of information from the source document.
+
+List each requirement on its own line, prefixed with "- ". Output ONLY the list of requirements, nothing else.
+
+Example format:
+- The main methodology used in the study.
+- Key quantitative results and effect sizes.
+- Limitations that affect practical application.
+\end{lstlisting}
+\vspace{-2pt}
+
+\noindent\texttt{Step: Coverage}\dotfill\par
+\vspace{-2pt}
+\begin{lstlisting}[style=promptstyle,aboveskip=2pt,belowskip=2pt]
+Determine whether the following informational requirement is covered by any of the summary nuggets below.
+
+A requirement is "covered" if any of the summary nuggets address the same information, even if phrased differently.
+
+## Requirement
+{requirement}
+
+## Summary Nuggets
+{nuggets}
+
+## Instructions
+Is the requirement addressed by any of the summary nuggets above? Respond with ONLY "covered" or "not covered".
+\end{lstlisting}
+\vspace{-2pt}
+
+\begin{tabular}{p{\columnwidth}}
+\bottomrule
+\end{tabular}
+\vspace{-6pt}
+\caption{Prompts for Persona Recall metric.}\label{tab:ch-7-llm-judge-persona-recall}
+\end{table}
+
+% ====================================================================
+
+\begin{table}[h]
+\centering
+\footnotesize
+\begin{tabular}{p{.95\columnwidth}}
+\toprule
+\textbf{Prompt: Perturbation Prompts} \\
+\midrule
+\end{tabular}
+
+    \begin{tabular}{p{.9\columnwidth}}
+        \texttt{Test: Lengthen} \\ \hdashfull 
+    \end{tabular}
+    \begin{lstlisting}[style=promptstyle]
+You are given a summary and the source document it was based on.
+
+Rewrite the summary to be longer and more detailed. You MUST follow these rules:
+- Do NOT add any new information that is not already present in or directly inferable from the original summary.
+- Keep all original facts, claims, and findings intact.
+- Expand by elaborating on existing points, adding transitional phrases, and using more descriptive language.
+- The rewritten summary should be approximately 50% longer than the original.
+
+Source document:
+{source}
+
+Original summary:
+{summary}
+
+Rewritten (longer) summary:
+    \end{lstlisting}
+
+    \begin{tabular}{p{.9\columnwidth}}
+    \texttt{Test: Shorten} \\ \hdashfull 
+    \end{tabular}
+    \begin{lstlisting}[style=promptstyle]
+You are given a summary and the source document it was based on.
+
+Rewrite the summary to be shorter and more concise. You MUST follow these rules:
+- Do NOT remove any key information, facts, claims, or findings from the original summary.
+- Preserve all substantive content while using fewer words.
+- Remove redundancy, simplify phrasing, and tighten sentence structure.
+- The rewritten summary should be approximately 50% shorter than the original.
+
+Source document:
+{source}
+
+Original summary:
+{summary}
+
+Rewritten (shorter) summary:
+    \end{lstlisting}
+
+    \begin{tabular}{p{.9\columnwidth}}
+    \texttt{Test: Different Audience} \\ \hdashfull 
+    \end{tabular}
+    \begin{lstlisting}[style=promptstyle]
+You are given a summary of a source document. The summary was originally written for: {original_audience}.
+
+Rewrite this summary for a different target audience: {target_audience}.
+
+You should:
+- Adjust the language, terminology, and level of detail to be appropriate for the target audience.
+- You may change which information is emphasized or how concepts are explained.
+- Base your rewrite on the source document, not just the original summary.
+- The rewrite should be roughly the same length as the original summary.
+
+Source document:
+{source}
+
+Original summary (written for {original_audience}):
+{summary}
+
+Rewritten summary (for {target_audience}):
+    \end{lstlisting}
+
+
+\begin{tabular}{p{\columnwidth}}
+\bottomrule
+\end{tabular}
+\caption{Prompts for the synthetic perturbations tests, described in~\Cref{sec:ch-7-experimental-setup}.}\label{tab:ch-7-perturbation-prompts}
+\end{table}

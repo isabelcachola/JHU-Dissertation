@@ -1,20 +1,19 @@
-\begin{table*}[!t]
-\centering
-    \begin{subtable}{.46\textwidth}
-        \centering \footnotesize
+\begin{table}[!t]
+    \centering
+    \begin{subtable}[t]{.44\textwidth}
+        \footnotesize
         \begin{tabular}{p{.99\textwidth}}
         \textexample{Wind power is an important source of renewable energy, but some people are concerned that conventional wind turbines are too loud and too hazardous for birds and bats. We wanted to create a new kind of wind energy harvesting machine based on the jiggling motion of cottonwood tree leaves in the wind, which would be quieter and safer for wildlife. After building and testing artificial cottonwood leaves that moved and created electricity in the wind, we found that they didn’t produce enough energy to feasibly use for electricity production. We also tried building a cattail-like device to generate electricity when it swayed in the wind, [...]
         % but it also didn’t produce enough energy to make it reasonable to use. 
         % Though our research showed that artificial plants’ jiggling or swaying isn’t likely to be a cost-effective way to produce electricity, we think it could be fruitful to look into other plant-inspired designs for harvesting wind energy. We also are testing a previously unexploited biological material known to convert mechanical to electrical energy far more effectively than the ones used today.
         } 
         \end{tabular}
-        \vspace{-3mm}
         \caption{FKGL = 16.47 (College-graduate), LM score = 4/5.}
         \label{subtab:ex-disaggreement-sjk}
-    \end{subtable}    
-    % \hspace{1mm}
-    \begin{subtable}{.51\textwidth}
-        \centering \footnotesize
+    \end{subtable}%
+    \hfill
+    \begin{subtable}[t]{.51\textwidth}
+        \footnotesize
         \begin{tabular}{p{.99\textwidth}}
         \textexample{Introduction. Accumulation of glycochenodeoxycholic acid (GCDC) in serum has a clinical significance as an inductor of pathological hepatocyte apoptosis, which impairs liver function. Inhibition of GCDC accumulation can be used as a marker in therapy. This study was aimed to quantify the serum level of GCDC in obstructive jaundice patients. Methodology. GCDC acid level in the serum was quantified using high performance liquid chromatography (HPLC) technique according to Muraca and Ghoos modified method. It was performed before and after decompression at day 7 and day 14. The sample was extracted with solid phase extraction (SPE) technique on SPE column. The results were analyzed using SPSS V 16.0 (P < 0.05) [...]
         % and quantified with standard curve on GCDC acid. 
@@ -22,11 +21,9 @@
         % This method could separate GCDC acid on serum with good resolution, high precision and accuracy, and linear calibration curve on measured level range. Conclusion. HPLC can quantify GCDC acid serum on obstructive jaundice patients and can be used to support its pharmacokinetic study.
         }
         \end{tabular}
-        \vspace{-3mm}
-        \caption{FKGL = 10.0 (10th grade), LM score = 1/5.}
+        \caption{FKGL = 10.0 (10th grade), \\LM score = 1/5.}
         \label{subtab:ex-disaggreement-plos}
     \end{subtable} 
-    % \vspace{-2mm}
-    \caption{Examples of disagreement between FKGL and the LM evaluator. \ref{subtab:ex-disaggreement-sjk} contains an example from the SJK dataset that the LM rated high readability and FKGL rated low readability. \ref{subtab:ex-disaggreement-plos} contains a summary from the Pubmed dataset that the LM rated low readability while FKGL rated high readability.}\vspace{-4mm}
+    \caption{Examples of disagreement between FKGL and the LM evaluator. \ref{subtab:ex-disaggreement-sjk} contains an example from the SJK dataset that the LM rated high readability and FKGL rated low readability. \ref{subtab:ex-disaggreement-plos} contains a summary from the Pubmed dataset that the LM rated low readability while FKGL rated high readability.}
     \label{tab:disagreement-example}
-\end{table*}
+\end{table}

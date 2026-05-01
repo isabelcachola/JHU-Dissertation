@@ -61,7 +61,7 @@ We took hyperparameters from the AxBench Paper \cite{wu2025axbenchsteeringllmssi
 
 \begin{table*}[t]
 \centering
-\small
+\scriptsize
 \begin{tabular}{lcccc}
 \toprule
 \diagbox{Hyperparameter}{Baseline Method} & LoRa & QLoRa & SFT & DSPy \\
@@ -113,6 +113,8 @@ We choose an extraction dataset that follows the requirements outlined in~\S\ref
 Req. 2 states that the positive and negative examples must have approximately the same content, only differing in their readability level. In order to measure overlap in content, we use Sentence Transformers to retrieve an embedding matrix for the example pairs, then compute the cosine similarity~\cite{reimers-gurevych-2019-sentence}. We use Specter for the embeddings, a model trained on scientific data~\cite{cohan-etal-2020-specter}. The resulting mean cosine similarity scores are as follows: $0.631$ for eLife, $0.604$ for PLOS, $0.575$ for Eureka, and $0.590$ for SciNews. Based on these scores, we conclude that eLife and PLOS have the highest content similarity while Eureka and SciNews have the lowest. This aligns from the construction of the datasets: eLife and PLOS's lay summaries written by the original paper authors to be accessible explanations of their papers while Eureka and SciNews's summaries are news reports discussing papers. Upon inspection, we find that Eureka and SciNews often contain information not present in the abstract, such as interviews with the authors or information on a study's funding source. 
 Based on this analysis, we conclude that eLife best meets the requirements. As the control vector method does not require a large extraction dataset, we select 128 of the most readable examples (lowest Dale-Chall) from the eLife training set. Choosing the most readable examples gives the control vectors the best examples of readability. We use this setup to report our main results in~\S\ref{sec:4-chapter-results}. 
 
+\input{research-chapters/4-chapter/tables/dataset-examples}
+
+
 We include examples of each dataset in~\Cref{tab:dataset-examples-elife} (eLife), \Cref{tab:dataset-examples-plos} (PLOS), \Cref{tab:dataset-examples-eureka} (Eureka), and \Cref{tab:dataset-examples-scinews}. In the eLife example, the lay summary is significantly more readable than the technical summary, using less technical language, while only focusing on the content of the paper. This is an example of a pair of summaries that are compliant with the requirements outlined in~\S\ref{sec:4-chapter-method}. In the PLOS example, although it is clear that both summaries cover the same material, the lay summary is not significantly more readable than the technical summary, including highly complex terms such as ``glycosaminoglycans.'' This example meets Req. 2 but not Req. 1. The Eureka and SciNews examples contain extraneous information not present in the technical summary. Both example lay summaries contain interviews with the papers' authors, meaning these summaries do not meet Req. 2. We note that although this extraneous information is problematic for control vectors, it is also likely problematic for any method. At best, the extraneous information will make a method ineffective. At worst, it could teach a model to hallucinate interviews that did not happen. For this reason, we urge future researchers to use caution using these datasets for summarization training.
 
-\input{research-chapters/4-chapter/tables/dataset-examples}

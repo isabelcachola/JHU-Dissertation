@@ -1,16 +1,5 @@
-% --- Typography & Encoding ---
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{times}
-\usepackage{latexsym}
-\usepackage{microtype}
-\usepackage{soul}
-\usepackage{xspace}
+\usepackage{cleveref}
 
-% --- Math & Symbols ---
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{mathtools}
 
 % --- Tables & Figures ---
 \usepackage{graphicx}
@@ -21,24 +10,15 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{arydshln}
-\usepackage{colortbl}
+% \usepackage[table]{xcolor}  % MUST come before colortbl
+% \usepackage{colortbl}
 \usepackage{diagbox}
 \usepackage{adjustbox}
 
 % --- Colors & Boxes ---
-\usepackage{color}
+% \usepackage{color}        % REMOVE — conflicts with xcolor
 \usepackage[most]{tcolorbox}
 
-% --- Algorithms ---
-% \usepackage{algorithm}
-% \usepackage{algpseudocode}
+\usepackage{rotating}
 
-% --- Layout & Formatting ---
-\usepackage{titlesec}
-\usepackage{lipsum} % provides filler text
-\titlespacing{\paragraph}{0pt}{0.5\baselineskip}{1em}
-
-% --- Links & Referencing ---
-\usepackage{url}
-\usepackage{hyperref}
-\usepackage{cleveref} % Should usually be loaded after hyperref
+\usepackage{fontawesome5} % for the GitHub icon

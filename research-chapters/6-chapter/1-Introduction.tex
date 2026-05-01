@@ -6,6 +6,7 @@
 % \textbf{We propose a new evaluation paradigm: reference-adjusted evaluation.} This setting refers to the situation in which we have access to similar, but not exact reference summaries. For example, when generating lay summaries of scientific documents, we often have access to abstracts (expert-targeted summaries) but not gold lay summaries. These summaries share the desired content, but not style of the target summaries. Alternatively, say we have access to gold lay summaries, but not one for each test document; these summaries share the target style, but not content. We hypothesize that having related but non-exact summaries will improve LLMs as judges by giving the model an axis on which to refer. This setting will allow researchers and developers to improve their evaluations in new test sets without requiring expensive annotations, leveraging either a small annotation (a few new style examples) or naturally existing data (such as abstracts in the example above). We show that reference-adjusted evaluation can leverage cheaply-acquired machine generated summaries, including extractive summaries, and improve over the reference-free setting. This finding will allow researchers to improve their LLM-as-judge evaluations in situations in which gold reference data is not available or prohibitively expensive.
 
 
+
 \section{Introduction}
 
 Automatic evaluation metrics are a cornerstone of summarization research,
@@ -44,12 +45,7 @@ human-written examples from a pilot annotation, but not a gold reference
 for every test document. Under current paradigms, this approximate information is not leveraged. 
 
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\columnwidth]{research-chapters/6-chapter/ref-tradeoffs.png}
-    \caption{A visualization of the trade-offs of the 3 LLM-as-judge evaluation paradigms. }
-    \label{fig:ref-adj-vis}
-\end{figure}
+
 
 \textbf{We propose reference-adjusted evaluation}, a new paradigm that
 occupies the practical middle ground between the two current standards. Rather than requiring exact gold references or discarding all reference information
@@ -67,4 +63,4 @@ full annotation effort.
 We introduce the reference-adjusted evaluation paradigm and demonstrate that
 it improves LLM-as-judge performance over the reference-free setting across
 three open-source models and four evaluation axes, using cheaply acquired
-machine-generated summaries as approximate references. We highlight a practical path forward for researchers who need robust evaluation without the cost of full gold annotation. We visualize the trade-offs of the 3 evaluation paradigms in~\Cref{fig:ref-adj-vis}. Reference-based evaluation has high correlation with human judgment, but lacks scalability and ease of deployment, while requiring high annotation cost. Reference-free evaluation is scalable, easy to deploy, and requires no annotation, but suffers from lower correlation with human judgment. Reference-adjusted evaluation bridges this gap by improving easy of deployment, scalability, low to no annotation cost, and higher correlation with human judgment. We release our code and data to support future research.\footnote{\url{https://anonymous.4open.science/r/ref-adj-eval-BEF6/README.md}}
+machine-generated summaries as approximate references. We highlight a practical path forward for researchers who need robust evaluation without the cost of full gold annotation. We visualize the trade-offs of the 3 evaluation paradigms in~\Cref{fig:ref-adj-vis}. Reference-based evaluation has high correlation with human judgment, but lacks scalability and ease of deployment, while requiring high annotation cost. Reference-free evaluation is scalable, easy to deploy, and requires no annotation, but suffers from lower correlation with human judgment. Reference-adjusted evaluation bridges this gap by improving easy of deployment, scalability, low to no annotation cost, and higher correlation with human judgment. 

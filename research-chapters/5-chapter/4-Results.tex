@@ -6,17 +6,19 @@
 
 
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.99\linewidth]{research-chapters/5-chapter/figures/count_acl_eval.pdf}
-    \vspace{-5mm}
-    \caption{Evaluation metrics used by papers published in the ACL Anthology. We report the count of papers using each method out of a total of 18 papers. We additionally report the evaluation strategies used by PLS shared tasks and the number of participants.}
-    \label{fig:lit-survey-results}
-    \vspace{-4mm}
-\end{figure}
 \section{Results}\label{sec:5-chapter-results}
 
-\subsection{Current PLS evaluation standards \hyperref[rq1]{\rqone}}\label{subsec:results-rqone}
+
+    
+
+\subsection[Current PLS evaluation standards]{Current PLS evaluation standards \hyperref[rq1]{\rqone}}\label{subsec:results-rqone}
+
+\begin{figure}
+\centering
+    \includegraphics[width=0.95\linewidth]{research-chapters/5-chapter/figures/count_acl_eval.pdf}
+    \caption{Evaluation metrics used by papers published in the ACL Anthology. We report the count of papers using each method out of a total of 18 papers. We additionally report the evaluation strategies used by PLS shared tasks and the number of participants.}
+    \label{fig:lit-survey-results}
+\end{figure}
 We found 18 ACL Anthology papers on the task of PLS and 3 shared tasks, representing 81 additional papers. \Cref{fig:lit-survey-results} shows the literature survey results, excluding metrics used by a single paper. FKGL is the most popular metric, followed by CLI and DCRS. LM-based evaluations are uncommon (4 of the 18 papers). The shared task BioLaySumm used FKGL and DCRS for both years, adding CLI in 2024. BioLaySumm 2025 is ongoing at the time of writing; the organizers plan to use FKGL, DCRS, and CLI. Our survey shows that PLS is an increasingly popular topic of study, as the number of participants in shared tasks increased from 8 in 2020 to 53 in 2024, emphasizing the importance of PLS evaluation. Less popular metrics include GFI, ARI, lexical proxies (e.g., number of sentences in a document), and FRE. In \cref{subsec:results-rqtwo}, we place the highest importance on the results of the most commonly used evaluation metrics: FKGL, CLI, and DCRS.
 
 
@@ -24,7 +26,7 @@ We found 18 ACL Anthology papers on the task of PLS and 3 shared tasks, represen
 
 
 
-\subsection{Comparing traditional readability metrics to human judgments \hyperref[rq2]{\rqtwo}}\label{subsec:results-rqtwo}
+\subsection[Comparing traditional readability metrics to human judgments]{Comparing traditional readability metrics to human judgments \hyperref[rq2]{\rqtwo}}\label{subsec:results-rqtwo}
 
 In \Cref{subtab:trad-corr-results}, we report the Pearson and Kendall-Tau correlation of 8 traditional readability metrics with human judgments. We find that 6 of the 8 metrics have less than $0.3$ Pearson correlation with human judgments. DCRS and CLI have the highest correlation, achieving $0.2$ Pearson points higher correlation than the most popular metric, FKGL (\Cref{subsec:results-rqone}). FKGL receives only $0.16$ Pearson and $0.08$ Kendall-Tau correlation, indicating little to no correlation with human judgment. 
 
@@ -35,16 +37,15 @@ Traditional readability metrics do not account for elements of the summary that 
 
 
 \input{research-chapters/5-chapter/tables/summ-examples}
-\begin{figure}[t]
+\begin{figure}[h]
     \centering
     \vspace{-2mm}
     \includegraphics[width=.99\columnwidth]{research-chapters/5-chapter/figures/best-prompt.pdf}
         \caption{The best performing prompt of the 3 we tested. We report the results of this prompt in~\Cref{subtab:lm-corr-results} and the results of the remaining prompts in~\Cref{appendix:prompt}.}
     \label{fig:best-prompt}
-    \vspace{-4mm}
 \end{figure}
 
-\subsection{LMs as evaluators of readability \hyperref[rq3]{\rqthree}}\label{subsec:results-rqthree}
+\subsection[LMs as evaluators of readability]{LMs as evaluators of readability \hyperref[rq3]{\rqthree}}\label{subsec:results-rqthree}
 Traditional readability metrics rely on lexical proxies and do not measure other elements of a summary that could make it more readable, such as definitions of technical terms, explanations of important concepts, or descriptions of impact and motivation. LMs have been shown to perform well on many language understanding tasks~\cite{Brown2020LanguageMA,srivastava2023beyond}, indicating that they have some understanding of language. We hypothesize that this knowledge will translate well to the task of PLS, and the LMs will be able to reason about more complex features of a summary that impact the readability.
 
 
@@ -56,7 +57,7 @@ Performance in this task is not solely a factor of model size, as we see that sm
 The model notes that the summary ``may require some effort and attention,'' contributing to the model's reasoning for assigning the summary a 4/5 rather than a 5/5. This output indicates that the model is using its language reasoning abilities to rate the summary on attributes deeper than lexical features.
 
 
-\begin{figure*}[!t]
+\begin{figure*}[h]
 \centering\includegraphics[width=.99\textwidth]{research-chapters/5-chapter/figures/lm_readability-scores.pdf}
     \vspace{-3mm}
     \caption{Histogram of LM readability scores and the mean scores ($\mu$) for each dataset, as judged by \texttt{Llama 3.3 70B}. As we can see from the results, PLOS and CELLS are judged to be similarly readable to the expert targets datasets (arXiv, PubMed, and SciTLDR). The most readable PLS datasets are CDSR and SciNews.}
@@ -66,7 +67,7 @@ The model notes that the summary ``may require some effort and attention,'' cont
 
 
 \input{research-chapters/5-chapter/tables/lm-readability-scores-by-dataset}
-\subsection{Analysis of summarization datasets \hyperref[rq4]{\rqfour}}\label{subsec:results-rqfour}
+\subsection[Analysis of summarization datasets]{Analysis of summarization datasets \hyperref[rq4]{\rqfour}}\label{subsec:results-rqfour}
 We analyze scientific summarization datasets using the LM evaluators. We use \texttt{Llama 3.3 70B}, the best performing model from \Cref{subsec:results-rqtwo}. In \Cref{fig:histogram-datasets}, we include histograms of the readability scores for all 10 tested datasets, to visualize the distributions. 
 In~\Cref{tab:lm-readability-scores-by-dataset}, we report the mean, median, and variance of the readability scores for each dataset.
 
@@ -86,7 +87,7 @@ We've shown that most LM judgments of readability correlate higher with human ju
 \begin{figure}[!h]
     \centering
     % First subfigure
-    \begin{subfigure}[b]{0.42\textwidth}
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{research-chapters/5-chapter/figures/Score_Keyword_Analysis.pdf}
         \vspace{-6mm}
@@ -95,7 +96,7 @@ We've shown that most LM judgments of readability correlate higher with human ju
     \end{subfigure}
     \hfill
     % Second subfigure
-    \begin{subfigure}[b]{0.42\textwidth}
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{research-chapters/5-chapter/figures/Dataset_Keyword_Analysis.pdf}
         \vspace{-6mm}
@@ -116,10 +117,15 @@ When stratified by dataset, for datasets with generally low readability scores, 
 
 % We report the extracted keywords and conduct a similar analysis, but with the keyword extraction stratified by dataset, in \cref{appendix:keyword-analysis-dataset}. LMs are attributing their judgements to deeper attributes that contribute to readability compared to traditional metrics. 
 
+\input{research-chapters/5-chapter/tables/ranked-datasets}
 
 \paragraph{LM evaluators vs. traditional metrics.} Finally, we compare the results of the analysis using traditional metrics to LM evaluators of readability. In this analysis, we focus on \texttt{Llama 3.3 70B}, the best performing LM, and FKGL, the most popular readability metric. \Cref{tab:ranked-datasets} compares the average LM readability and FKGL score for each dataset, and how each metric would rank the datasets. All but 1 dataset changed their ranking depending on the metric used. arXiv has the largest delta, ranking 10th in readability according to the LM evaluator and 2nd according to FKGL. FKGL ranking arXiv as the 2nd most readable is particularly concerning, as this dataset is a collection of scientific abstracts, intended for an expert audience.
 To measure disagreement, we convert each metric into binary scores of ``high readability'' and ``low readability.'' For FKGL, we consider any summary given a score of under 12 points to have high readability. FKGL considers any text above 12 to be college reading level. For the LM evaluator, we consider any summary given a score of 3 or higher to have high readability. By converting the scores to binary labels, we calculate the Cohen's Kappa score~\cite{McHugh2012InterraterRT} for agreement as 0.17, indicating the two metrics have fair but not substantial agreement. We provide examples of this disagreement in \Cref{tab:disagreement-example}. This analysis shows how the evaluation metrics we use can greatly influence the conclusions we draw. 
 
-\input{research-chapters/5-chapter/tables/ranked-datasets}
 
 \input{research-chapters/5-chapter/tables/disagreement-example}
+
+\subsection{Statistical Significance}\label{appendix:sig-testing}
+We use the William's test to calculate statistical significance of the difference in performance between each LM evaluator and traditional metric~\cite{graham-baldwin-2014-testing}. We report the p-values in \Cref{tab:signigicance-testing}. The difference in Pearson correlation between \texttt{Llama 3.3 70B}, the best performing model, the traditional metrics is statistically significant, except for DCRS and CLI. The Pearson correlation difference between the LM evaluators and FKGL, the most popular metric, is statistically significant, except \texttt{Llama 3.1 8B}. The Kendall-Tau values show that the Mistral, Mixtral, and Gemma models are statistically significant over most of the traditional metrics. This supports our suggestions from \Cref{subsec:recommendations}, in which we recommend using a combination of the best performing traditional metrics (DCRS and CLI) with LM evaluators, while discontinuing the use of FKGL. 
+
+\input{research-chapters/5-chapter/tables/sig-testing}

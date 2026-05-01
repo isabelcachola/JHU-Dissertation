@@ -1,12 +1,11 @@
 % -----------------------------------------------------------------------
 % TABLE 3 & 4: Mistral and Llama Eval (combined with subtables)
 % -----------------------------------------------------------------------
-\begin{table*}[ht]
-\footnotesize
+\begin{table*}[h]
+\scriptsize
 \centering
-
+\setlength{\tabcolsep}{4pt}
 % --- Subtable (a): Mistral ---
-\begin{subtable}{\linewidth}
 \centering
 \begin{tabular}{lccccc}
 \toprule
@@ -50,16 +49,19 @@ Reference-free & - & 0.200\,(Stats-density) & 0.633\,(Stats-density) & 0.410\,(B
 \bottomrule
 \end{tabular}
 \caption{%
-  \textbf{Mistral Eval on SummEval} across three evaluation settings.
+  Evaluation results on SummEval for Mistral across three evaluation settings.   \colorbox{refbased}{\vphantom{x} Reference-based}: Gold references.
+  \colorbox{refadj}{\vphantom{x} Reference-adjusted}: Abstractive or Extractive references.
+  \colorbox{reffree}{\vphantom{x} Reference-free}: nrefs\,=\,0.
+Best traditional metric per setting, per column, shown for reference.  \textbf{Bold} indicates the best score within each setting per column. Best traditional metrics from~\Cref{tab:traditional_metrics}.
 }
 \label{tab:combined-mistral}
-\end{subtable}
-
-\vspace{1em}
+\end{table*}
 
 % --- Subtable (b): Llama ---
-\begin{subtable}{\linewidth}
+\begin{table*}
 \centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lccccc}
 \toprule
 \textbf{Reference Type} & \textbf{nrefs}
@@ -101,16 +103,11 @@ Reference-adjusted & - & 0.515\,(ROUGE-L) & 0.691\,(ROUGE-3) & 0.701\,(ROUGE-4) 
 Reference-free & - & 0.200\,(Stats-density) & 0.633\,(Stats-density) & 0.410\,(BLANC) & 0.383\,(BLANC) \\
 \bottomrule
 \end{tabular}
-\caption{%
-  \textbf{Llama Eval on SummEval} across three evaluation settings.
-}
-\label{tab:combined-llama}
-\end{subtable}
 
-\caption{Evaluation results on SummEval for \textbf{(a) Mistral} and \textbf{(b) Llama} across three evaluation settings.   \colorbox{refbased}{\vphantom{x} Reference-based}: Gold references.
+\caption{Evaluation results on SummEval for Llama across three evaluation settings.   \colorbox{refbased}{\vphantom{x} Reference-based}: Gold references.
   \colorbox{refadj}{\vphantom{x} Reference-adjusted}: Abstractive or Extractive references.
   \colorbox{reffree}{\vphantom{x} Reference-free}: nrefs\,=\,0.
 Best traditional metric per setting, per column, shown for reference.  \textbf{Bold} indicates the best score within each setting per column. Best traditional metrics from~\Cref{tab:traditional_metrics}.
 }
-\label{tab:mistal+llama}
+\label{tab:combined-llama}
 \end{table*}

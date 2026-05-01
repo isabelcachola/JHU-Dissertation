@@ -1,0 +1,58 @@
+\section{Perturbation Testing Results \hyperref[chsevenrq1]{\chsevenrqone}}
+
+Results for the five perturbation tests for all metrics described in~\Cref{sec:ch-7-experimental-setup} are presented in~\Cref{tab:different_audience,tab:distractor_sentences,tab:incremental_addition,tab:lengthen_prose,tab:shorten_prose} and visualized in~\Cref{fig:pertubation-vis-non-llm,fig:pertubation-vis-llm}.
+
+\paragraph{Distractor sentences.} Appending unrelated sentences should cause reference-based metrics to decrease. The lexical overlap metrics (ROUGE-1/L, BLEU, chrF, METEOR, compression) behave as expected, all reaching $\rho = -1.0$ with $M = 1.0$. More notably, BERTScore, BLANC, and SummaQA fail to produce a defined correlation, and the LLM-based metrics are inconsistent across judges: under Llama-3.3-70B only FActScore ($\rho = -0.60$) and coherence ($\rho = -0.58$) pass, while under Prometheus-7B a different and largely non-overlapping subset passes (relevance, fluency, the annotator-style judge, persona recall). The metrics most often advocated as ``content-aware'' alternatives to ROUGE are thus the \emph{least} reliable detectors of obviously off-topic content.
+
+\paragraph{Incremental addition.} Reconstructing the summary one sentence at a time should cause scores to increase as the summary becomes more complete. Strikingly, ROUGE-1/2/L, BLEU, chrF, METEOR, and compression all show \emph{negative} correlations between $-0.56$ and $-0.65$. Partial summaries are scored \emph{higher} than complete ones, likely an artifact of length normalization rewarding short prefixes that overlap the reference. The Llama-3.3-70B judge is the lone bright spot: every prompt-driven dimension lies between $\rho = 0.42$ and $\rho = 0.58$ in the correct direction, although low monotonicity ($M \leq 0.13$) indicates noisy scores. The Prometheus-7B judge fails on every dimension. No reference-based metric in either the lexical or non-lexical family reliably distinguishes partial from complete summaries.
+
+\paragraph{Lengthen and shorten prose.} A content-preserving rewrite that changes surface length should leave a content-aware metric approximately unchanged ($\rho \approx 0$). Almost every metric fails: all overlap-based metrics, extractive coverage and density, compression, and BERTScore reach $\rho = -1.0$ on \texttt{lengthen\_prose}, with mirror behavior on \texttt{shorten\_prose}. Most LLM Judge dimensions also collapse to $|\rho| = 1.0$, indicating they are themselves strongly length-sensitive. The few length-invariant metrics are SummaQA, SUPERT, and a small subset of LLM-based dimensions (Llama-3.3-70B relevance, consistency, and persona precision; Prometheus-7B consistency). This extends the length-sensitivity failure mode previously documented for ROUGE~\cite{sun2019compare} to BERTScore and to most LLM-judge dimensions.
+
+\paragraph{Different audience.} Rewriting a summary for a different target audience should be detected as a quality drop. The most striking result is that several LLM-based metrics move in the \emph{wrong} direction: under Prometheus-7B, fluency, informativeness, overall, and FActScore all show strong positive correlations of $0.80$--$1.00$, rating audience-shifted summaries as \emph{higher} quality than the original. The lexical overlap metrics (ROUGE-1/2, chrF, METEOR, coverage, density, compression) and BERTScore sit exactly at our pass threshold ($\rho = -0.40$), giving only a weak directional signal, and ROUGE-L, BLEU, BLANC, SummaQA, and SUPERT fail outright. Under the Llama-3.3-70B judge, only the annotator-style judge passes ($\rho = -0.77$); under Prometheus, only consistency ($\rho = -0.40$) and persona recall ($\rho = -0.60$). Compared to the much stronger responses these same metrics produce under distractor injection, this confirms that existing summarization metrics are far more sensitive to surface-level corruptions than to a meaningful change in the audience the summary serves.
+
+\paragraph{Summary of robustness findings.} No single metric passes all of the tests it should, and most pass only the distractor-injection test, the perturbation furthest from realistic variation. LLM-based metrics offer a partial complement, recovering sensitivity on incremental addition where lexical metrics catastrophically fail, but they are highly inconsistent across judge models: dimensions that pass under Llama-3.3-70B routinely fail or invert under Prometheus-7B. Most importantly, every evaluated metric is approximately insensitive, or actively misleading, to audience-shift rewrites, the dimension along which informational satisfaction varies between users. These results motivate the human evaluation in~\Cref{sec:ch-7-human-eval-results}.
+
+\input{research-chapters/7-chapter/tables/pertubations}
+
+\begin{figure*}[htbp]
+    \centering
+    \begin{subfigure}[t]{0.95\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{research-chapters/7-chapter/figures/pertubation-lexical.png}
+        \caption{Lexical-based metrics}
+        \label{fig:pertubation-lexical}
+    \end{subfigure}
+    \vspace{1em}
+    \begin{subfigure}[t]{0.95\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{research-chapters/7-chapter/figures/perturbation-non-lexical.png}
+        \caption{Non-lexical based metrics}
+        \label{fig:perturbation-non-lexical}
+    \end{subfigure}
+    \caption{Visualization of how non-LLM-based metrics react to the 5 perturbation tests outlines in~\Cref{sec:ch-7-experimental-setup}.}
+    \label{fig:pertubation-vis-non-llm}
+\end{figure*}
+
+\begin{figure*}[htbp]
+    \centering
+    \begin{subfigure}[t]{0.95\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{research-chapters/7-chapter/figures/perturbation-llama-70b.png}
+        \caption{LLM-based metrics using Llama-3.3-70B}
+        \label{fig:pertubation-llama-70b}
+    \end{subfigure}
+    \vspace{1em}
+    \begin{subfigure}[t]{0.95\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{research-chapters/7-chapter/figures/perturbation-prometheus.png}
+        \caption{LLM-based metrics using Prometheus-7B}
+        \label{fig:perturbation-prometheus}
+    \end{subfigure}
+    \caption{Visualization of how LLM-based metrics react to the 5 perturbation tests outlined in~\Cref{sec:ch-7-experimental-setup}. Scores are normalized to the same range for comparative visualization. }
+    \label{fig:pertubation-vis-llm}
+\end{figure*}
+
+
+
+
+

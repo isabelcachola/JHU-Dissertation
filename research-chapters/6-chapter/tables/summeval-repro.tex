@@ -1,25 +1,15 @@
-\definecolor{deltapos}{rgb}{0.10, 0.55, 0.45}   % teal  for positive delta
-\definecolor{deltaneg}{rgb}{0.75, 0.15, 0.15}   % red   for negative delta
-\definecolor{deltazero}{rgb}{0.50, 0.50, 0.50}  % grey  for zero
 
-% Signed delta: positive
-\newcommand{\dpos}[1]{\textcolor{deltapos}{$+$#1}}
-% Signed delta: negative
-\newcommand{\dneg}[1]{\textcolor{deltaneg}{$-$#1}}
-% Signed delta: zero
-\newcommand{\dzero}{\textcolor{deltazero}{$\phantom{+}$0.000}}
-% n/a delta (metric not available in one study, or nrefs differ)
-\newcommand{\dna}{\textcolor{deltazero}{---}}
 
 % -----------------------------------------------------------------------
 % Comparison Table: All Metrics on SummEval
 % Each metric appears once at the maximum nrefs available.
 % -----------------------------------------------------------------------
-\begin{table*}[t!]
+\begin{sidewaystable}[h]
+% \begin{table*}[h]
 \centering
 \scriptsize
-\setlength{\tabcolsep}{4.5pt}
-\renewcommand{\arraystretch}{1.05}
+% \setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{0.9}
 \begin{tabular}{l r
     ccc
     ccc
@@ -296,6 +286,7 @@ Stats-density
 % } \\
 \end{tabular}
 \caption{%
+    \footnotesize
   \textbf{All Metrics on SummEval} (Gold references, maximum nrefs available per metric).
   Comparison between the \emph{original} study and our \emph{replication}.
   $\Delta$ = Replication $-$ Original;
@@ -304,4 +295,5 @@ Stats-density
   $^{\dagger}$ Metric not reproduced; original values only.
 }
 \label{tab:comparison}
-\end{table*}
+% \end{table*}
+\end{sidewaystable}

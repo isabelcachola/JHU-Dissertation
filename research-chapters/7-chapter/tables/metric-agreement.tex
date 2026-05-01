@@ -1,0 +1,68 @@
+\begin{table}[h!]
+\centering
+\footnotesize
+\begin{subtable}[t]{0.44\textwidth}
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Metric} & \textbf{Agreement} \\
+\midrule
+ROUGE-1 F1        & 57\% \\
+ROUGE-2 F1        & \textbf{60\%} \\
+ROUGE-L F1        & 52\% \\
+chrF              & 58\% \\
+SummaQA F1        & 56\% \\
+BERTScore F1      & 52\% \\
+BLEU              & 53\% \\
+METEOR            & 53\% \\
+BLANC             & 50\% \\
+SUPERT            & 50\% \\
+CIDEr             & 50\% \\
+\bottomrule
+\end{tabular}
+\caption{Traditional metrics}
+\end{subtable}
+\hfill
+\begin{subtable}[t]{0.55\textwidth}
+\centering
+\begin{tabular}{lc}
+
+\toprule
+\textbf{Metric} & \textbf{Agreement} \\
+\midrule
+Overall                  & 49\% \\
+Relevance                & 51\% \\
+Coherence                & \textbf{53\%} \\
+Consistency              & 50\% \\
+Fluency                  & 46\% \\
+Informativeness          & \textbf{53\%} \\
+FactScore                & 51\% \\
+Persona-precision        & 47\% \\
+Persona-recall           & 51\% \\
+Persona-relative overall & 50\% \\
+\bottomrule
+\end{tabular}
+\caption{LLM-as-a-judge (Prometheus-7B)}
+\end{subtable}
+\vspace{1em} \\
+\begin{subtable}[t]{0.55\textwidth}
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Metric} & \textbf{Agreement} \\
+\midrule
+Overall            & 51\% \\
+Relevance          & 50\% \\
+Coherence          & 51\% \\
+Consistency        & 50\% \\
+Informativeness    & 49\% \\
+FactScore          & \textbf{52\%} \\
+Persona-precision  & 49\% \\
+Persona-recall     & 49\% \\
+\bottomrule
+\end{tabular}
+\caption{LLM-as-a-judge (Llama-3.3-70B-Instruct)}
+\end{subtable}
+\caption{Pairwise agreement rate between metrics and human pairwise preferences. Chance agreement is 50\%. No metric family substantively exceeds chance, including persona-aware variants designed to capture informational satisfaction.}
+\label{tab:metric-agreement}
+\end{table}

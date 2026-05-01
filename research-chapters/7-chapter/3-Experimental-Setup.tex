@@ -1,0 +1,89 @@
+\section{Experimental Setup \hyperref[chsevenrq1]{\chsevenrqone}}\label{sec:ch-7-experimental-setup}
+
+We evaluate the robustness of automatic summarization metrics by
+applying controlled perturbations to reference summaries and measuring
+whether each metric responds in the expected direction. 
+
+We draw samples from 4 scientific summarization corpora that span
+a range of domains, document lengths, and intended audiences.
+\textbf{arXiv} and \textbf{PubMed} \cite{cohan2018discourse} provide
+long-document scientific articles paired with their abstracts, while
+\textbf{SciTLDR} \cite{cachola2020tldr} contributes extreme
+single-sentence TL;DR summaries of Computer Science papers. \textbf{eLife} contains editor-written lay summaries of biomedical articles~\cite{goldsack2022making}.
+For each dataset, we use the test set and subsample $N{=}50$ documents for experimentation.
+
+We evaluate a broad set of metrics covering the major families used in
+the summarization literature. For lexical overlap with a reference
+summary, we include ROUGE-1/2/L \cite{lin2004rouge},
+BLEU \cite{papineni2002bleu}, chrF \cite{popovic2017chrf}, and
+METEOR \cite{banerjee2005meteor}. We additionally report a set of
+surface-level statistics of the summary itself, computed via
+DataStats \cite{grusky2018newsroom}: extractive coverage, extractive
+density, compression ratio, the percentage of novel 1/2/3-grams
+relative to the source, and summary length. A spaCy-based
+\cite{honnibal2020spacy} syntactic-complexity metric, measured in
+both words and sentences, is included as a reference-free baseline
+that captures only surface properties of the summary. We use the
+SumEval package to compute the above metrics~\cite{fabbri2021summeval}.
+ 
+For non-lexical, embedding- and model-based evaluation, we include
+BERTScore \cite{zhang2020bertscore}, which computes token-level
+cosine similarity using contextual embeddings (we use the default
+RoBERTa-large model). We further include the reference-free metrics
+SUPERT \cite{gao2020supert}, SummaQA \cite{scialom2019summa}, and
+BLANC \cite{vasilyev2020blanc}, which score summaries against the
+source document only.
+ 
+For LLM-based evaluation, we run each metric under two judges, a
+larger Llama-3.3-70B model\footnote{\texttt{meta-llama/Llama-3.3-70B-Instruct}} and a smaller Prometheus-7B
+model\footnote{\texttt{prometheus-eval/prometheus-7b-v2.0}}~\cite{kim2023prometheus, grattafiori2024llama3}, in order to assess judge sensitivity.
+We include FActScore \cite{min2023factscore}, which verifies atomic
+facts against the source. Following~\textcite{liu2023geval}, we use an
+LLM-as-judge metric \cite{zheng2023judging} that scores summaries
+along the dimensions of relevance, consistency, fluency, coherence,
+informativeness, and an overall score. Finally, we include
+LLM-as-judge prompts that mirror the instructions provided to the
+annotator (LLM Judge: Annotator). 
+
+Finally, we experiment with a variant of FActScore that measures the utility of information nuggets to the user, rather the fidelty of the nuggets to the source. We refer to these metrics as Persona Recall and Persona Precision.
+ Both decompose a summary into atomic informational nuggets via an LLM extraction step, then judge each nugget against the target persona (role, domain, info needs, query). Persona Precision measures the fraction of summary nuggets that an LLM judge deems relevant to the persona, penalizing off-topic or persona-irrelevant content. Persona Recall first prompts the LLM to generate a list of information requirements implied by the persona and source document, then checks what fraction of those requirements is covered by the summary's nuggets, penalizing omissions of persona-critical information. Together they capture whether a summary contains the right information for a specific reader and nothing extraneous.
+
+
+\subsection{Perturbation tests}
+\label{sec:perturbations}
+
+We apply 5 perturbations to each summary, each producing an ordered
+sequence of progressively perturbed variants. For each test we declare
+the \emph{expected direction} that a faithful metric should follow.
+
+\begin{enumerate}
+    \item \textbf{Distractor sentences} (expected: decrease). Up to five
+    sentences sampled uniformly at random from \emph{other} documents in
+    the corpus are appended one at a time to the summary, following the
+    style of distractor-injection robustness probes
+    \cite{kryscinski2019neural,gabriel2021goyfaithful}.
+    \item \textbf{Incremental addition} (expected: increase). Starting
+    from the empty string, we add one sentence of the original summary
+    at a time until the full summary is reconstructed. This probes
+    whether a metric distinguishes partial from complete summaries.
+    \item \textbf{Lengthen} (expected: stable). An LLM is prompted to
+    expand the summary into longer prose without introducing new
+    information; the source document is provided as grounding context.
+    \item \textbf{Shorten} (expected: stable). The inverse of
+    \emph{lengthen}: the LLM is asked to condense the summary while
+    preserving content. Together these two tests measure
+    length-sensitivity, a known failure mode of overlap-based metrics
+    \cite{sun2019compare}.
+    \item \textbf{Different audience} (expected: decrease). The summary
+    is rewritten by the LLM for a different target audience drawn from
+    \{undergraduate student, journalist, domain expert\}. This isolates
+    the effect of audience-aware emphasis, which persona-aware metrics
+    should detect as a quality drop relative to the original audience.
+\end{enumerate}
+
+We use Llama-3.3-70B to generate the LLM-based pertubations (tests~3-5). % We present an analysis of the quality of the generated summaries in~\todo.
+
+We compute the the Spearman rank correlation $\rho$~\cite{spearman1904proof} between perturbation level and mean metric score. We additionally resport the Monotonicity (M) as the fraction of consecutive level transitions whose sign matches the expected direction. For \emph{stable} tests, a transition is considered correct when the absolute score change is below 5\% of the baseline score.
+The expected output of each statistic, along with each expected direction is reported in~\Cref{tab:expected_directions}.
+
+\input{research-chapters/7-chapter/tables/expected-stats}

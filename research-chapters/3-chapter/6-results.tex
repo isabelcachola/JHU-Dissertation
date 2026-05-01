@@ -1,7 +1,7 @@
 
 \section{Results}
-As mentioned in~\Cref{sec:data}, past work on Doc2PPT and Paper-Posters do not release code, making it difficult to do a direct comparison. They also do not report any baselines to compare against. Meanwhile, Longsumm's blind test does not allow us to compute our custom metric, although we do report the leaderboard results in~\Cref{sec:longsumm-blind}. Notably, with almost no prompt engineering our LLM-based system places second on this leaderboard. We argue that for the investigation in this paper, direct comparison to prior non-LLM baselines is not only unfair to those approaches, but not particularly insightful.
-Therefore, similar to~\textcite{Wei2022ChainOT}, we focus on variants of our LLM-based method and treat them as baselines. Example outputs of each template type can be found in~\Cref{sec:example-outputs}.
+As mentioned in~\Cref{sec:data}, past work on Doc2PPT and Paper-Posters do not release code, making it difficult to do a direct comparison. They also do not report any baselines to compare against. Meanwhile, Longsumm's blind test does not allow us to compute our custom metric, although we do report the leaderboard results in~\Cref{sec:longsumm-blind}. Notably, with almost no prompt engineering our LLM-based system places second on this leaderboard. We argue that for the investigation in this chapter, direct comparison to prior non-LLM baselines is not only unfair to those approaches, but not particularly insightful.
+Therefore, similar to~\textcite{Wei2022ChainOT}, we focus on variants of our LLM-based method and treat them as baselines. We provide examples of the outputs generated with and without the intermediate representation. The documents in all examples are generated with GPT4 ($\texttt{gpt4-32k}$). \Cref{fig:ex-slides} includes example slide generations,~\Cref{fig:ex-blogs} includes example blog generations, and~\Cref{fig:ex-posters} includes example poster generations. 
 
 
 We conduct experiments with the following settings:
@@ -32,7 +32,7 @@ Finally, we see that allowing the model to choose its own representation format 
 
 
 \subsection{Longsumm Blind Test Set Results}\label{sec:longsumm-blind}
-We submit the final documents from GPT4, the best performing model overall, to the Longsumm blind test set evaluation. We compare the documents generated with and without the intermediate step. We see that without the intermediate representation we get a Rouge-1 score of 46.8 while the results generated without the intermediate representation received a Rouge-1 score of 46.4. We note that this blind test set of 22 papers is significantly smaller than the evaluation data (505 papers) we used in the main body of this paper. Despite not designing a task specific method, we place second on the leaderboard, showing the powerful capabilities of LLMs in long document generation.
+We submit the final documents from GPT4, the best performing model overall, to the Longsumm blind test set evaluation. We compare the documents generated with and without the intermediate step. We see that without the intermediate representation we get a Rouge-1 score of 46.8 while the results generated without the intermediate representation received a Rouge-1 score of 46.4. We note that this blind test set of 22 papers is significantly smaller than the evaluation data (505 papers) we used in the main body of this chapter. Despite not designing a task specific method, we place second on the leaderboard, showing the powerful capabilities of LLMs in long document generation.
 
 \input{research-chapters/3-chapter/tables/tmp_results}
 \subsection{Temperature Experiments}\label{sec:temp-exp}
@@ -72,7 +72,6 @@ It can be seen that while annotators largely preferred the documents generated w
 
 \paragraph{Which metric correlates better with humans?} We test whether our metric, as described in~\Cref{sec:eval-metric}, correlates better with human preference compared to prior evaluation metrics in the literature.
 For each annotation, given the degree of the preference $d$ (~\Cref{sec:annotation-instructions} Q. 2) we convert value to a score $P(d) \rightarrow [1,2,3]$ if $d$ is slight, moderate, or strong, respectively. 
-
 If the annotator prefers the document generated without an intermediate representation, we take $-P(d)$ instead. This allows us to measure if the metric captures directionality of preference along with degree. In parallel, we compute the automatic score $m$ for each metric, then calculate
 $S =m(\textrm{with rep}) - m(\textrm{skip rep})$
 where $m$ is the metric we are evaluating (e.g ROUGE). If a human annotator prefers a document generated without the intermediate step, we'd expect a good metric to assign a higher score to that document as well, resulting in both $S$ and $P(d)$ being negative (and positive in the opposite case). % Conversely, we'd expect instances where the opposite were true to result in positive scores for both $S$ and $P$.
@@ -89,8 +88,8 @@ Since prior metrics are not designed to account for the structure of documents, 
 
 
 
-\section{Example Outputs}\label{sec:example-outputs}
-We provide examples of the outputs generated with and without the intermediate representation below. The documents in all examples are generated with GPT4 ($\texttt{gpt4-32k}$). \Cref{fig:ex-slides} includes example slide generations,~\Cref{fig:ex-blogs} includes example blog generations, and~\Cref{fig:ex-posters} includes example poster generations. 
+% \section{Example Outputs}\label{sec:example-outputs}
+
 
 \begin{figure*}[h]
     \centering

@@ -1,0 +1,78 @@
+\newcommand\isabel[1]{{\color{purple}\{#1\}$_{Isabel}$}}
+
+\newcommand\todoit[1]{{\color{red}\{TODO: \textit{#1}\}}}
+\newcommand\todo{{\color{red}{TODO}}\xspace}
+\newcommand\X{{\color{red}{X}}\xspace}
+\newcommand\todocite{{\color{red}{CITE}}\xspace}
+\newcommand{\red}[1]{\textcolor{red}{#1}} 
+\newcommand{\blue}[1]{\textcolor{blue}{#1}} 
+
+\newtcbox{\badge}[1][red]{
+  on line, 
+  arc=2pt,
+  colback=#1!60!black,
+  colframe=#1!60!black,
+  fontupper=\color{white},
+  boxrule=1pt, 
+  boxsep=0pt,
+  left=2pt,
+  right=2pt,
+  top=1pt,
+  bottom=1pt
+}
+
+\newcommand{\textexample}[1]{
+    \begin{tcolorbox}[
+                  colback=gray!20,%gray background
+                  colframe=gray,
+                  boxsep=0pt,
+                  left=2pt,
+                  right=2pt,
+                  top=2pt,
+                  bottom=2pt,
+                 ]{\small #1}
+                 \end{tcolorbox}
+}
+
+\newcommand{\chsevenrqone}{\small \badge[blue]{RQ1}\xspace}
+\newcommand{\chsevenrqtwo}{\small \badge[orange]{RQ2}\xspace}
+
+
+\newcommand{\hdash}[2]{\cdashline{#1-#2}[0.5pt/3pt]}
+\newcommand{\hdashfull}{\hdashline[0.5pt/3pt]}
+\newcommand{\textnewline}{\xspace\textbackslash n}
+
+
+\newcommand{\wpcacentered}{{\small \texttt{Weighted PCA Centered}}\xspace}
+\newcommand{\promptsteering}{{\small \texttt{Prompt-based Steering}}\xspace}
+\newcommand{\rejectionsampled}{{\small \texttt{Rejection-Sampled Training}}\xspace}
+
+
+
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\definecolor{refbased}{rgb}{0.85, 0.92, 0.98}    % light blue
+\definecolor{refadj}{rgb}{0.88, 0.97, 0.88}       % light green
+\definecolor{reffree}{rgb}{0.98, 0.95, 0.80}       % light yellow
+
+\definecolor{promptbg}{gray}{0.93}
+
+\lstdefinestyle{promptstyle}{
+    backgroundcolor=\color{promptbg},
+    basicstyle=\scriptsize\ttfamily,
+    breaklines=true,
+    breakatwhitespace=false,
+    frame=none,
+    aboveskip=0pt,
+    belowskip=0pt,
+    xleftmargin=6pt,
+    xrightmargin=6pt,
+    keepspaces=true,
+    columns=flexible,
+}
+
+\newcommand{\repo}[2]{\href{#1}{\texttt{#2}}}
+
+\definecolor{matchTrue}{RGB}{217,237,217}    % soft green
+\definecolor{matchFalse}{RGB}{248,215,218}   % soft red

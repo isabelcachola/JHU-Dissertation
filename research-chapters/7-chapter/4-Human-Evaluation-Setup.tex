@@ -1,0 +1,98 @@
+\section{Human Evaluation Collection \hyperref[chsevenrq2]{\chsevenrqtwo}}\label{sec:ch-7-human-eval-setup}
+
+We conduct a human evaluation to assess whether conditioning summary
+generation on a reader's self-reported background yields summaries that
+are preferred by that reader. Crucially, we measure preference with
+respect to the specific annotator who provided the query and persona,
+rather than aggregating judgments across annotators.
+
+\paragraph{Annotation protocol.}
+Each annotator interacts with a custom web-based platform
+(see~\Cref{fig:annotation-interface} for screenshots). A session proceeds in four stages:
+(i)~the annotator completes a short pre-task questionnaire eliciting
+self-reported expertise, research area, and use-case, which together
+constitute their \emph{persona profile};
+(ii)~they submit a free-form natural-language query reflecting a
+genuine information need from their own work;
+(iii)~the system retrieves the top-10 paper abstracts matching the
+query from OpenAlex\footnote{\url{https://openalex.org/}} and conditions generation on this
+context; and
+(iv)~the annotator ranks the resulting four summaries through a
+pairwise tournament (described below). Each annotator completes this
+loop for up to 8 distinct queries.
+
+\paragraph{Summary generation.} For each query, four candidate summaries are produced from a
+$2 \times 2$ design crossing two open-weight instruction-tuned models
+Llama-3.3-70B~\cite{grattafiori2024llama3}
+and DeepSeek-V3.1\footnote{\texttt{deepseek-ai/DeepSeek-V3.1}}~\cite{deepseekai2024deepseekv3technicalreport} with
+two prompting conditions (with and without the persona profile). All
+four summaries are generated from the same retrieved context using a
+shared prompt template that instructs the model to ground its answer
+in the provided abstracts and to use bracketed in-text
+citations~\cite{lewis2020rag,gao2023ragsurvey}. Full prompts are
+provided in~\Cref{sec:ch-7-prompts}.
+
+\paragraph{Ranking protocol.}
+Annotators rank the four summaries through a pairwise
+single-elimination tournament: two pairs are compared in the first
+round, and the winners advance to a final. Assignment of summaries to
+bracket positions is randomized, so annotators cannot infer which
+model or prompt condition produced a given summary. Pairwise
+comparison has been shown to yield more reliable human judgments than
+absolute Likert ratings~\cite{kiritchenko2017bws,liusie2024llmcomparative},
+and the bracket structure reduces annotator effort from
+$\binom{4}{2}=6$ pairwise judgments to three while producing a general
+ordering over the top two summaries. For each round, the annotators also have the option to select ``Neither'' if neither summary meets their information needs. If ``Neither'' is selected in the first round bracket, the final round is skipped.
+
+\paragraph{Annotator recruitment.}
+Standard inter-annotator agreement is not a meaningful quality signal
+in our setting; information satisfaction is defined relative to a
+specific reader's background and query, and two annotators with
+different backgrounds should be expected to disagree on the same
+summary. Agreement among annotators would in fact suggest that our
+protocol fails to capture the persona-conditioned signal we aim to
+measure. We instead ensure annotation quality through careful
+recruitment. Rather than crowdsourcing, which would require
+annotators to fabricate information needs, we recruit 20 volunteer
+annotators directly through professional networks, all of whom hold
+genuine interest in supporting language-technology research. Our annotator pool spans domains including computer science, medicine, and materials
+science, and roles including researchers, practicing professionals
+(e.g., nurses), and undergraduate students. Each annotator is not required to use all assigned queries if they did not have a genuine information need for all 8. Because summaries are
+generated live in response to each annotator's own query, every
+judgment reflects an authentic information need. See~\Cref{sec:ch-7-annotator-comp} for details about annotator compensation.
+
+
+\begin{figure*}[htbp]
+    \centering
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{research-chapters/7-chapter/figures/interface-intro.png}
+        \caption{Introduction to the task and instructions.}
+        \label{fig:interface-intro}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.2\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{research-chapters/7-chapter/figures/interface-profile.png}
+        \caption{Profile questionnaire for building a persona.}
+        \label{fig:interface-profile}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{research-chapters/7-chapter/figures/interface-query.png}
+        \caption{Annotators choose query topic.}
+        \label{fig:interface-query}
+    \end{subfigure}
+        \vspace{1em}
+
+    \begin{subfigure}[t]{\textwidth}
+        \centering
+        \includegraphics[width=.7\linewidth]{research-chapters/7-chapter/figures/interface-comparison.png}
+        \caption{Example summary comparison.}
+        \label{fig:interface-comparison}
+    \end{subfigure}
+
+    \caption{Annotation workflow example. Steps~\ref{fig:interface-query}-\ref{fig:interface-comparison} continue for each query assigned to the annotator.}
+    \label{fig:annotation-interface}
+\end{figure*}

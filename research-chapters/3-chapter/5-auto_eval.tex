@@ -13,7 +13,6 @@ Prior work on document generation has treated the evaluation of different templa
 %\end{equation}
 %where $Q$ and $\tilde{Q}$ are the number of reference and generated slides, respectively. This is essentially ROUGE-L with a penalty for generating a different number of slides. However, this metric does not account for distribution of information. For example, if the model generates all of the text on a single slide, $\mathrm{ROUGE-SL}$ will give the same score to a set of slides with a more even distribution of text. Additionally, this metric is only designed for the task of slide generation. 
   Thus, our goal is to develop a framework of automatic evaluation that is \textit{template adaptable}. This not only allows us to compare performance across diverse datasets, it also removes the requirement of designing and maintaining individual metrics for each template. In order to generalize to multiple templates, we introduce the concept of \textit{panels}. A panel is a unit of organization within a document type, for which the placement and ordering of the panel is important to the overall flow of information in the document.  
-% \sjauhar{I am wondering if we should maybe use a different word for this -- say \emph{panels}? Frames have a very definite historical connotation in NLP (frame semantics) and although this shouldn't be confusing because we're dealing with a totally different domain we may want to avoid overloading the term}. \isabel{It's a good point about frames already having another meaning in NLP, but panels feels specific to posters. } \sjauhar{Can you talk about frames more generally in the context of \emph{all} doc types, before focusing on how they would apply to types in this paper?} 
 
 For example, we consider panels to be each slide in a slide deck and each section on a poster. We consider the entirety of a blog post to be a single panel. Although we test our method on the tasks of slide, blog, and poster generation, the concept of panels is not limited to these document types. For example, each post on a social media thread could be considered a panel, or each page on a website.
 
@@ -62,9 +61,9 @@ By splitting the evaluation of quality into precision and recall, we can evaluat
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=.8\columnwidth]{research-chapters/3-chapter/images/Ordering.pdf}
+    \includegraphics[width=.7\columnwidth]{research-chapters/3-chapter/images/Ordering.pdf}
 
-    \caption{Example of the process of obtaining the rankings for the precision ordering penalty. We first use the similarity measure to map each generated panel to its most similar reference document. This mapping is used to calculate the precision quality score $Q_P$. We then use the mappings to create a one-to-one alignment from the generated to the reference panels, which we use to calculate the precision ordering penalty ($O_P$). By creating a one-to-one alignment, we are able to represent inversions in the ordering.
+    \caption[Example of the process of obtaining the rankings for the precision ordering penalty.]{Example of the process of obtaining the rankings for the precision ordering penalty. We first use the similarity measure to map each generated panel to its most similar reference document. This mapping is used to calculate the precision quality score $Q_P$. We then use the mappings to create a one-to-one alignment from the generated to the reference panels, which we use to calculate the precision ordering penalty ($O_P$). By creating a one-to-one alignment, we are able to represent inversions in the ordering.
     This process is reflexive, and panels not accounted for in the precision ordering penalty are accounted for in the recall ordering penalty.
     } 
     \label{fig:ordering-penalty}

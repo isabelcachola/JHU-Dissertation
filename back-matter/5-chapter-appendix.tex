@@ -1,9 +1,7 @@
-\chapter{Chapter 5 appendix} \label{chap:appendix-5}
-
 \section{Human annotated dataset details}\label{appendix:dataset_details}
 We use the human annotated data collected by~\textcite{August2024KnowYA}. The dataset includes 60 summaries over 10 papers, 6 summaries per paper. Of the 6 summaries, 2 are written by experts and 4 are machine written by GPT3. The 10 papers were sampled from the top 10\% of papers from \textit{r/science}, a subreddit dedicated to public discussions of scientific papers. These papers were chosen as a proxy for scientific topics the general public is most interested in. The dataset was annotated by 593 Mechanical Turk workers in total across the three tasks in the original study.
 \Cref{tab:human_annotation_distribution} contains the distributions of scores assigned by the human annotators.
-\vspace{-5mm}
+
 \input{research-chapters/5-chapter/tables/human_annotation_distribution}
 
 In order to measure inter-annotator agreement, we bin the scores into a binary ``high-readability'' and ``low readability.'' Summaries given scores of 3 or higher are considered highly readable while summaries assigned scores less than 3 are considered to have low readability. We use Cohen's Kappa to calculate an inter-annotator agreement of 0.6. This is a moderate agreement for a somewhat subjective task, indicating that there is some general notion of readability. We also note that this is significantly higher than the agreement between traditional metrics and LMs (0.17 as shown in~\Cref{subsec:results-rqfour}).
@@ -18,9 +16,6 @@ We experiment with 3 prompts, shown in~\Cref{tab:prompts}. The \texttt{Simple Pr
 
 We report the Pearson and Kendall-Tau correlation of each prompt with human judgment in \Cref{tab:prompt-comparison}. The \texttt{Own Reasoning Prompt} performs the best when averaged across all models. We found that the models tended to over-rely on the guidance provided in the \texttt{ASCB Prompt}, providing lower scores if the conditions are not met. For the \texttt{Simple Prompt}, the models would occasionally try to calculate FKGL or another readability metric, rather than using its own reasoning. This is likely because FKGL is strongly associated with readability in the models' training data. We found that the \texttt{Own Reasoning Prompt} struck the right balance between providing enough instructions that the model is able to understand the task without providing too much information for the model to over-rely on. However, it is notable that the \texttt{ASCB Prompt}, the worst performing prompt, still achieves higher correlation with human judgment than FKGL, the most popular traditional metric. 
 
-\section{Statistical Significance}\label{appendix:sig-testing}
-We use the William's test to calculate statistical significance of the difference in performance between each LM evaluator and traditional metric~\cite{graham-baldwin-2014-testing}. We report the p-values in \Cref{tab:signigicance-testing}. The difference in Pearson correlation between \texttt{Llama 3.3 70B}, the best performing model, the traditional metrics is statistically significant, except for DCRS and CLI. The Pearson correlation difference between the LM evaluators and FKGL, the most popular metric, is statistically significant, except \texttt{Llama 3.1 8B}. The Kendall-Tau values show that the Mistral, Mixtral, and Gemma models are statistically significant over most of the traditional metrics. This supports our suggestions from \Cref{subsec:recommendations}, in which we recommend using a combination of the best performing traditional metrics (DCRS and CLI) with LM evaluators, while discontinuing the use of FKGL. 
 
-\input{research-chapters/5-chapter/tables/sig-testing}
 
 \input{research-chapters/5-chapter/tables/prompts}

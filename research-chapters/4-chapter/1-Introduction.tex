@@ -16,7 +16,7 @@ Past work has found that users with higher, but non-expert, familiarity with a t
 
 
 Control vectors can effectively steer complex attributes like honesty, making them well suited for readability control~\cite{zou2025representationengineeringtopdownapproach, rimsky-etal-2024-steering} and are less compute and data intensive than past work in readability controlled summarization~\cite{ribeiro-etal-2023-generating}. %\todoit{despite the attractiveness, we need to deal iwth previous} 
-However, despite their appeal, prior work has noted challenges in reliability of these vectors ~\parencite{vonrütte2024languagemodelsguidelatent, stickland2024steeringeffectsimprovingpostdeployment, 10.5555/3737916.3742333, braun2025understandingunreliabilitysteeringvectors}. In this paper, we propose a requirements based system for data selection that improves on these failure points.
+However, despite their appeal, prior work has noted challenges in reliability of these vectors ~\parencite{vonrütte2024languagemodelsguidelatent, stickland2024steeringeffectsimprovingpostdeployment, 10.5555/3737916.3742333, braun2025understandingunreliabilitysteeringvectors}. In this chapter, we propose a requirements based system for data selection that improves on these failure points.
 
 % \todoit{make our task more clear}
 % \todoit{make it more clear that this is an insight - in order to get these to work in our setting, we show that you need X} 
@@ -29,4 +29,4 @@ Under these simple requirements, control vectors extracted from compliant data c
 We conduct an analysis of PLS datasets, and find that many popular datasets do not satisfy our proposed requirements. While we show that non-compliant data yields poor control vectors, such issues likely affect other summarization methods as well. Because, control vectors is a low data method, applying our approach to a new tasks require collecting a small curated dataset.
 
 %\toditit{be careful here - say something like the advantages of our methods} 
-Our work clarifies the data requirements for control vectors, increasing the chance of future success for new tasks. We release our inference code and dataset splits to support future work.\footnote{\url{https://github.com/JHU-CLSP/control-summ}}
+Our work clarifies the data requirements for control vectors, increasing the chance of future success for new tasks. 

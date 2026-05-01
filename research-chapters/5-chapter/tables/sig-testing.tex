@@ -4,18 +4,15 @@
         \centering \footnotesize
         \begin{tabular}{l|rrrrrrrr}
          & \multicolumn{1}{l}{LW} & \multicolumn{1}{l}{Spache} & \multicolumn{1}{l}{FRE} & \multicolumn{1}{l}{ARI} & \multicolumn{1}{l}{GFI} & \multicolumn{1}{l}{DCRS} & \multicolumn{1}{l}{CLI} & \multicolumn{1}{l}{FKGL} \\ \hline
-        Mistral 7B & \cellcolor[HTML]{B7E1CD}6.51E-04 & \cellcolor[HTML]{B7E1CD}0.02 & \cellcolor[HTML]{B7E1CD}0.05 & \cellcolor[HTML]{B7E1CD}0.01 & \cellcolor[HTML]{B7E1CD}0.05 & 0.19 & 0.18 & \cellcolor[HTML]{B7E1CD}0.02 \\
+         Mistral 7B & \cellcolor[HTML]{B7E1CD}6.51E-04 & \cellcolor[HTML]{B7E1CD}0.02 & \cellcolor[HTML]{B7E1CD}0.05 & \cellcolor[HTML]{B7E1CD}0.01 & \cellcolor[HTML]{B7E1CD}0.05 & 0.19 & 0.18 & \cellcolor[HTML]{B7E1CD}0.02 \\
         Mixtral 7B & \cellcolor[HTML]{B7E1CD}6.90E-04 & \cellcolor[HTML]{B7E1CD}0.01 & \cellcolor[HTML]{B7E1CD}0.03 & \cellcolor[HTML]{B7E1CD}0.01 & \cellcolor[HTML]{B7E1CD}0.04 & 0.16 & 0.15 & \cellcolor[HTML]{B7E1CD}0.02 \\
         Gemma 7B & \cellcolor[HTML]{B7E1CD}9.65E-04 & \cellcolor[HTML]{B7E1CD}0.02 & \cellcolor[HTML]{B7E1CD}0.03 & \cellcolor[HTML]{B7E1CD}0.01 & \cellcolor[HTML]{B7E1CD}0.04 & 0.17 & 0.15 & \cellcolor[HTML]{B7E1CD}0.02 \\
         Llama 3.1 8B & \cellcolor[HTML]{B7E1CD}2.00E-03 & \cellcolor[HTML]{B7E1CD}0.04 & 0.14 & \cellcolor[HTML]{B7E1CD}0.03 & 0.10 & 0.34 & 0.31 & 0.06 \\
         Llama 3.1 70B & \cellcolor[HTML]{B7E1CD}3.66E-04 & \cellcolor[HTML]{B7E1CD}0.01 & \cellcolor[HTML]{B7E1CD}0.02 & \cellcolor[HTML]{B7E1CD}0.01 & \cellcolor[HTML]{B7E1CD}0.03 & 0.14 & 0.13 & \cellcolor[HTML]{B7E1CD}0.02 \\
-        % OLMo 2 13 B & \cellcolor[HTML]{B7E1CD}1.81E-04 & \cellcolor[HTML]{B7E1CD}0.01 & \cellcolor[HTML]{B7E1CD}0.02 & \cellcolor[HTML]{B7E1CD}3.75E-03 & \cellcolor[HTML]{B7E1CD}0.02 & 0.11 & 0.11 & \cellcolor[HTML]{B7E1CD}0.01
         \end{tabular}
-        \vspace{-1mm}
         \caption{Pearson correlation p-values.}\label{subtab:pearson-pval}
     \end{subtable}%
-    \vspace{1mm}
-    \quad
+    
     \begin{subtable}[t]{.9\textwidth}
         \centering \footnotesize
           \begin{tabular}{l|rrrrrrrr}
@@ -25,12 +22,9 @@
         Gemma 7B & \cellcolor[HTML]{B7E1CD}0.01 & \cellcolor[HTML]{B7E1CD}0.02 & \cellcolor[HTML]{B7E1CD}0.03 & \cellcolor[HTML]{B7E1CD}0.02 & \cellcolor[HTML]{B7E1CD}0.05 & 0.16 & 0.10 & \cellcolor[HTML]{B7E1CD}0.03 \\
         Llama 3.1 8B & \cellcolor[HTML]{B7E1CD}0.02 & 0.05 & 0.12 & \cellcolor[HTML]{B7E1CD}0.05 & 0.12 & 0.31 & 0.25 & 0.09 \\
         Llama 3.1 70B & \cellcolor[HTML]{B7E1CD}0.03 & 0.06 & 0.09 & \cellcolor[HTML]{B7E1CD}0.05 & 0.12 & 0.30 & 0.24 & 0.09 \\
-        % OLMo 2 13 B & \cellcolor[HTML]{B7E1CD}3.15E-03 & \cellcolor[HTML]{B7E1CD}0.01 & \cellcolor[HTML]{B7E1CD}0.02 & \cellcolor[HTML]{B7E1CD}0.01 & \cellcolor[HTML]{B7E1CD}0.03 & 0.10 & 0.08 & \cellcolor[HTML]{B7E1CD}0.02
         \end{tabular}
         \caption{Kendall-Tau p-values.}\label{subtab:kt-pval}
     \end{subtable} 
-    \vspace{-2mm}
     \caption{William's test p-values comparing the difference in performance between each LM and each traditional metric. Values that are statistically significant ($\textrm{p-value} < 0.05$), are highlighted in green.}
     \label{tab:signigicance-testing}
-    \vspace{-20mm}
 \end{table*}

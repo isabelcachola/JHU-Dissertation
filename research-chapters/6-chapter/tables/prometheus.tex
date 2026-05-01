@@ -1,9 +1,10 @@
 % -----------------------------------------------------------------------
 % TABLE 2: Prometheus Eval
 % -----------------------------------------------------------------------
-\begin{table*}[ht]
-\footnotesize
+\begin{table*}[h]
+\scriptsize
 \centering
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lccccc}
 \toprule
 \textbf{Reference Type} & \textbf{nrefs}
@@ -46,11 +47,10 @@ Reference-free & - & 0.200\,(Stats-density) & 0.633\,(Stats-density) & 0.410\,(B
 \bottomrule
 \end{tabular}
 \caption{%
-  \textbf{Prometheus Eval on SummEval} across three evaluation settings.
-  \colorbox{refbased}{\vphantom{x}Reference-based}: Gold references.
-  \colorbox{refadj}{\vphantom{x}Reference-adjusted}: Abstractive or Extractive references.
-  \colorbox{reffree}{\vphantom{x}Reference-free}: nrefs\,=\,0.
-  \textbf{Bold} indicates the best score within each setting per column. Best traditional metrics from~\Cref{tab:traditional_metrics}.
+  Evaluation results on SummEval for Prometheus across three evaluation settings.   \colorbox{refbased}{\vphantom{x} Reference-based}: Gold references.
+  \colorbox{refadj}{\vphantom{x} Reference-adjusted}: Abstractive or Extractive references.
+  \colorbox{reffree}{\vphantom{x} Reference-free}: nrefs\,=\,0.
+Best traditional metric per setting, per column, shown for reference.  \textbf{Bold} indicates the best score within each setting per column. Best traditional metrics from~\Cref{tab:traditional_metrics}.
 }
 \label{tab:prometheus}
 \end{table*}
